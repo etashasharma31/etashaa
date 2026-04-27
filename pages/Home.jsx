@@ -22,13 +22,6 @@ const Home = () => {
       link: '/bridal-collection'
     },
     {
-      image: '/images/banners_05_naaz.jpg',
-      tag: 'New Collection',
-      title: 'The Festive Edit',
-      sub: 'Timeless elegance meets modern silhouettes in our latest masterpiece series.',
-      link: '/non-bridal-collection'
-    },
-    {
       image: '/images/banners_02_ready_to_ship.jpg',
       tag: 'Express Luxury',
       title: 'Ready to Ship',
@@ -64,32 +57,8 @@ const Home = () => {
               <img 
                 src={slide.image} 
                 alt={slide.title} 
-                className={`w-full h-full object-cover transition-transform duration-[6000ms] ease-linear ${index === currentSlide ? 'scale-110' : 'scale-100'}`}
+                className={`w-full h-[110%] object-cover object-top transition-transform duration-[6000ms] ease-linear ${index === currentSlide ? 'scale-110' : 'scale-100'}`}
               />
-              <div className="absolute inset-0 bg-gradient-to-r from-white/60 via-white/20 to-transparent"></div>
-            </div>
-            
-            <div className="relative z-20 h-full flex items-center px-6 md:px-24 max-w-custom mx-auto">
-              <div className={`max-w-2xl transition-all duration-1000 delay-300 ${index === currentSlide ? 'translate-x-0 opacity-100' : '-translate-x-10 opacity-0'}`}>
-                <span className="font-jakarta-sans text-[10px] tracking-[0.4em] uppercase mb-4 block font-bold text-primary">{slide.tag}</span>
-                <h1 className="text-5xl md:text-7xl mb-6 font-noto-serif italic tracking-tight text-on-surface">{slide.title}</h1>
-                <p className="font-jakarta-sans text-sm md:text-lg tracking-wide mb-10 opacity-80 text-on-surface-variant max-w-lg">{slide.sub}</p>
-                <div className="flex gap-6">
-                  <button 
-                    className="btn-premium group"
-                    onClick={() => navigate(slide.link)}
-                  >
-                    <span>Explore Now</span>
-                    <span className="arrow">→</span>
-                  </button>
-                  <button 
-                    className="btn-premium-outline group"
-                    onClick={() => navigate('/saree-collection')}
-                  >
-                    <span>View All</span>
-                  </button>
-                </div>
-              </div>
             </div>
           </div>
         ))}
