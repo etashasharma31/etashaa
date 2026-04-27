@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif:wght@400;700&amp;family=Plus+Jakarta+Sans:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "secondary": "#a13c46",
+                    "surface-variant": "#e5e2df",
+                    "primary-fixed-dim": "#e3c281",
+                    "on-background": "#1c1c1a",
+                    "on-surface-variant": "#4d463a",
+                    "on-error-container": "#93000a",
+                    "on-primary-container": "#533d07",
+                    "on-surface": "#1c1c1a",
+                    "on-primary": "#ffffff",
+                    "tertiary-container": "#b3aca2",
+                    "error": "#ba1a1a",
+                    "secondary-fixed-dim": "#ffb3b5",
+                    "error-container": "#ffdad6",
+                    "inverse-surface": "#31302f",
+                    "secondary-container": "#fe848c",
+                    "tertiary-fixed": "#e9e1d6",
+                    "surface-container-high": "#eae8e5",
+                    "surface-bright": "#fcf9f6",
+                    "surface-container": "#f0edea",
+                    "primary": "#735b24",
+                    "on-secondary-fixed": "#40000c",
+                    "primary-container": "#c8a96a",
+                    "on-tertiary-fixed": "#1e1b15",
+                    "on-error": "#ffffff",
+                    "surface": "#fcf9f6",
+                    "on-primary-fixed": "#261a00",
+                    "outline-variant": "#d0c5b5",
+                    "on-tertiary-container": "#444039",
+                    "surface-dim": "#dcdad7",
+                    "tertiary-fixed-dim": "#cdc5bb",
+                    "inverse-primary": "#e3c281",
+                    "on-secondary-container": "#751b28",
+                    "inverse-on-surface": "#f3f0ed",
+                    "surface-container-highest": "#e5e2df",
+                    "surface-container-lowest": "#ffffff",
+                    "surface-tint": "#735b24",
+                    "background": "#fcf9f6",
+                    "outline": "#7f7668",
+                    "secondary-fixed": "#ffdada",
+                    "tertiary": "#635e55",
+                    "primary-fixed": "#ffdf9f",
+                    "on-tertiary-fixed-variant": "#4b463e",
+                    "on-secondary-fixed-variant": "#822530",
+                    "on-secondary": "#ffffff",
+                    "surface-container-low": "#f6f3f0",
+                    "on-tertiary": "#ffffff",
+                    "on-primary-fixed-variant": "#5a430e"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.125rem",
+                    "lg": "0.25rem",
+                    "xl": "0.5rem",
+                    "full": "0.75rem"
+            },
+            "fontFamily": {
+                    "headline": ["Noto Serif"],
+                    "body": ["Plus Jakarta Sans"],
+                    "label": ["Plus Jakarta Sans"]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+        }
+        .editorial-shadow {
+            box-shadow: 0 40px 60px -15px rgba(28, 28, 26, 0.05);
+        }
+    </style>
+    <script src="cart.js"></script>
+    <script src="search.js"></script>
+    <script src="auth.js"></script>
+</head>
+<body class="bg-surface text-on-surface font-body selection:bg-primary-container selection:text-on-primary-container">
+<!-- Announcement Bar -->
+<div id="ann-bar" class="w-full py-2.5 text-center bg-[#842029]">
+  <p class="font-jakarta-sans text-[10px] text-white tracking-[0.3em] uppercase font-medium">✦ NEW BRIDAL COLLECTION 2025 — LIVE NOW &nbsp;&middot;&nbsp; BOOK A FREE CONSULTATION ✦</p>
+</div>
+<!-- TopNavBar -->
+<header class="sticky top-0 w-full z-50 bg-[#FCF9F6] border-b border-[#D0C5B5]/20 transition-all duration-300">
+<nav class="flex justify-between items-center w-full px-12 md:px-16 max-w-[1920px] mx-auto h-20">
+<a class="text-3xl font-bold tracking-[0.25em] text-[#1c1c1a] font-noto-serif" href="index.html">ETASHAA</a>
+
+<div class="hidden md:flex items-center gap-10">
+<a class="font-noto-serif tracking-[0.1em] uppercase text-[11px] text-[#1c1c1a] hover:text-[#9B7E4B] transition-colors duration-300 pb-1" href="bridal_collection_1.html">Bridal Lehengas</a>
+<a class="font-noto-serif tracking-[0.1em] uppercase text-[11px] text-[#1c1c1a] hover:text-[#9B7E4B] transition-colors duration-300 pb-1" href="festive_collection.html">Non-Bridal Lehengas</a>
+<a class="font-noto-serif tracking-[0.1em] uppercase text-[11px] text-[#1c1c1a] hover:text-[#9B7E4B] transition-colors duration-300 pb-1" href="saree_collection.html">Heritage Sarees</a>
+<a class="font-noto-serif tracking-[0.1em] uppercase text-[11px] text-[#1c1c1a] hover:text-[#9B7E4B] transition-colors duration-300 pb-1" href="#">The Trousseau</a>
+<a class="font-noto-serif tracking-[0.1em] uppercase text-[11px] text-[#1c1c1a] hover:text-[#9B7E4B] transition-colors duration-300 pb-1" href="#">Accessories</a>
+</div>
+
+<div class="flex items-center gap-5 text-[#1c1c1a]">
+<button class="hover:text-[#9B7E4B] transition-colors duration-300">
+<span class="material-symbols-outlined text-[22px]">search</span>
+</button>
+<a class="hover:text-[#9B7E4B] transition-colors duration-300 relative" href="shopping_cart.html">
+<span class="material-symbols-outlined text-[22px] text-[#9B7E4B]">shopping_bag</span>
+<span class="cart-count absolute -top-1 -right-1 w-4 h-4 bg-[#842029] text-white text-[9px] flex items-center justify-center rounded-full font-bold" style="display: none;">0</span>
+</a>
+<button class="hover:text-[#9B7E4B] transition-colors duration-300 hidden md:block">
+<span class="material-symbols-outlined text-[22px]">person</span>
+</button>
+</div>
+</nav>
+</header>
+<main class="pt-32 pb-24 px-6 md:px-12 max-w-[1440px] mx-auto">
+<div class="mb-12">
+<h1 class="font-headline text-4xl md:text-5xl text-on-surface mb-2">Shopping Bag</h1>
+<p id="cart-summary-text" class="font-label uppercase tracking-widest text-outline text-xs">0 Items in your curated selection</p>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-16 items-start">
+<!-- Left Side: Cart Items -->
+<div id="cart-items-container" class="lg:col-span-7 space-y-12">
+    <!-- Items will be injected here by JS -->
+    <div id="empty-cart" class="py-20 text-center border border-dashed border-outline/20">
+        <p class="font-headline text-2xl text-outline mb-6">Your bag is empty</p>
+        <button onclick="window.location.href='index.html'" class="px-8 py-3 bg-primary text-on-primary text-xs uppercase tracking-widest">Discover Collection</button>
+    </div>
+</div>
+<!-- Extras -->
+<div class="pt-8 border-t border-outline-variant/10">
+<button class="flex items-center gap-3 group">
+<span class="material-symbols-outlined text-primary">featured_seasonal_and_gifts</span>
+<span class="font-label text-xs uppercase tracking-widest group-hover:text-primary transition-colors">Add a personalized gift note</span>
+</button>
+</div>
+</div>
+<!-- Right Side: Order Summary -->
+<div class="lg:col-span-5">
+<div class="bg-surface-container p-8 md:p-12 editorial-shadow sticky top-32">
+<h2 class="font-headline text-2xl mb-8">Summary</h2>
+<div class="space-y-4 mb-8">
+<div class="flex justify-between text-sm">
+<span class="text-on-surface-variant">Subtotal</span>
+<span id="subtotal">₹0</span>
+</div>
+<div class="flex justify-between text-sm">
+<span class="text-on-surface-variant">Shipping</span>
+<span id="shipping-text" class="text-primary uppercase tracking-tighter font-bold">Complimentary</span>
+</div>
+<div class="flex justify-between text-sm">
+<span class="text-on-surface-variant">Tax (GST 12%)</span>
+<span id="tax">₹0</span>
+</div>
+<div class="pt-4 border-t border-outline/10 flex justify-between items-end">
+<span class="font-headline text-lg">Total</span>
+<div class="text-right">
+<span id="total" class="font-body text-2xl font-bold">₹0</span>
+<p class="text-[10px] text-outline uppercase tracking-widest mt-1">Inclusive of all duties</p>
+</div>
+</div>
+</div>
+<!-- Trust Marker Badge -->
+<div class="bg-surface-container-highest/30 p-4 mb-8 flex items-center gap-4">
+<div class="bg-primary-container p-2">
+<span class="material-symbols-outlined text-on-primary-container text-sm">payments</span>
+</div>
+<div>
+<p class="font-label text-[10px] uppercase tracking-widest font-bold text-on-primary-container">COD Available</p>
+<p class="text-[10px] text-on-surface-variant mt-0.5">Pay on delivery for orders up to ₹50,000</p>
+</div>
+</div>
+<!-- Checkout Button -->
+<button class="w-full bg-on-surface text-primary-container py-5 font-label text-xs uppercase tracking-[0.2em] font-bold hover:bg-primary hover:text-white transition-all duration-500 mb-6 group flex justify-center items-center gap-2">
+                        Proceed to Secure Checkout
+                        <span class="material-symbols-outlined text-sm group-hover:translate-x-1 transition-transform">arrow_forward</span>
+</button>
+<!-- Help & Trust -->
+<div class="space-y-6">
+<button class="w-full border border-outline/20 py-4 font-label text-[10px] uppercase tracking-widest flex items-center justify-center gap-3 hover:bg-surface-container-lowest transition-colors">
+<svg class="w-4 h-4 fill-[#25D366]" viewbox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"></path></svg>
+                            WhatsApp for Help
+                        </button>
+<div class="flex justify-center items-center gap-8 opacity-40 grayscale">
+<span class="material-symbols-outlined" title="Secure Payment">verified_user</span>
+<span class="material-symbols-outlined" title="Global Shipping">public</span>
+<span class="material-symbols-outlined" title="Authenticity Guaranteed">workspace_premium</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Footer -->
+<footer class="bg-[#1c1c1a] pt-16 pb-8 w-full">
+<div class="grid grid-cols-1 md:grid-cols-4 gap-12 px-12 max-w-7xl mx-auto">
+<div class="col-span-1">
+<span class="text-xl font-headline text-[#fcf9f6] tracking-[0.15em]">ETASHAA</span>
+<p class="mt-6 font-jakarta-sans text-xs tracking-wider uppercase text-[#fcf9f6]/40 leading-relaxed">
+                    Celebrating the heritage of Indian craftsmanship through contemporary couture.
+                </p>
+</div>
+<div>
+<h4 class="text-[#c8a96a] font-jakarta-sans text-xs tracking-widest uppercase mb-6">Client Services</h4>
+<ul class="space-y-4">
+<li><a class="font-jakarta-sans text-xs tracking-wider uppercase text-[#fcf9f6]/60 hover:text-[#fcf9f6] transition-all" href="#">Shipping Policy</a></li>
+<li><a class="font-jakarta-sans text-xs tracking-wider uppercase text-[#fcf9f6]/60 hover:text-[#fcf9f6] transition-all" href="#">Returns</a></li>
+<li><a class="font-jakarta-sans text-xs tracking-wider uppercase text-[#fcf9f6]/60 hover:text-[#fcf9f6] transition-all" href="#">Size Guide</a></li>
+<li><a class="font-jakarta-sans text-xs tracking-wider uppercase text-[#fcf9f6]/60 hover:text-[#fcf9f6] transition-all" href="#">Contact Us</a></li>
+</ul>
+</div>
+<div>
+<h4 class="text-[#c8a96a] font-jakarta-sans text-xs tracking-widest uppercase mb-6">Experience</h4>
+<ul class="space-y-4">
+<li><a class="font-jakarta-sans text-xs tracking-wider uppercase text-[#fcf9f6]/60 hover:text-[#fcf9f6] transition-all" href="#">The Atelier</a></li>
+<li><a class="font-jakarta-sans text-xs tracking-wider uppercase text-[#fcf9f6]/60 hover:text-[#fcf9f6] transition-all" href="#">Bespoke Couture</a></li>
+<li><a class="font-jakarta-sans text-xs tracking-wider uppercase text-[#fcf9f6]/60 hover:text-[#fcf9f6] transition-all" href="#">Heritage Gallery</a></li>
+</ul>
+</div>
+<div>
+<h4 class="text-[#c8a96a] font-jakarta-sans text-xs tracking-widest uppercase mb-6">Connect</h4>
+<div class="flex gap-4">
+<span class="material-symbols-outlined text-[#fcf9f6]/60 hover:text-[#c8a96a] hover:scale-105 transition-all cursor-pointer">share</span>
+<span class="material-symbols-outlined text-[#fcf9f6]/60 hover:text-[#c8a96a] hover:scale-105 transition-all cursor-pointer">photo_camera</span>
+<span class="material-symbols-outlined text-[#fcf9f6]/60 hover:text-[#c8a96a] hover:scale-105 transition-all cursor-pointer">mail</span>
+</div>
+</div>
+</div>
+<div class="mt-16 pt-8 border-t border-[#fcf9f6]/10 text-center">
+<p class="font-jakarta-sans text-[10px] tracking-widest uppercase text-[#fcf9f6]/30">© 2024 ETASHAA HERITAGE. ALL RIGHTS RESERVED.</p>
+</div>
+</footer>
+    <script>
+    function renderCartPage() {
+        const cart = getCart();
+        const container = document.getElementById('cart-items-container');
+        const summaryText = document.getElementById('cart-summary-text');
+        
+        if (cart.length === 0) {
+            container.innerHTML = `
+                <div id="empty-cart" class="py-20 text-center border border-dashed border-outline/20">
+                    <p class="font-headline text-2xl text-outline mb-6">Your bag is empty</p>
+                    <button onclick="window.location.href='index.html'" class="px-8 py-3 bg-primary text-on-primary text-xs uppercase tracking-widest">Discover Collection</button>
+                </div>
+            `;
+            summaryText.textContent = '0 Items in your curated selection';
+            updateSummary(0);
+            return;
+        }
+
+        summaryText.textContent = `${cart.length} Item${cart.length > 1 ? 's' : ''} in your curated selection`;
+        
+        let html = '';
+        let subtotal = 0;
+        
+        cart.forEach(item => {
+            subtotal += item.price * item.quantity;
+            html += `
+                <div class="flex flex-col md:flex-row gap-8 pb-12 border-b border-outline/10 last:border-0 bg-surface">
+                    <div class="w-full md:w-48 aspect-[3/4] bg-surface-container overflow-hidden group">
+                        <img src="${item.image}" alt="${item.name}" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
+                    </div>
+                    <div class="flex-1 flex flex-col justify-between">
+                        <div class="space-y-2">
+                            <div class="flex justify-between items-start">
+                                <h3 class="font-headline text-xl text-on-surface cursor-pointer hover:text-primary" onclick="window.location.href='product_detail_page.html'">${item.name}</h3>
+                                <p class="font-body font-semibold text-lg">${formatPrice(item.price)}</p>
+                            </div>
+                            <p class="font-label text-xs uppercase tracking-widest text-outline">Qty: ${item.quantity}</p>
+                            <div class="pt-4 space-y-1">
+                                <p class="text-sm text-on-surface-variant">Collection: <span class="text-on-surface font-medium">${item.category || 'Atelier'}</span></p>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-6 mt-8">
+                            <button onclick="removeFromCart('${item.id}')" class="text-xs uppercase tracking-widest font-label border-b border-outline/30 pb-1 hover:border-secondary transition-colors text-secondary">Remove</button>
+                        </div>
+                    </div>
+                </div>
+            `;
+        });
+        
+        container.innerHTML = html;
+        updateSummary(subtotal);
+    }
+
+    function updateSummary(subtotal) {
+        const tax = subtotal * 0.12;
+        const total = subtotal + tax;
+        
+        document.getElementById('subtotal').textContent = formatPrice(subtotal);
+        document.getElementById('tax').textContent = formatPrice(tax);
+        document.getElementById('total').textContent = formatPrice(total);
+        
+        const shippingText = document.getElementById('shipping-text');
+        if (subtotal > 5000) {
+            shippingText.textContent = 'Complimentary';
+            shippingText.className = 'text-primary uppercase tracking-tighter font-bold';
+        } else if (subtotal > 0) {
+            shippingText.textContent = '₹500';
+            shippingText.className = 'text-on-surface uppercase tracking-tighter font-bold';
+        } else {
+            shippingText.textContent = '—';
+        }
+    }
+
+    // Initial render
+    document.addEventListener('DOMContentLoaded', renderCartPage);
+    </script>
+</body></html>
