@@ -102,27 +102,6 @@ const Home = () => {
         </div>
       </section>
 
-      {/* Stats Bar */}
-      <section className="py-16 bg-[#F6F6F6] border-b border-[#d0c5b5]/10">
-        <div className="max-w-custom grid grid-cols-2 md:grid-cols-4 gap-12 text-center">
-          <div className="reveal reveal-delay-1">
-            <p className="font-noto-serif text-3xl font-bold text-[#735b24] mb-2">1984</p>
-            <p className="font-jakarta-sans text-[10px] uppercase tracking-[0.2em] text-[#7f7668] font-semibold">Est. Year</p>
-          </div>
-          <div className="reveal reveal-delay-2">
-            <p className="font-noto-serif text-3xl font-bold text-[#735b24] mb-2">12,000+</p>
-            <p className="font-jakarta-sans text-[10px] uppercase tracking-[0.2em] text-[#7f7668] font-semibold">Happy Brides</p>
-          </div>
-          <div className="reveal reveal-delay-3">
-            <p className="font-noto-serif text-3xl font-bold text-[#735b24] mb-2">500+</p>
-            <p className="font-jakarta-sans text-[10px] uppercase tracking-[0.2em] text-[#7f7668] font-semibold">Designs</p>
-          </div>
-          <div className="reveal reveal-delay-4">
-            <p className="font-noto-serif text-3xl font-bold text-[#735b24] mb-2">4.9 ★</p>
-            <p className="font-jakarta-sans text-[10px] uppercase tracking-[0.2em] text-[#7f7668] font-semibold">Avg Rating</p>
-          </div>
-        </div>
-      </section>
 
 
       {/* Shop by Category */}
