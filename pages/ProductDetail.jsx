@@ -165,7 +165,7 @@ const ProductDetail = () => {
                 onClick={() => addToCart(product)} 
                 className="btn-premium-outline group w-full !py-5"
               >
-                <span>Add to Bag</span>
+                <span>Add to Cart</span>
               </button>
               <button className="btn-premium group w-full !py-5 !bg-[#c8a96a] !border-[#c8a96a]">
                 <span>Buy It Now</span>
