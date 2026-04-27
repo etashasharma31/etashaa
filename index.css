@@ -164,6 +164,18 @@
   /* Section divider ornament */
   .ornament::before, .ornament::after { content: '—'; margin: 0 8px; color: #c8a96a; }
 
+  /* Shimmer on product cards */
+  .product-card-inner::after { 
+    content: ''; 
+    position: absolute; 
+    inset: 0; 
+    background: linear-gradient(105deg, transparent 40%, rgba(255,255,255,0.3) 50%, transparent 60%); 
+    transform: translateX(-100%); 
+    transition: transform 0.6s ease; 
+    z-index: 10;
+    pointer-events: none;
+  }
+  .group:hover .product-card-inner::after { transform: translateX(100%); }
 
   /* Testimonial card */
   .testimonial-card { background: #fff; border-left: 3px solid #c8a96a; }
