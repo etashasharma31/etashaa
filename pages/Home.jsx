@@ -24,7 +24,7 @@ const Home = () => {
     {
       image: '/images/banners_05_naaz.jpg',
       tag: 'New Collection',
-      title: 'Naaz : The Pride',
+      title: 'The Festive Edit',
       sub: 'Timeless elegance meets modern silhouettes in our latest masterpiece series.',
       link: '/non-bridal-collection'
     },
