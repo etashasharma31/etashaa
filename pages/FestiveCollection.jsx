@@ -4,7 +4,12 @@ import ProductCard from '../components/ProductCard';
 import { festiveProducts } from '../data';
 
 const FestiveCollection = () => {
-  const navigate = useNavigate();
+  const [currentPage, setCurrentPage] = React.useState(1);
+  const productsPerPage = 6;
+  
+  const totalPages = Math.ceil(festiveProducts.length / productsPerPage);
+  const startIndex = (currentPage - 1) * productsPerPage;
+  const filteredProducts = festiveProducts.slice(startIndex, startIndex + productsPerPage);
 
   return (
     <main className="pt-24 bg-surface">
@@ -32,8 +37,8 @@ const FestiveCollection = () => {
       {/* Product Grid */}
       <section className="py-24 px-12 bg-surface">
         <div className="max-w-custom grid grid-cols-1 md:grid-cols-3 gap-x-12 gap-y-20">
-          {festiveProducts.map((product) => (
-            <div key={product.id} className={product.mt12 ? 'md:mt-12' : ''}>
+          {filteredProducts.map((product) => (
+            <div key={product.id}>
               <ProductCard product={product} />
             </div>
           ))}
@@ -43,15 +48,31 @@ const FestiveCollection = () => {
       {/* Pagination */}
       <div className="py-24 flex justify-center bg-surface">
         <nav className="flex items-center gap-4">
-          <button className="w-12 h-12 flex items-center justify-center text-outline hover:text-primary transition-colors">
+          <button 
+            onClick={() => currentPage > 1 && setCurrentPage(currentPage - 1)}
+            className={`w-12 h-12 flex items-center justify-center transition-colors ${currentPage === 1 ? 'text-outline/30 cursor-not-allowed' : 'text-outline hover:text-primary'}`}
+            disabled={currentPage === 1}
+          >
             <span className="material-symbols-outlined">chevron_left</span>
           </button>
-          <button className="w-12 h-12 flex items-center justify-center text-outline hover:text-on-surface transition-colors">1</button>
-          <button className="w-12 h-12 flex items-center justify-center text-outline hover:text-on-surface transition-colors">2</button>
-          <button className="w-12 h-12 flex items-center justify-center text-outline hover:text-on-surface transition-colors">3</button>
-          <button className="w-12 h-12 flex items-center justify-center text-on-surface font-semibold border-b-2 border-primary">4</button>
-          <span className="text-outline mx-2">...</span>
-          <button className="w-12 h-12 flex items-center justify-center text-outline hover:text-primary transition-colors">
+          
+          {[...Array(totalPages)].map((_, i) => (
+            <button 
+              key={i}
+              onClick={() => setCurrentPage(i + 1)}
+              className={`w-12 h-12 flex items-center justify-center transition-colors ${currentPage === i + 1 ? 'text-on-surface font-semibold border-b-2 border-primary' : 'text-outline hover:text-on-surface'}`}
+            >
+              {i + 1}
+            </button>
+          ))}
+
+          {totalPages > 3 && <span className="text-outline mx-2">...</span>}
+          
+          <button 
+            onClick={() => currentPage < totalPages && setCurrentPage(currentPage + 1)}
+            className={`w-12 h-12 flex items-center justify-center transition-colors ${currentPage === totalPages ? 'text-outline/30 cursor-not-allowed' : 'text-outline hover:text-primary'}`}
+            disabled={currentPage === totalPages}
+          >
             <span className="material-symbols-outlined">chevron_right</span>
           </button>
         </nav>

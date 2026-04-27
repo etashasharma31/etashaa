@@ -120,49 +120,75 @@ export const bridalProducts = [
     category: 'Pastel Bridal',
     page: 1
   },
-  // Page 2 (from bridal_collection_2.html)
+  // Page 2 - Real Bride Features
   {
-    id: 'BRIDAL2_001',
-    name: 'The Noor Jahan Ensemble',
-
+    id: 'BRIDE_01',
+    name: 'Aastha Rajput Becoming Lehenga',
+    price: 245000,
+    image: '/images/brides_01_aastha_rajput_becoming_lehenga_A.jpg',
+    images: ['/images/brides_01_aastha_rajput_becoming_lehenga_A.jpg', '/images/brides_01_aastha_rajput_becoming_lehenga_B.jpg'],
+    category: 'The Becoming Collection',
+    page: 2
+  },
+  {
+    id: 'BRIDE_02',
+    name: 'Komal Ghugare Flare Lehenga',
+    price: 195000,
+    image: '/images/brides_02_komal_ghugare_flare_lehenga_A.jpg',
+    images: ['/images/brides_02_komal_ghugare_flare_lehenga_A.jpg', '/images/brides_02_komal_ghugare_flare_lehenga_B.jpg'],
+    category: 'Heritage Flare',
+    page: 2
+  },
+  {
+    id: 'BRIDE_03',
+    name: 'Aishwarya Becoming Lehenga',
+    price: 215000,
+    image: '/images/brides_03_aishwarya_becoming_lehenga_A.jpg',
+    images: ['/images/brides_03_aishwarya_becoming_lehenga_A.jpg', '/images/brides_03_aishwarya_becoming_lehenga_B.jpg'],
+    category: 'The Becoming Collection',
+    page: 2
+  },
+  {
+    id: 'BRIDE_04',
+    name: 'Shravi Jain Beloved Lehenga',
     price: 185000,
-    oldPrice: 210000,
-    image: '/images/prod_royal_maharani_lehenga.png',
-    category: 'Velvet Heritage',
+    image: '/images/brides_04_shravi_jain_beloved_lehenga_A.jpg',
+    category: 'Beloved Edition',
     page: 2
   },
   {
-    id: 'BRIDAL2_002',
-    name: 'Ivory Moonscape Bridal',
-    price: 95000,
-    image: '/images/prod_ivory_glow_lehenga.png',
-    category: 'Royal Raw Silk',
-    page: 2
-  },
-  {
-    id: 'BRIDAL2_003',
-    name: 'Emerald Courtyard Lehenga',
-    price: 142000,
-    oldPrice: 165000,
-    image: '/images/prod_emerald_zardosi.png',
-    category: 'Silk Brocade',
-    page: 2
-  },
-  {
-    id: 'BRIDAL2_004',
-    name: 'The Shahi Vermilion',
+    id: 'BRIDE_05',
+    name: 'Sakshi Jain Zaraana Lehenga',
     price: 225000,
-    image: '/images/hero_bridal_elegance.png',
-    category: 'Banarasi Classic',
+    image: '/images/brides_05_sakshi_jain_zaraana_lehenga_A.jpg',
+    category: 'Zaraana Couture',
     page: 2
   },
   {
-    id: 'BRIDAL2_005',
-    name: 'Summer Breeze Bridal',
-    price: 78000,
-    oldPrice: 85000,
-    image: '/images/prod_blush_chiffon.png',
-    category: 'Contemporary Tulle',
+    id: 'BRIDE_06',
+    name: 'Sushmita Shanno Lehenga',
+    price: 210000,
+    image: '/images/brides_06_sushmita_shanno_lehenga_A.jpg',
+    images: ['/images/brides_06_sushmita_shanno_lehenga_A.jpg', '/images/brides_06_sushmita_shanno_lehenga_B.jpg'],
+    category: 'Shanno Heritage',
+    page: 2
+  },
+  {
+    id: 'BRIDE_07',
+    name: 'Meghna Mahajan Custom Lehenga',
+    price: 285000,
+    image: '/images/brides_07_meghna_mahajan_custom_lehenga_A.jpg',
+    images: ['/images/brides_07_meghna_mahajan_custom_lehenga_A.jpg', '/images/brides_07_meghna_mahajan_custom_lehenga_B.jpg'],
+    category: 'Bespoke Couture',
+    page: 2
+  },
+  {
+    id: 'BRIDE_08',
+    name: 'Sai Sandhu Moga Lehenga',
+    price: 175000,
+    image: '/images/brides_08_sai_sandhu_moga_lehenga_A.jpg',
+    images: ['/images/brides_08_sai_sandhu_moga_lehenga_A.jpg', '/images/brides_08_sai_sandhu_moga_lehenga_B.jpg'],
+    category: 'Moga Edition',
     page: 2
   },
   // Page 3 (from bridal_collection_3.html)
@@ -218,7 +244,7 @@ export const bridalProducts = [
     id: 'BRIDAL_R02',
     name: 'Crimson Empress Lehenga',
     price: 210000,
-    image: '/images/hero_bridal_elegance.png',
+    image: '/images/bridal_new_6.png',
     category: 'Red Bridal',
     page: 3
   },
@@ -233,7 +259,7 @@ export const bridalProducts = [
 ];
 
 export const editProducts = [
-  { id: 'EDIT_01', name: 'The Crimson Empress', price: 210000, image: '/images/hero_bridal_elegance.png', tag: 'Scarlet', type: 'red' },
+  { id: 'EDIT_01', name: 'The Crimson Empress', price: 210000, image: '/images/bridal_new_5.png', tag: 'Scarlet', type: 'red' },
   { id: 'EDIT_02', name: 'Soft Petal Organza', price: 78000, image: '/images/prod_ivory_glow_lehenga.png', tag: 'Ivory', type: 'pastel' },
   { id: 'EDIT_03', name: 'Signature Heritage', price: 320000, image: '/images/cat_bridal_lehenga_main.png', tag: 'Ruby', type: 'red' },
   { id: 'EDIT_04', name: 'Lilac Meadow Dreams', price: 88000, image: '/images/prod_pastel_twilight_lehenga.png', tag: 'Lilac', type: 'pastel' },
@@ -241,7 +267,7 @@ export const editProducts = [
   { id: 'EDIT_06', name: 'Garden Mehendi Edit', price: 85000, image: '/images/occ_mehendi.png', tag: 'Mint', type: 'pastel' },
   { id: 'EDIT_07', name: 'Rajputana Royal Silk', price: 195000, image: '/images/prod_royal_maharani_lehenga.png', tag: 'Maroon', type: 'red' },
   { id: 'EDIT_08', name: 'Marigold Haldi Drape', price: 65000, image: '/images/occ_haldi.png', tag: 'Yellow', type: 'pastel' },
-  { id: 'EDIT_09', name: 'Vintage Zardosi Saree', price: 54000, image: '/images/social_embroidery.png', tag: 'Gold & Red', type: 'red' },
+  { id: 'EDIT_09', name: 'Vintage Zardosi Saree', price: 54000, image: '/images/bridal_new_8.png', tag: 'Gold & Red', type: 'red' },
   { id: 'EDIT_10', name: 'Blush Chiffon Drape', price: 42000, image: '/images/prod_blush_chiffon.png', tag: 'Blush', type: 'pastel' },
 ];
 
@@ -296,6 +322,70 @@ export const sareeProducts = [
   { id: 'SAREE_09', name: 'Royal Gold & Crimson Silk', price: 74000, image: '/images/saree_gold_red.png', category: 'Heritage Silk' },
   { id: 'SAREE_14', name: 'Rani Pink Couture Saree', price: 78000, image: '/images/saree_rani_pink.png', category: 'Silk Couture' },
   { id: 'SAREE_15', name: 'Floral Zari Ensemble', price: 65000, image: '/images/saree_floral_zari.png', category: 'Organza Heritage' },
+  {
+    id: 'SAREE_NEW_01',
+    name: 'Miraaz Saree - Shilpa Shetty Edition',
+    price: 85000,
+    image: '/images/celebrity_01_shilpa_shetty_miraaz_saree_A.jpg',
+    images: ['/images/celebrity_01_shilpa_shetty_miraaz_saree_A.jpg', '/images/celebrity_01_shilpa_shetty_miraaz_saree_B.jpg'],
+    category: 'Celebrity Edit'
+  },
+  {
+    id: 'SAREE_NEW_02',
+    name: 'Knot Saree Set',
+    price: 72000,
+    image: '/images/most_loved_07_knot_saree_set_A.jpg',
+    images: ['/images/most_loved_07_knot_saree_set_A.jpg', '/images/most_loved_07_knot_saree_set_B.jpg'],
+    category: 'Most Loved'
+  },
+  {
+    id: 'SAREE_NEW_03',
+    name: 'Chashm Saree Set',
+    price: 68000,
+    image: '/images/most_loved_06_chashm_saree_set_A.jpg',
+    images: ['/images/most_loved_06_chashm_saree_set_A.jpg', '/images/most_loved_06_chashm_saree_set_B.jpg'],
+    category: 'Most Loved'
+  },
+  {
+    id: 'SAREE_NEW_04',
+    name: 'Twined Saree Set',
+    price: 75000,
+    image: '/images/most_loved_05_twined_saree_set_A.jpg',
+    images: ['/images/most_loved_05_twined_saree_set_A.jpg', '/images/most_loved_05_twined_saree_set_B.jpg'],
+    category: 'Most Loved'
+  },
+  {
+    id: 'SAREE_NEW_05',
+    name: 'Tarana Saree Set',
+    price: 64000,
+    image: '/images/most_loved_01_tarana_saree_set_A.jpg',
+    images: ['/images/most_loved_01_tarana_saree_set_A.jpg', '/images/most_loved_01_tarana_saree_set_B.jpg'],
+    category: 'Most Loved'
+  },
+  {
+    id: 'SAREE_NEW_06',
+    name: 'Golden Era Saree Set',
+    price: 92000,
+    image: '/images/new_arrivals_08_golden_era_saree_set_A.jpg',
+    images: ['/images/new_arrivals_08_golden_era_saree_set_A.jpg', '/images/new_arrivals_08_golden_era_saree_set_B.jpg'],
+    category: 'New Arrivals'
+  },
+  {
+    id: 'SAREE_NEW_07',
+    name: 'Treasured Saree Set',
+    price: 78000,
+    image: '/images/new_arrivals_04_treasured_saree_set_A.jpg',
+    images: ['/images/new_arrivals_04_treasured_saree_set_A.jpg', '/images/new_arrivals_04_treasured_saree_set_B.jpg'],
+    category: 'New Arrivals'
+  },
+  {
+    id: 'SAREE_NEW_08',
+    name: 'Gilded Saree Set',
+    price: 82000,
+    image: '/images/new_arrivals_03_gilded_saree_set_A.jpg',
+    images: ['/images/new_arrivals_03_gilded_saree_set_A.jpg', '/images/new_arrivals_03_gilded_saree_set_B.jpg'],
+    category: 'New Arrivals'
+  }
 ];
 
 export const festiveProducts = [
@@ -303,7 +393,6 @@ export const festiveProducts = [
     id: 'NON_BRIDAL_01',
     name: 'Mirror Muse Blush Lehenga',
     price: 85000,
-    oldPrice: 95000,
     image: '/images/non_bridal_1.png',
     category: 'Festive Collection'
   },
@@ -311,7 +400,6 @@ export const festiveProducts = [
     id: 'NON_BRIDAL_02',
     name: 'Pista Heritage Floral',
     price: 92000,
-    oldPrice: 110000,
     image: '/images/non_bridal_2.png',
     category: 'Festive Collection'
   },
@@ -319,7 +407,6 @@ export const festiveProducts = [
     id: 'NON_BRIDAL_03',
     name: 'Royal Mirror Fusion',
     price: 78000,
-    oldPrice: 88000,
     image: '/images/non_bridal_3.png',
     category: 'Festive Collection'
   },
@@ -327,7 +414,6 @@ export const festiveProducts = [
     id: 'NON_BRIDAL_04',
     name: 'Powder Blue Shimmer',
     price: 82000,
-    oldPrice: 92000,
     image: '/images/non_bridal_4.png',
     category: 'Festive Collection'
   },
@@ -335,7 +421,6 @@ export const festiveProducts = [
     id: 'NON_BRIDAL_05',
     name: 'Beige Ruffle Couture',
     price: 65000,
-    oldPrice: 75000,
     image: '/images/non_bridal_5.png',
     category: 'Festive Collection'
   },
@@ -343,7 +428,6 @@ export const festiveProducts = [
     id: 'NON_BRIDAL_06',
     name: 'Gilded Mermaid Gown',
     price: 110000,
-    oldPrice: 135000,
     image: '/images/non_bridal_6.png',
     category: 'Couture Gowns'
   },
@@ -351,7 +435,6 @@ export const festiveProducts = [
     id: 'NON_BRIDAL_07',
     name: 'Ruby Mermaid Silhouette',
     price: 115000,
-    oldPrice: 140000,
     image: '/images/non_bridal_7.png',
     category: 'Couture Gowns'
   },
@@ -359,7 +442,6 @@ export const festiveProducts = [
     id: 'NON_BRIDAL_08',
     name: 'Stellar Gold Cape Set',
     price: 125000,
-    oldPrice: 150000,
     image: '/images/non_bridal_8.png',
     category: 'Couture Gowns'
   },
@@ -367,7 +449,6 @@ export const festiveProducts = [
     id: 'NON_BRIDAL_09',
     name: 'Ivory Corset Lehenga',
     price: 98000,
-    oldPrice: 120000,
     image: '/images/non_bridal_9.png',
     category: 'Festive Collection'
   },
@@ -375,8 +456,135 @@ export const festiveProducts = [
     id: 'NON_BRIDAL_10',
     name: 'Imperial Gold Mermaid',
     price: 130000,
-    oldPrice: 160000,
     image: '/images/non_bridal_10.png',
     category: 'Couture Gowns'
+  },
+  {
+    id: 'FEST_01',
+    name: 'Swarn Lehenga - Aditi Rao Hydari',
+    price: 185000,
+    image: '/images/celebrity_08_aditi_rao_swarn_lehenga_A.jpg',
+    images: ['/images/celebrity_08_aditi_rao_swarn_lehenga_A.jpg', '/images/celebrity_08_aditi_rao_swarn_lehenga_B.jpg'],
+    category: 'Celebrity Edit'
+  },
+  {
+    id: 'FEST_02',
+    name: 'Glimpse Lehenga - Diana Penty',
+    price: 165000,
+    image: '/images/celebrity_07_diana_penty_glimpse_lehenga_A.jpg',
+    images: ['/images/celebrity_07_diana_penty_glimpse_lehenga_A.jpg', '/images/celebrity_07_diana_penty_glimpse_lehenga_B.jpg'],
+    category: 'Celebrity Edit'
+  },
+  {
+    id: 'FEST_03',
+    name: 'Cadenza Jacket - Rasha Thadani',
+    price: 95000,
+    image: '/images/celebrity_06_rasha_cadenza_jacket_A.jpg',
+    images: ['/images/celebrity_06_rasha_cadenza_jacket_A.jpg', '/images/celebrity_06_rasha_cadenza_jacket_B.jpg'],
+    category: 'Celebrity Edit'
+  },
+  {
+    id: 'FEST_04',
+    name: 'Mahroo Peplum - Karisma Kapoor',
+    price: 110000,
+    image: '/images/celebrity_05_karisma_kapoor_mahroo_peplum_A.jpg',
+    images: ['/images/celebrity_05_karisma_kapoor_mahroo_peplum_A.jpg', '/images/celebrity_05_karisma_kapoor_mahroo_peplum_B.jpg'],
+    category: 'Celebrity Edit'
+  },
+  {
+    id: 'FEST_05',
+    name: 'Becoming Lehenga - Sreeleela',
+    price: 175000,
+    image: '/images/celebrity_04_sreeleela_becoming_lehenga_A.jpg',
+    images: ['/images/celebrity_04_sreeleela_becoming_lehenga_A.jpg', '/images/celebrity_04_sreeleela_becoming_lehenga_B.jpg'],
+    category: 'Celebrity Edit'
+  },
+  {
+    id: 'FEST_06',
+    name: 'Shama Cape - Shilpa Shetty',
+    price: 125000,
+    image: '/images/celebrity_03_shilpa_shetty_shama_cape_A.jpg',
+    images: ['/images/celebrity_03_shilpa_shetty_shama_cape_A.jpg', '/images/celebrity_03_shilpa_shetty_shama_cape_B.jpg'],
+    category: 'Celebrity Edit'
+  },
+  {
+    id: 'FEST_07',
+    name: 'Dilbar Ensemble - Jacqueline',
+    price: 145000,
+    image: '/images/celebrity_02_jacqueline_fernandez_dilbar_A.jpg',
+    images: ['/images/celebrity_02_jacqueline_fernandez_dilbar_A.jpg', '/images/celebrity_02_jacqueline_fernandez_dilbar_B.jpg'],
+    category: 'Celebrity Edit'
+  },
+  {
+    id: 'FEST_08',
+    name: 'Banafsha Anarkali',
+    price: 78000,
+    image: '/images/most_loved_08_banafsha_anarkali_A.jpg',
+    images: ['/images/most_loved_08_banafsha_anarkali_A.jpg', '/images/most_loved_08_banafsha_anarkali_B.jpg'],
+    category: 'Most Loved'
+  },
+  {
+    id: 'FEST_09',
+    name: 'Shaila Kurta Set',
+    price: 52000,
+    image: '/images/most_loved_04_shaila_kurta_set_A.jpg',
+    images: ['/images/most_loved_04_shaila_kurta_set_A.jpg', '/images/most_loved_04_shaila_kurta_set_B.jpg'],
+    category: 'Most Loved'
+  },
+  {
+    id: 'FEST_10',
+    name: 'Lustre Lehenga Set',
+    price: 115000,
+    image: '/images/most_loved_03_lustre_lehenga_set_A.jpg',
+    images: ['/images/most_loved_03_lustre_lehenga_set_A.jpg', '/images/most_loved_03_lustre_lehenga_set_B.jpg'],
+    category: 'Most Loved'
+  },
+  {
+    id: 'FEST_11',
+    name: 'Becoming Lehenga Set',
+    price: 135000,
+    image: '/images/most_loved_02_becoming_lehenga_set_A.jpg',
+    images: ['/images/most_loved_02_becoming_lehenga_set_A.jpg', '/images/most_loved_02_becoming_lehenga_set_B.jpg'],
+    category: 'Most Loved'
+  },
+  {
+    id: 'FEST_12',
+    name: 'Rising Lehenga Set',
+    price: 165000,
+    image: '/images/new_arrivals_01_rising_lehenga_set_A.jpg',
+    images: ['/images/new_arrivals_01_rising_lehenga_set_A.jpg', '/images/new_arrivals_01_rising_lehenga_set_B.jpg'],
+    category: 'New Arrivals'
+  },
+  {
+    id: 'FEST_13',
+    name: 'Empire Jacket Set',
+    price: 88000,
+    image: '/images/new_arrivals_02_empire_jacket_set_A.jpg',
+    images: ['/images/new_arrivals_02_empire_jacket_set_A.jpg', '/images/new_arrivals_02_empire_jacket_set_B.jpg'],
+    category: 'New Arrivals'
+  },
+  {
+    id: 'FEST_14',
+    name: 'Nostalgic Kurta Set',
+    price: 58000,
+    image: '/images/new_arrivals_05_nostalgic_kurta_set_A.jpg',
+    images: ['/images/new_arrivals_05_nostalgic_kurta_set_A.jpg', '/images/new_arrivals_05_nostalgic_kurta_set_B.jpg'],
+    category: 'New Arrivals'
+  },
+  {
+    id: 'FEST_15',
+    name: 'Majesty Lehenga Set',
+    price: 195000,
+    image: '/images/new_arrivals_06_majesty_lehenga_set_A.jpg',
+    images: ['/images/new_arrivals_06_majesty_lehenga_set_A.jpg', '/images/new_arrivals_06_majesty_lehenga_set_B.jpg'],
+    category: 'New Arrivals'
+  },
+  {
+    id: 'FEST_16',
+    name: 'Realm Cape Skirt Set',
+    price: 105000,
+    image: '/images/new_arrivals_07_realm_cape_skirt_set_A.jpg',
+    images: ['/images/new_arrivals_07_realm_cape_skirt_set_A.jpg', '/images/new_arrivals_07_realm_cape_skirt_set_B.jpg'],
+    category: 'New Arrivals'
   }
 ];

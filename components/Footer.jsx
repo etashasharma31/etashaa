@@ -10,27 +10,25 @@ const Footer = () => {
           <p className="font-jakarta-sans text-xs text-[#fcf9f6]/60 leading-relaxed mb-6">
             Redefining traditional luxury for the modern bride. Every stitch tells a story of heritage and craftsmanship.
           </p>
-          <div className="flex space-x-4">
-            <span className="material-symbols-outlined text-[#c8a96a] hover:scale-110 transition-all cursor-pointer">social_leaderboard</span>
-            <span className="material-symbols-outlined text-[#c8a96a] hover:scale-110 transition-all cursor-pointer">camera</span>
-            <span className="material-symbols-outlined text-[#c8a96a] hover:scale-110 transition-all cursor-pointer">mail</span>
-          </div>
         </div>
         <div>
           <h4 className="font-jakarta-sans text-xs tracking-wider uppercase text-[#c8a96a] mb-8">Client Care</h4>
           <ul className="space-y-4 font-jakarta-sans text-xs tracking-wider uppercase text-[#fcf9f6]/60">
-            <li className="hover:text-[#fcf9f6] transition-all cursor-pointer">Shipping Policy</li>
-            <li className="hover:text-[#fcf9f6] transition-all cursor-pointer">Returns & Exchanges</li>
+            <li className="hover:text-[#fcf9f6] transition-all cursor-pointer"><Link to="/privacy">Shipping Policy</Link></li>
+            <li className="hover:text-[#fcf9f6] transition-all cursor-pointer"><Link to="/privacy">Returns & Exchanges</Link></li>
             <li className="hover:text-[#fcf9f6] transition-all cursor-pointer">Size Guide</li>
             <li className="hover:text-[#fcf9f6] transition-all cursor-pointer">Track Your Order</li>
+            <li className="hover:text-[#fcf9f6] transition-all cursor-pointer">FAQs</li>
           </ul>
         </div>
         <div>
           <h4 className="font-jakarta-sans text-xs tracking-wider uppercase text-[#c8a96a] mb-8">Company</h4>
           <ul className="space-y-4 font-jakarta-sans text-xs tracking-wider uppercase text-[#fcf9f6]/60">
+            <li className="hover:text-[#fcf9f6] transition-all cursor-pointer">Our Story</li>
             <li className="hover:text-[#fcf9f6] transition-all cursor-pointer">Our Atelier</li>
             <li className="hover:text-[#fcf9f6] transition-all cursor-pointer">Sustainability</li>
-            <li className="hover:text-[#fcf9f6] transition-all cursor-pointer">Privacy</li>
+            <li className="hover:text-[#fcf9f6] transition-all cursor-pointer"><Link to="/privacy">Privacy</Link></li>
+            <li className="hover:text-[#fcf9f6] transition-all cursor-pointer">Careers</li>
             <li className="hover:text-[#fcf9f6] transition-all cursor-pointer">Contact Us</li>
           </ul>
         </div>
@@ -51,10 +49,10 @@ const Footer = () => {
       </div>
       <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-6">
         <p className="font-jakarta-sans text-[10px] tracking-widest text-[#fcf9f6]/40 uppercase">© 2024 ETASHAA HERITAGE. ALL RIGHTS RESERVED.</p>
-        <div className="flex space-x-8 text-[10px] tracking-widest text-[#fcf9f6]/40 uppercase font-jakarta-sans">
-          <Link className="hover:text-[#fcf9f6] transition-colors" to="#">Terms of Use</Link>
-          <Link className="hover:text-[#fcf9f6] transition-colors" to="#">Accessibility</Link>
-          <Link className="hover:text-[#fcf9f6] transition-colors" to="#">Cookies</Link>
+        <div className="flex flex-wrap justify-center md:justify-end gap-x-12 gap-y-4">
+          <Link className="link-premium !text-[#fcf9f6]/40 hover:!text-[#fcf9f6]" to="/terms">Terms of Use</Link>
+          <Link className="link-premium !text-[#fcf9f6]/40 hover:!text-[#fcf9f6]" to="/accessibility">Accessibility</Link>
+          <Link className="link-premium !text-[#fcf9f6]/40 hover:!text-[#fcf9f6]" to="/accessibility">Cookies</Link>
         </div>
       </div>
     </footer>

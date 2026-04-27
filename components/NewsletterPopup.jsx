@@ -30,7 +30,7 @@ const NewsletterPopup = () => {
       <div className="relative max-w-sm w-full bg-[#1c1c1a] overflow-hidden reveal shadow-[0_0_100px_rgba(0,0,0,0.5)]">
         {/* Background Image Container */}
         <div className="absolute inset-0 opacity-40">
-          <img src="/images/hero_bridal_elegance.png" alt="Etashaa Bridal" className="w-full h-full object-cover" />
+          <img src="/images/bridal_new_4.jpg" alt="Etashaa Bridal" className="w-full h-full object-cover" />
           <div className="absolute inset-0 bg-gradient-to-t from-[#1c1c1a] via-transparent to-transparent"></div>
         </div>
 

@@ -9,6 +9,7 @@ const ProductDetail = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isStickyVisible, setIsStickyVisible] = useState(false);
   const [selectedSize, setSelectedSize] = useState('M');
+  const [openAccordion, setOpenAccordion] = useState('About Product');
 
   // Combine all products to find the one we need
   const allProducts = [...bridalProducts, ...editProducts, ...sareeProducts, ...festiveProducts];
@@ -36,6 +37,13 @@ const ProductDetail = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  const [mainImage, setMainImage] = useState(product.image);
+  
+  // Update main image when product changes
+  useEffect(() => {
+    setMainImage(product.image);
+  }, [product.image]);
+
   const formatPrice = (price) => {
     return new Intl.NumberFormat('en-IN', {
       style: 'currency',
@@ -53,24 +61,27 @@ const ProductDetail = () => {
             <img 
               className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105" 
               alt={product.name} 
-              src={product.image} 
+              src={mainImage} 
             />
-            <div className="absolute bottom-6 right-6 bg-surface/80 backdrop-blur-sm px-4 py-2 text-xs font-label tracking-widest uppercase">Front View</div>
-          </div>
-          <div className="grid grid-cols-2 md:grid-cols-3 gap-6">
-            <div className="bg-surface-container-low aspect-[4/5] overflow-hidden">
-              <img className="w-full h-full object-cover" alt="Detail 1" src="/images/social_embroidery.png" />
-            </div>
-            <div className="bg-surface-container-low aspect-[4/5] overflow-hidden">
-              <img className="w-full h-full object-cover" alt="Detail 2" src="/images/prod_emerald_zardosi.png" />
-            </div>
-            <div className="relative bg-surface-container-low aspect-[4/5] overflow-hidden group cursor-pointer">
-              <img className="w-full h-full object-cover opacity-80" alt="Video Preview" src="/images/hero_bridal_elegance.png" />
-              <div className="absolute inset-0 flex items-center justify-center">
-                <span className="material-symbols-outlined text-6xl text-on-surface opacity-60 group-hover:opacity-100 transition-opacity">play_circle</span>
-              </div>
+            <div className="absolute bottom-6 right-6 bg-surface/80 backdrop-blur-sm px-4 py-2 text-xs font-label tracking-widest uppercase">
+              {product.images?.indexOf(mainImage) === 1 ? 'Detail View' : 'Front View'}
             </div>
           </div>
+
+          {/* Dynamic Thumbnails */}
+          {product.images && product.images.length > 1 && (
+            <div className="grid grid-cols-4 gap-4">
+              {product.images.map((img, idx) => (
+                <button 
+                  key={idx}
+                  onClick={() => setMainImage(img)}
+                  className={`aspect-[3/4] overflow-hidden border-2 transition-all duration-300 ${mainImage === img ? 'border-primary' : 'border-transparent opacity-60 hover:opacity-100'}`}
+                >
+                  <img src={img} alt={`View ${idx + 1}`} className="w-full h-full object-cover" />
+                </button>
+              ))}
+            </div>
+          )}
         </div>
 
         {/* Right Side: Product Details */}
@@ -152,12 +163,12 @@ const ProductDetail = () => {
               <button 
                 id="buy-btn" 
                 onClick={() => addToCart(product)} 
-                className="w-full bg-white border border-[#1c1c1a] text-[#1c1c1a] py-5 font-label tracking-widest uppercase transition-all duration-500 text-xs flex justify-center items-center group active:scale-[0.98] font-bold"
+                className="btn-premium-outline group w-full !py-5"
               >
-                Add to Bag
+                <span>Add to Bag</span>
               </button>
-              <button className="w-full bg-[#c8a96a] hover:bg-[#b8995a] text-white py-5 font-label tracking-widest uppercase transition-all duration-500 text-xs flex justify-center items-center font-bold shadow-md">
-                Buy It Now
+              <button className="btn-premium group w-full !py-5 !bg-[#c8a96a] !border-[#c8a96a]">
+                <span>Buy It Now</span>
               </button>
             </div>
 
@@ -167,14 +178,25 @@ const ProductDetail = () => {
                     { title: 'About Product', content: 'Exquisitely handcrafted with the finest fabrics and intricate embroidery. A masterpiece from the Etashaa atelier.' },
                     { title: 'Shipping Policy', content: 'Complimentary shipping on all bridal orders. Dispatched with secure luxury packaging within 24-48 hours.' },
                     { title: 'Personalized Recommendations', content: 'Our designers can suggest matching jewelry and accessories to complete your ensemble.' }
-                ].map(acc => (
-                    <div key={acc.title} className="border-b border-outline-variant/10">
-                        <button className="w-full py-5 flex justify-between items-center group">
-                            <span className="font-noto-serif text-sm tracking-tight text-on-surface group-hover:text-primary transition-colors">{acc.title}</span>
-                            <span className="material-symbols-outlined text-primary">add</span>
-                        </button>
-                    </div>
-                ))}
+                ].map(acc => {
+                    const isOpen = openAccordion === acc.title;
+                    return (
+                        <div key={acc.title} className="border-b border-outline-variant/10">
+                            <button 
+                                onClick={() => setOpenAccordion(isOpen ? null : acc.title)}
+                                className="w-full py-5 flex justify-between items-center group cursor-pointer"
+                            >
+                                <span className="font-noto-serif text-sm tracking-tight text-on-surface group-hover:text-primary transition-colors">{acc.title}</span>
+                                <span className={`material-symbols-outlined text-primary transition-transform duration-300 ${isOpen ? 'rotate-45' : ''}`}>add</span>
+                            </button>
+                            <div className={`overflow-hidden transition-all duration-500 ease-in-out ${isOpen ? 'max-h-40 pb-5 opacity-100' : 'max-h-0 opacity-0'}`}>
+                                <p className="text-xs font-jakarta-sans text-on-surface-variant leading-relaxed tracking-wide">
+                                    {acc.content}
+                                </p>
+                            </div>
+                        </div>
+                    );
+                })}
             </div>
           </div>
         </div>
@@ -213,14 +235,6 @@ const ProductDetail = () => {
         </div>
       )}
 
-      {/* Sticky Buy Bar */}
-      <div className={`fixed bottom-0 left-0 right-0 z-40 bg-[#1c1c1a] text-[#fcf9f6] px-6 py-4 flex items-center justify-between gap-4 transition-transform duration-400 ${isStickyVisible ? 'translate-y-0' : 'translate-y-full'}`}>
-        <div>
-          <p className="font-headline text-sm">{product.name}</p>
-          <p className="font-body text-xs text-[#fcf9f6]/60">Size: {selectedSize} &nbsp;·&nbsp; {formatPrice(product.price)}</p>
-        </div>
-        <button onClick={() => addToCart(product)} className="bg-primary text-on-primary px-8 py-3 text-xs uppercase tracking-widest font-label hover:bg-secondary transition-all duration-300">Add to Bag</button>
-      </div>
     </main>
   );
 };

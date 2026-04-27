@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useCart } from '../context/CartContext';
+import SearchOverlay from './SearchOverlay';
 
 const Navbar = () => {
   const { cartCount } = useCart();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
 
   useEffect(() => {
@@ -27,7 +29,10 @@ const Navbar = () => {
         </div>
 
         <div className="flex items-center space-x-5 text-[#1c1c1a]">
-          <button className="hover:text-[#9B7E4B] transition-colors duration-300">
+          <button 
+            onClick={() => setIsSearchOpen(true)}
+            className="hover:text-[#9B7E4B] transition-colors duration-300"
+          >
             <span className="material-symbols-outlined text-[22px]">search</span>
           </button>
           <Link to="/cart" className="relative hover:text-[#9B7E4B] transition-colors duration-300">
@@ -52,6 +57,8 @@ const Navbar = () => {
         </div>
       </div>
       
+      <SearchOverlay isOpen={isSearchOpen} onClose={() => setIsSearchOpen(false)} />
+
       {/* Mobile Menu */}
       <div id="mobile-menu" className={`${isMenuOpen ? 'open' : 'closed'} absolute top-full left-0 w-full bg-[#fcf9f6]/97 backdrop-blur-xl border-t border-[#d0c5b5]/30 py-8 px-8 space-y-6 md:hidden shadow-lg`}>
         <Link className="block font-noto-serif text-lg uppercase tracking-widest text-[#735b24] border-b border-[#d0c5b5]/20 pb-4" to="/bridal-collection" onClick={() => setIsMenuOpen(false)}>Bridal Lehengas</Link>

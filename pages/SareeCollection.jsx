@@ -19,9 +19,9 @@ const SareeCollection = () => {
 
       {/* Product Grid */}
       <div className="max-w-custom py-24 bg-surface">
-        <div className="flex justify-between items-center mb-16">
+        <div className="flex justify-between items-center mb-16 px-4">
           <h2 className="font-noto-serif text-3xl italic">The Saree Gallery</h2>
-          <p className="font-jakarta-sans text-xs tracking-widest text-outline uppercase">6 MASTERPIECES</p>
+          <p className="font-jakarta-sans text-xs tracking-widest text-outline uppercase">{sareeProducts.length} MASTERPIECES</p>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-12 gap-y-24">

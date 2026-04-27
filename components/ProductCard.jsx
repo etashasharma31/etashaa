@@ -27,10 +27,10 @@ const ProductCard = ({ product }) => {
             e.stopPropagation();
             addToCart(product);
           }} 
-          className="absolute bottom-0 left-0 right-0 bg-primary/90 text-white py-3 translate-y-full group-hover:translate-y-0 transition-transform duration-300 flex justify-center items-center gap-2"
+          className="btn-card-add"
         >
           <span className="material-symbols-outlined text-sm">shopping_bag</span>
-          <span className="text-[10px] uppercase tracking-widest">Add to Bag</span>
+          <span>Add to Bag</span>
         </div>
       </div>
       <div onClick={() => navigate(`/product/${product.id}`)} className="text-center space-y-2">

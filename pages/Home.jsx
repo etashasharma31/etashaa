@@ -4,55 +4,110 @@ import { categories, occasions } from '../data';
 
 const Home = () => {
   const navigate = useNavigate();
+  const [currentSlide, setCurrentSlide] = React.useState(0);
+
+  const slides = [
+    {
+      image: '/images/banners_01_draped_in_time.jpg',
+      tag: 'Heritage Couture',
+      title: 'Draped in Time',
+      sub: 'A collection that celebrates the eternal beauty of traditional craftsmanship.',
+      link: '/bridal-collection'
+    },
+    {
+      image: '/images/banners_03_wedding_edit.jpg',
+      tag: 'The Wedding Edit',
+      title: 'Bridal Grandeur',
+      sub: 'Exquisite lehengas designed for the most memorable moments of your life.',
+      link: '/bridal-collection'
+    },
+    {
+      image: '/images/banners_05_naaz.jpg',
+      tag: 'New Collection',
+      title: 'Naaz : The Pride',
+      sub: 'Timeless elegance meets modern silhouettes in our latest masterpiece series.',
+      link: '/non-bridal-collection'
+    },
+    {
+      image: '/images/banners_02_ready_to_ship.jpg',
+      tag: 'Express Luxury',
+      title: 'Ready to Ship',
+      sub: 'Fast dispatch nationwide. Handcrafted luxury delivered to your doorstep.',
+      link: '/saree-collection'
+    },
+    {
+      image: '/images/banners_06_bridesmaid.jpg',
+      tag: 'The Entourage',
+      title: 'Bridesmaid Edit',
+      sub: 'Graceful styles for the sister of the bride and her entourage.',
+      link: '/non-bridal-collection'
+    }
+  ];
 
   useEffect(() => {
-    // Parallax hero
-    const handleScroll = () => {
-      const heroImg = document.getElementById('hero-img');
-      if (heroImg) { 
-        heroImg.style.transform = `scale(1.1) translateY(${window.scrollY * 0.25}px)`; 
-      }
-    };
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+    const timer = setInterval(() => {
+      setCurrentSlide((prev) => (prev + 1) % slides.length);
+    }, 6000);
+    return () => clearInterval(timer);
+  }, [slides.length]);
 
   return (
     <>
       {/* Hero Section */}
-      <section className="relative h-screen w-full flex items-center justify-center overflow-hidden bg-[#E2E1DF]">
-        <div className="absolute inset-0 z-0">
-          <img 
-            id="hero-img" 
-            src="/images/hero_bridal_elegance.png" 
-            alt="Hero" 
-            className="w-full h-full object-cover opacity-60"
-          />
-          <div className="absolute inset-0 bg-gradient-to-br from-white/40 via-transparent to-black/10"></div>
-        </div>
-        <div className="relative z-10 px-6 md:px-12 max-w-custom text-center text-[#1c1c1a]">
-          <span className="hero-tagline font-jakarta-sans text-[10px] tracking-[0.4em] uppercase mb-6 block font-medium opacity-70">✦ &nbsp; Handcrafted Heritage &nbsp; ✦</span>
-          <h1 className="hero-title mb-8">Bridal & <br/>Designer Lehengas</h1>
-          <p className="hero-sub font-jakarta-sans text-sm md:text-base tracking-wide mb-10 opacity-80 max-w-xl mx-auto">Starting from ₹5,000 | Custom Stitching | Nationwide Delivery</p>
-          <div className="hero-cta flex flex-wrap justify-center gap-4">
-            <button 
-              className="bg-[#735b24] text-white px-10 py-4 font-jakarta-sans uppercase tracking-widest text-[10px] font-bold hover:bg-[#5a430e] transition-all duration-500 active:scale-95 shadow-lg"
-              onClick={() => navigate('/bridal-collection')}
-            >
-              Shop Bridal &nbsp; →
-            </button>
-            <button 
-              className="border border-[#1c1c1a]/30 text-[#1c1c1a] px-10 py-4 font-jakarta-sans uppercase tracking-widest text-[10px] font-bold hover:bg-[#1c1c1a]/5 transition-all duration-300"
-              onClick={() => navigate('/saree-collection')}
-            >
-              View Collection
-            </button>
+      <section className="relative h-screen w-full overflow-hidden bg-[#E2E1DF]">
+        {slides.map((slide, index) => (
+          <div 
+            key={index}
+            className={`absolute inset-0 transition-opacity duration-1000 ease-in-out ${index === currentSlide ? 'opacity-100 z-10' : 'opacity-0 z-0'}`}
+          >
+            <div className="absolute inset-0 z-0">
+              <img 
+                src={slide.image} 
+                alt={slide.title} 
+                className={`w-full h-full object-cover transition-transform duration-[6000ms] ease-linear ${index === currentSlide ? 'scale-110' : 'scale-100'}`}
+              />
+              <div className="absolute inset-0 bg-gradient-to-r from-white/60 via-white/20 to-transparent"></div>
+            </div>
+            
+            <div className="relative z-20 h-full flex items-center px-6 md:px-24 max-w-custom mx-auto">
+              <div className={`max-w-2xl transition-all duration-1000 delay-300 ${index === currentSlide ? 'translate-x-0 opacity-100' : '-translate-x-10 opacity-0'}`}>
+                <span className="font-jakarta-sans text-[10px] tracking-[0.4em] uppercase mb-4 block font-bold text-primary">{slide.tag}</span>
+                <h1 className="text-5xl md:text-7xl mb-6 font-noto-serif italic tracking-tight text-on-surface">{slide.title}</h1>
+                <p className="font-jakarta-sans text-sm md:text-lg tracking-wide mb-10 opacity-80 text-on-surface-variant max-w-lg">{slide.sub}</p>
+                <div className="flex gap-6">
+                  <button 
+                    className="btn-premium group"
+                    onClick={() => navigate(slide.link)}
+                  >
+                    <span>Explore Now</span>
+                    <span className="arrow">→</span>
+                  </button>
+                  <button 
+                    className="btn-premium-outline group"
+                    onClick={() => navigate('/saree-collection')}
+                  >
+                    <span>View All</span>
+                  </button>
+                </div>
+              </div>
+            </div>
           </div>
+        ))}
+
+        {/* Slider Controls */}
+        <div className="absolute bottom-12 right-12 z-30 flex items-center gap-4">
+          {slides.map((_, i) => (
+            <button 
+              key={i}
+              onClick={() => setCurrentSlide(i)}
+              className={`h-1 transition-all duration-500 ${i === currentSlide ? 'w-12 bg-primary' : 'w-4 bg-outline/20'}`}
+            />
+          ))}
         </div>
+
         {/* Scroll Indicator */}
-        <div className="absolute bottom-12 left-1/2 -translate-x-1/2 z-10 flex flex-col items-center gap-3 opacity-40">
-          <span className="font-jakarta-sans text-[#1c1c1a] text-[10px] uppercase tracking-[0.4em] font-medium">Scroll</span>
-          <div className="w-px h-16 bg-[#1c1c1a]"></div>
+        <div className="absolute bottom-12 left-1/2 -translate-x-1/2 z-30 flex flex-col items-center gap-3 opacity-40">
+          <div className="w-px h-12 bg-on-surface animate-bounce"></div>
         </div>
       </section>
 
@@ -100,44 +155,6 @@ const Home = () => {
         </div>
       </section>
 
-      {/* Atelier Highlights - NEW SECTION */}
-      <section className="py-24 bg-white overflow-hidden">
-        <div className="max-w-custom">
-          <div className="text-center mb-16">
-            <span className="font-jakarta-sans text-[9px] uppercase tracking-[0.5em] text-[#735b24] font-bold mb-3 block">The Digital Atelier</span>
-            <h2 className="tracking-tight">Couture Highlights</h2>
-          </div>
-          
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-3 h-[600px]">
-            <div className="relative group overflow-hidden cursor-pointer h-full" onClick={() => navigate('/bridal-collection')}>
-              <img src="/images/bridal_new_2.png" alt="Bridal Highlight" className="w-full h-full object-cover grayscale-[0.2] group-hover:grayscale-0 transition-all duration-1000 group-hover:scale-105"/>
-              <div className="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-all duration-500"></div>
-              <div className="absolute bottom-10 left-10 text-white">
-                <span className="text-[9px] uppercase tracking-widest block mb-1 font-bold">The Wedding Edit</span>
-                <h3 className="text-3xl font-noto-serif">Bridal Lehengas</h3>
-              </div>
-            </div>
-            
-            <div className="relative group overflow-hidden cursor-pointer h-full" onClick={() => navigate('/non-bridal-collection')}>
-              <img src="/images/non_bridal_2.png" alt="Non-Bridal Highlight" className="w-full h-full object-cover grayscale-[0.2] group-hover:grayscale-0 transition-all duration-1000 group-hover:scale-105"/>
-              <div className="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-all duration-500"></div>
-              <div className="absolute bottom-10 left-10 text-white">
-                <span className="text-[9px] uppercase tracking-widest block mb-1 font-bold">Seasonal Soirée</span>
-                <h3 className="text-3xl font-noto-serif">Festive Couture</h3>
-              </div>
-            </div>
-            
-            <div className="relative group overflow-hidden cursor-pointer h-full" onClick={() => navigate('/saree-collection')}>
-              <img src="/images/jimmy_choo_saree.png" alt="Saree Highlight" className="w-full h-full object-cover grayscale-[0.2] group-hover:grayscale-0 transition-all duration-1000 group-hover:scale-105"/>
-              <div className="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-all duration-500"></div>
-              <div className="absolute bottom-10 left-10 text-white">
-                <span className="text-[9px] uppercase tracking-widest block mb-1 font-bold">Heritage Weaves</span>
-                <h3 className="text-3xl font-noto-serif">Designer Sarees</h3>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
 
       {/* Shop by Category */}
       <section className="py-24 bg-white">
@@ -157,7 +174,7 @@ const Home = () => {
                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-80"></div>
                 <div className="absolute bottom-10 left-10 text-white">
                   <h4 className="text-2xl mb-2 tracking-tight font-noto-serif">{category.name}</h4>
-                  <span className="font-jakarta-sans text-[9px] uppercase tracking-[0.2em] border-b border-white/40 pb-1 hover:border-white transition-colors">View Collection</span>
+                  <span className="link-premium">View Collection</span>
                 </div>
               </div>
             ))}

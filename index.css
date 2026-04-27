@@ -52,6 +52,7 @@
   --font-headline: "Noto Serif";
   --font-body: "Plus Jakarta Sans";
   --font-label: "Plus Jakarta Sans";
+  --font-jakarta-sans: "Plus Jakarta Sans";
 }
 
 @layer base {
@@ -179,6 +180,88 @@
 
   /* Stat number counter animation */
   .stat-number { font-variant-numeric: tabular-nums; }
+
+  /* Premium Buttons */
+  .btn-premium {
+    @apply relative overflow-hidden px-10 py-4 font-jakarta-sans uppercase tracking-[0.3em] text-[10px] font-bold text-white transition-all duration-500 shadow-lg bg-[#735b24] inline-flex items-center justify-center gap-2;
+    border: 1px solid #735b24;
+  }
+
+  .btn-premium::before {
+    content: '';
+    @apply absolute inset-0 bg-[#5a430e] translate-y-full transition-transform duration-500 ease-out z-0;
+  }
+
+  .btn-premium:hover::before {
+    @apply translate-y-0;
+  }
+
+  .btn-premium:hover {
+    @apply shadow-xl -translate-y-0.5;
+  }
+
+  .btn-premium span, .btn-premium .arrow {
+    @apply relative z-10;
+  }
+
+  .btn-premium .arrow {
+    @apply transition-transform duration-500;
+  }
+
+  .btn-premium:hover .arrow {
+    @apply translate-x-2;
+  }
+
+  .btn-premium-outline {
+    @apply relative overflow-hidden px-10 py-4 font-jakarta-sans uppercase tracking-[0.3em] text-[10px] font-bold text-[#1c1c1a] transition-all duration-500 border border-[#1c1c1a]/20 inline-flex items-center justify-center gap-2 bg-transparent;
+  }
+
+  .btn-premium-outline::before {
+    content: '';
+    @apply absolute inset-0 bg-[#1c1c1a] translate-y-full transition-transform duration-500 ease-out z-0;
+  }
+
+  .btn-premium-outline:hover::before {
+    @apply translate-y-0;
+  }
+
+  .btn-premium-outline:hover {
+    @apply text-white border-[#1c1c1a] -translate-y-0.5;
+  }
+
+  .btn-premium-outline span {
+    @apply relative z-10 transition-colors duration-500;
+  }
+
+  .btn-card-add {
+    @apply relative overflow-hidden bg-[#735b24] text-white py-4 translate-y-full group-hover:translate-y-0 transition-all duration-500 flex justify-center items-center gap-3 w-full font-jakarta-sans uppercase tracking-[0.2em] text-[9px] font-bold;
+  }
+
+  .btn-card-add::before {
+    content: '';
+    @apply absolute inset-0 bg-[#5a430e] translate-y-full transition-transform duration-300 ease-out z-0;
+  }
+
+  .btn-card-add:hover::before {
+    @apply translate-y-0;
+  }
+
+  .btn-card-add span, .btn-card-add .material-symbols-outlined {
+    @apply relative z-10;
+  }
+
+  .link-premium {
+    @apply relative font-jakarta-sans text-[9px] uppercase tracking-[0.2em] transition-all duration-300 pb-1 inline-block;
+  }
+
+  .link-premium::after {
+    content: '';
+    @apply absolute bottom-0 left-0 w-full h-[1px] bg-current scale-x-0 origin-right transition-transform duration-500 ease-out;
+  }
+
+  .link-premium:hover::after {
+    @apply scale-x-100 origin-left;
+  }
 
   /* Parallax hero */
   #hero-img { will-change: transform; }

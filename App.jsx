@@ -10,6 +10,7 @@ import Cart from './pages/Cart';
 import ProductDetail from './pages/ProductDetail';
 import Login from './pages/Login';
 import Profile from './pages/Profile';
+import Policies from './pages/Policies';
 import { CartProvider } from './context/CartContext';
 
 function App() {
@@ -27,6 +28,9 @@ function App() {
             <Route path="/product/:id" element={<ProductDetail />} />
             <Route path="/login" element={<Login />} />
             <Route path="/profile" element={<Profile />} />
+            <Route path="/terms" element={<Policies />} />
+            <Route path="/privacy" element={<Policies />} />
+            <Route path="/accessibility" element={<Policies />} />
           </Routes>
         </Layout>
       </Router>
