@@ -5,18 +5,14 @@ const NewsletterPopup = () => {
   const [email, setEmail] = useState('');
 
   useEffect(() => {
-    const hasSeenPopup = localStorage.getItem('etashaa_popup_seen');
-    if (!hasSeenPopup) {
-      const timer = setTimeout(() => {
-        setIsVisible(true);
-      }, 3000); // Show after 3 seconds
-      return () => clearTimeout(timer);
-    }
+    const timer = setTimeout(() => {
+      setIsVisible(true);
+    }, 3000); // Show after 3 seconds
+    return () => clearTimeout(timer);
   }, []);
 
   const handleClose = () => {
     setIsVisible(false);
-    localStorage.setItem('etashaa_popup_seen', 'true');
   };
 
   const handleSubmit = (e) => {
