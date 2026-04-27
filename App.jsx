@@ -31,6 +31,12 @@ function App() {
             <Route path="/terms" element={<Policies />} />
             <Route path="/privacy" element={<Policies />} />
             <Route path="/accessibility" element={<Policies />} />
+            <Route path="/shipping-policy" element={<Policies />} />
+            <Route path="/returns-exchanges" element={<Policies />} />
+            <Route path="/size-guide" element={<Policies />} />
+            <Route path="/faqs" element={<Policies />} />
+            <Route path="/our-story" element={<Policies />} />
+            <Route path="/contact" element={<Policies />} />
           </Routes>
         </Layout>
       </Router>

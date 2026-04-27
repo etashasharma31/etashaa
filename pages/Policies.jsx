@@ -14,18 +14,9 @@ const Policies = () => {
         title: 'Terms of Use',
         subtitle: 'Last updated: April 2024',
         content: [
-          {
-            h: 'Acceptance of Terms',
-            p: 'By accessing and using the Etashaa website, you agree to be bound by these Terms of Use and all applicable laws and regulations.'
-          },
-          {
-            h: 'Intellectual Property',
-            p: 'All content on this site, including designs, text, graphics, and logos, is the exclusive property of Etashaa Heritage and is protected by copyright laws.'
-          },
-          {
-            h: 'Product Accuracy',
-            p: 'We strive to display our products as accurately as possible. However, due to the handcrafted nature of our couture, slight variations in color and embroidery may occur.'
-          }
+          { h: 'Acceptance of Terms', p: 'By accessing and using the Etashaa website, you agree to be bound by these Terms of Use and all applicable laws and regulations.' },
+          { h: 'Intellectual Property', p: 'All content on this site, including designs, text, graphics, and logos, is the exclusive property of Etashaa Heritage and is protected by copyright laws.' },
+          { h: 'Product Accuracy', p: 'We strive to display our products as accurately as possible. However, due to the handcrafted nature of our couture, slight variations in color and embroidery may occur.' }
         ]
       };
     }
@@ -34,33 +25,84 @@ const Policies = () => {
         title: 'Privacy Policy',
         subtitle: 'Your security is our priority',
         content: [
-          {
-            h: 'Data Collection',
-            p: 'We collect only the necessary information to process your orders and provide a personalized atelier experience.'
-          },
-          {
-            h: 'Information Usage',
-            p: 'Your data is used solely for order fulfillment, customer support, and, with your consent, exclusive brand updates.'
-          },
-          {
-            h: 'Secure Transactions',
-            p: 'All payments are processed through encrypted, industry-leading payment gateways to ensure your financial security.'
-          }
+          { h: 'Data Collection', p: 'We collect only the necessary information to process your orders and provide a personalized atelier experience.' },
+          { h: 'Information Usage', p: 'Your data is used solely for order fulfillment, customer support, and, with your consent, exclusive brand updates.' },
+          { h: 'Secure Transactions', p: 'All payments are processed through encrypted, industry-leading payment gateways to ensure your financial security.' }
+        ]
+      };
+    }
+    if (pathname.includes('shipping-policy')) {
+      return {
+        title: 'Shipping Policy',
+        subtitle: 'Global Luxury Logistics',
+        content: [
+          { h: 'Domestic Shipping', p: 'We offer complimentary insured shipping on all orders within India. Bridal orders are typically dispatched within 4-6 weeks.' },
+          { h: 'International Shipping', p: 'Etashaa ships to over 50 countries. Shipping costs and duties are calculated at checkout based on your location.' },
+          { h: 'Secure Transit', p: 'Every piece is packaged in our signature luxury trunks and shipped via high-security premium couriers.' }
+        ]
+      };
+    }
+    if (pathname.includes('returns-exchanges')) {
+      return {
+        title: 'Returns & Exchanges',
+        subtitle: 'Our Commitment to Perfection',
+        content: [
+          { h: 'Made-to-Order Policy', p: 'As each piece is handcrafted to your specific measurements, we do not offer returns. However, we provide one complimentary alteration.' },
+          { h: 'Damaged Items', p: 'In the rare event of transit damage, please notify us within 24 hours of delivery for an immediate restoration or replacement.' },
+          { h: 'Cancellation', p: 'Orders can be cancelled within 48 hours of placement for a full refund before work begins in our atelier.' }
+        ]
+      };
+    }
+    if (pathname.includes('size-guide')) {
+      return {
+        title: 'Size Guide',
+        subtitle: 'Find Your Perfect Silhouette',
+        content: [
+          { h: 'Standard Sizing', p: 'Our size chart ranges from XS to XXL. Please refer to the specific measurements on each product page for the best fit.' },
+          { h: 'Custom Measurements', p: 'For bridal and heavy couture, we recommend our "Signature Fit" service where we guide you through professional measurement.' },
+          { h: 'Virtual Fitting', p: 'Book a video consultation with our master tailors for a personalized fitting session from the comfort of your home.' }
+        ]
+      };
+    }
+    if (pathname.includes('faqs')) {
+      return {
+        title: 'Frequently Asked Questions',
+        subtitle: 'Atelier Concierge',
+        content: [
+          { h: 'Bespoke Services', p: 'Yes, we offer complete customization of colors, silhouettes, and embroidery patterns for all bridal collections.' },
+          { h: 'Store Visits', p: 'You can visit our flagship atelier in New Delhi. We recommend booking an appointment 48 hours in advance.' },
+          { h: 'Order Timeline', p: 'Festive wear typically takes 2-3 weeks, while bridal couture requires 8-12 weeks for the finest hand-embroidery.' }
+        ]
+      };
+    }
+    if (pathname.includes('our-story')) {
+      return {
+        title: 'Our Story',
+        subtitle: 'Heritage Since 1984',
+        content: [
+          { h: 'The Atelier', p: 'Born from a passion for traditional Indian textiles, Etashaa has been a sanctuary for master craftsmen and weavers for four decades.' },
+          { h: 'Our Vision', p: 'We believe in slow fashion—creating pieces that are not just garments, but heirlooms passed down through generations.' },
+          { h: 'Craftsmanship', p: 'Every Zardosi stitch and every weave is a tribute to the timeless beauty of Indian artisanal heritage.' }
+        ]
+      };
+    }
+    if (pathname.includes('contact')) {
+      return {
+        title: 'Contact Us',
+        subtitle: 'Connect with the Atelier',
+        content: [
+          { h: 'Concierge Service', p: 'Email: concierge@etashaa.com | WhatsApp: +91 99999 88888. Our team is available 10 AM - 7 PM IST.' },
+          { h: 'Flagship Store', p: 'Plot 42, DLF Emporio, Vasant Kunj, New Delhi. Visit us for a private bridal consultation.' },
+          { h: 'Press & Media', p: 'For editorial inquiries and collaborations, please reach out to press@etashaa.com.' }
         ]
       };
     }
     return {
-      title: 'Accessibility & Cookies',
+      title: 'Policies & Cookies',
       subtitle: 'A seamless experience for everyone',
       content: [
-        {
-          h: 'Accessibility Commitment',
-          p: 'Etashaa is committed to providing a website that is accessible to the widest possible audience, regardless of technology or ability.'
-        },
-        {
-          h: 'Cookie Usage',
-          p: 'We use cookies to enhance your browsing experience, analyze site traffic, and serve personalized content. By continuing to use our site, you consent to our use of cookies.'
-        }
+        { h: 'Accessibility Commitment', p: 'Etashaa is committed to providing a website that is accessible to the widest possible audience, regardless of technology or ability.' },
+        { h: 'Cookie Usage', p: 'We use cookies to enhance your browsing experience, analyze site traffic, and serve personalized content.' }
       ]
     };
   };
@@ -130,15 +172,6 @@ const Policies = () => {
           </div>
         </div>
 
-        <div className="mt-40 pt-16 border-t border-outline-variant/10 text-center reveal">
-          <div className="mb-8">
-            <span className="material-symbols-outlined text-primary/30 text-4xl">verified_user</span>
-          </div>
-          <p className="font-jakarta-sans text-[10px] text-outline tracking-[0.3em] uppercase max-w-sm mx-auto leading-loose">
-            Questions? Contact our couture concierge <br/>
-            <span className="text-primary hover:text-secondary cursor-pointer transition-colors duration-500 border-b border-primary/20">concierge@etashaa.com</span>
-          </p>
-        </div>
       </div>
     </main>
   );

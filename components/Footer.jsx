@@ -14,22 +14,19 @@ const Footer = () => {
         <div>
           <h4 className="font-jakarta-sans text-xs tracking-wider uppercase text-[#c8a96a] mb-8">Client Care</h4>
           <ul className="space-y-4 font-jakarta-sans text-xs tracking-wider uppercase text-[#fcf9f6]/60">
-            <li className="hover:text-[#fcf9f6] transition-all cursor-pointer"><Link to="/privacy">Shipping Policy</Link></li>
-            <li className="hover:text-[#fcf9f6] transition-all cursor-pointer"><Link to="/privacy">Returns & Exchanges</Link></li>
-            <li className="hover:text-[#fcf9f6] transition-all cursor-pointer">Size Guide</li>
-            <li className="hover:text-[#fcf9f6] transition-all cursor-pointer">Track Your Order</li>
-            <li className="hover:text-[#fcf9f6] transition-all cursor-pointer">FAQs</li>
+            <li className="hover:text-[#fcf9f6] transition-all cursor-pointer"><Link to="/shipping-policy">Shipping Policy</Link></li>
+            <li className="hover:text-[#fcf9f6] transition-all cursor-pointer"><Link to="/returns-exchanges">Returns & Exchanges</Link></li>
+            <li className="hover:text-[#fcf9f6] transition-all cursor-pointer"><Link to="/size-guide">Size Guide</Link></li>
+            <li className="hover:text-[#fcf9f6] transition-all cursor-pointer"><Link to="/faqs">Track Your Order</Link></li>
+            <li className="hover:text-[#fcf9f6] transition-all cursor-pointer"><Link to="/faqs">FAQs</Link></li>
           </ul>
         </div>
         <div>
           <h4 className="font-jakarta-sans text-xs tracking-wider uppercase text-[#c8a96a] mb-8">Company</h4>
           <ul className="space-y-4 font-jakarta-sans text-xs tracking-wider uppercase text-[#fcf9f6]/60">
-            <li className="hover:text-[#fcf9f6] transition-all cursor-pointer">Our Story</li>
-            <li className="hover:text-[#fcf9f6] transition-all cursor-pointer">Our Atelier</li>
-            <li className="hover:text-[#fcf9f6] transition-all cursor-pointer">Sustainability</li>
+            <li className="hover:text-[#fcf9f6] transition-all cursor-pointer"><Link to="/our-story">Our Story</Link></li>
             <li className="hover:text-[#fcf9f6] transition-all cursor-pointer"><Link to="/privacy">Privacy</Link></li>
-            <li className="hover:text-[#fcf9f6] transition-all cursor-pointer">Careers</li>
-            <li className="hover:text-[#fcf9f6] transition-all cursor-pointer">Contact Us</li>
+            <li className="hover:text-[#fcf9f6] transition-all cursor-pointer"><Link to="/contact">Contact Us</Link></li>
           </ul>
         </div>
         <div>
