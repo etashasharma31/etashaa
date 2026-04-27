@@ -6,11 +6,11 @@ const ProductCard = ({ product }) => {
   const { addToCart } = useCart();
 
   return (
-    <div className="group relative flex flex-col product-card cursor-pointer">
+    <div className="group relative flex flex-col product-card cursor-pointer transition-all duration-500 hover:z-30">
       <div className="aspect-[3/4] overflow-hidden bg-surface-container mb-6 relative">
         <img 
           onClick={() => navigate(`/product/${product.id}`)} 
-          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" 
+          className="w-full h-full object-cover group-hover:scale-[1.02] transition-transform duration-700 will-change-transform" 
           alt={product.name} 
           src={product.image}
         />
