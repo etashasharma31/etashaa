@@ -82,7 +82,7 @@ const SearchOverlay = ({ isOpen, onClose }) => {
                       <div>
                         <h4 className="font-noto-serif text-sm group-hover:text-primary transition-colors">{product.name}</h4>
                         <p className="font-jakarta-sans text-[10px] text-outline uppercase tracking-widest mt-1">{product.category}</p>
-                        <p className="font-jakarta-sans text-xs text-on-surface mt-2">₹{product.price.toLocaleString()}</p>
+                        <p className="font-jakarta-sans text-xs text-on-surface mt-2">₹ {product.price.toLocaleString()}</p>
                       </div>
                     </Link>
                   ))}

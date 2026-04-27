@@ -36,9 +36,9 @@ const ProductCard = ({ product }) => {
       <div onClick={() => navigate(`/product/${product.id}`)} className="text-center space-y-2">
         <h3 className="font-noto-serif text-lg tracking-tight group-hover:text-primary transition-colors">{product.name}</h3>
         <div className="flex items-center justify-center gap-3">
-          <span className="text-primary font-medium">₹{product.price.toLocaleString()}</span>
+          <span className="text-primary font-medium">₹ {product.price.toLocaleString()}</span>
           {product.oldPrice && (
-            <span className="text-outline/60 line-through text-xs">₹{product.oldPrice.toLocaleString()}</span>
+            <span className="text-outline/60 line-through text-xs">₹ {product.oldPrice.toLocaleString()}</span>
           )}
           {product.discount && (
             <span className="text-secondary text-[10px] font-bold uppercase tracking-tighter">{product.discount}% OFF</span>

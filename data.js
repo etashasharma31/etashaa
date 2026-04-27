@@ -8,6 +8,8 @@ export const bridalProducts = [
     discount: 15,
     image: '/images/bridal_new_1.png',
     category: 'Bridal Collection',
+    fabric: 'Raw Silk',
+    workType: 'Zardosi',
     page: 1
   },
   {
@@ -18,6 +20,8 @@ export const bridalProducts = [
     discount: 18,
     image: '/images/bridal_new_2.png',
     category: 'Bridal Collection',
+    fabric: 'Velvet',
+    workType: 'Gota Patti',
     page: 1
   },
   {
@@ -28,6 +32,8 @@ export const bridalProducts = [
     discount: 19,
     image: '/images/bridal_new_3.png',
     category: 'Bridal Collection',
+    fabric: 'Velvet',
+    workType: 'Mirror Work',
     page: 1
   },
   {
@@ -38,6 +44,8 @@ export const bridalProducts = [
     discount: 18,
     image: '/images/bridal_new_4.jpg',
     category: 'Bridal Collection',
+    fabric: 'Organza',
+    workType: 'Zardosi',
     page: 1
   },
   {
@@ -48,6 +56,8 @@ export const bridalProducts = [
     discount: 15,
     image: '/images/bridal_new_5.png',
     category: 'Bridal Collection',
+    fabric: 'Raw Silk',
+    workType: 'Gota Patti',
     page: 1
   },
   {
@@ -58,6 +68,8 @@ export const bridalProducts = [
     discount: 18,
     image: '/images/bridal_new_6.png',
     category: 'Bridal Collection',
+    fabric: 'Raw Silk',
+    workType: 'Mirror Work',
     page: 1
   },
   {
@@ -68,6 +80,8 @@ export const bridalProducts = [
     discount: 18,
     image: '/images/bridal_new_7.png',
     category: 'Bridal Collection',
+    fabric: 'Velvet',
+    workType: 'Zardosi',
     page: 1
   },
   {
@@ -78,6 +92,8 @@ export const bridalProducts = [
     discount: 18,
     image: '/images/bridal_new_8.png',
     category: 'Bridal Collection',
+    fabric: 'Organza',
+    workType: 'Gota Patti',
     page: 1
   },
   {
@@ -88,6 +104,8 @@ export const bridalProducts = [
     discount: 17,
     image: '/images/bridal_new_9.png',
     category: 'Pastel Bridal',
+    fabric: 'Organza',
+    workType: 'Mirror Work',
     page: 1
   },
   {
@@ -98,6 +116,8 @@ export const bridalProducts = [
     discount: 18,
     image: '/images/bridal_new_10.png',
     category: 'Pastel Bridal',
+    fabric: 'Velvet',
+    workType: 'Zardosi',
     page: 1
   },
   {
@@ -108,6 +128,8 @@ export const bridalProducts = [
     discount: 18,
     image: '/images/bridal_new_11.png',
     category: 'Pastel Bridal',
+    fabric: 'Raw Silk',
+    workType: 'Gota Patti',
     page: 1
   },
   {
