@@ -47,7 +47,7 @@ const Home = () => {
   return (
     <>
       {/* Hero Section */}
-      <section className="relative h-[80vh] md:h-screen w-full overflow-hidden bg-[#E2E1DF]">
+      <section className="relative h-[70vh] md:h-screen w-full overflow-hidden bg-[#E2E1DF]">
         {slides.map((slide, index) => (
           <div 
             key={index}
@@ -57,7 +57,7 @@ const Home = () => {
               <img 
                 src={slide.image} 
                 alt={slide.title} 
-                className={`w-full h-[110%] object-cover object-top transition-transform duration-[6000ms] ease-linear ${index === currentSlide ? 'scale-110' : 'scale-100'}`}
+                className={`w-full h-[110%] object-cover object-top transition-transform duration-[8000ms] ease-linear ${index === currentSlide ? 'scale-110 translate-y-0' : 'scale-100'}`}
               />
             </div>
           </div>
