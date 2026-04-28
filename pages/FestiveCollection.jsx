@@ -23,12 +23,14 @@ const FestiveCollection = () => {
     setSelectedBrands([]);
   };
 
+  const festivePriceRanges = ['Under ₹ 80,000', '₹ 80,000 - ₹ 1,20,000', '₹ 1,20,000+'];
+
   const filteredProducts = festiveProducts.filter(product => {
     if (selectedPriceRanges.length > 0) {
       const priceMatch = selectedPriceRanges.some(range => {
-        if (range === 'Under ₹ 1,50,000') return product.price < 150000;
-        if (range === '₹ 1,50,000 - ₹ 2,00,000') return product.price >= 150000 && product.price <= 200000;
-        if (range === '₹ 2,00,000+') return product.price > 200000;
+        if (range === 'Under ₹ 80,000') return product.price < 80000;
+        if (range === '₹ 80,000 - ₹ 1,20,000') return product.price >= 80000 && product.price <= 120000;
+        if (range === '₹ 1,20,000+') return product.price > 120000;
         return false;
       });
       if (!priceMatch) return false;
@@ -41,36 +43,61 @@ const FestiveCollection = () => {
 
   const [isFilterOpen, setIsFilterOpen] = useState(false);
 
+  // Lock scroll when mobile filter is open
+  useEffect(() => {
+    if (isFilterOpen) {
+      document.body.classList.add('no-scroll');
+    } else {
+      document.body.classList.remove('no-scroll');
+    }
+    return () => document.body.classList.remove('no-scroll');
+  }, [isFilterOpen]);
+
+  const [currentPage, setCurrentPage] = useState(1);
+  const productsPerPage = 8;
+
+  const totalPages = Math.ceil(filteredProducts.length / productsPerPage);
+
+  // Get current products
+  const indexOfLastProduct = currentPage * productsPerPage;
+  const indexOfFirstProduct = indexOfLastProduct - productsPerPage;
+  const currentProducts = filteredProducts.slice(indexOfFirstProduct, indexOfLastProduct);
+
+  const paginate = (pageNumber) => {
+    setCurrentPage(pageNumber);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
   return (
     <main className="min-h-screen">
       <PageHero 
-        title="Non-Bridal Collection"
-        tagline="Festive Brilliance"
-        subtitle="Vibrant silhouettes for your celebrations"
-        image="/images/banners_06_bridesmaid.jpg"
+        title="Festive"
+        tagline="Timeless Elegance"
+        subtitle="Tradition. Grace. You."
+        footerText="Grace in every thread. Beauty in every drape."
       />
 
       {/* Mobile Filter Toggle & Sort - Refined Sticky */}
       <div className="sticky top-[64px] z-40 bg-surface border-b border-outline-variant/10 md:hidden">
-        <div className="flex divide-x divide-outline-variant/10">
+        <div className="flex divide-x divide-outline-variant/10 h-14">
           <button 
             onClick={() => setIsFilterOpen(true)}
-            className="flex-1 py-4 flex items-center justify-center gap-2 font-jakarta-sans text-[10px] uppercase tracking-widest font-bold text-on-surface"
+            className="flex-1 flex items-center justify-center gap-3 font-jakarta-sans text-[9px] uppercase tracking-[0.3em] font-bold text-on-surface hover:bg-primary/5 transition-colors"
           >
-            <span className="material-symbols-outlined text-[18px]">filter_list</span>
+            <span className="material-symbols-outlined text-[16px] text-primary">tune</span>
             Filter
           </button>
           <button 
             onClick={() => setIsSortOpen(true)}
-            className="flex-1 py-4 flex items-center justify-center gap-2 font-jakarta-sans text-[10px] uppercase tracking-widest font-bold text-on-surface"
+            className="flex-1 flex items-center justify-center gap-3 font-jakarta-sans text-[9px] uppercase tracking-[0.3em] font-bold text-on-surface hover:bg-primary/5 transition-colors"
           >
-            <span className="material-symbols-outlined text-[18px]">sort</span>
+            <span className="material-symbols-outlined text-[16px] text-primary">sort</span>
             Sort
           </button>
         </div>
       </div>
 
-      <div className="max-w-custom py-12 flex flex-col md:flex-row gap-16 relative">
+      <div className="max-w-custom py-12 flex flex-col md:flex-row gap-10 relative">
         {/* Desktop Sidebar */}
         <FilterSidebar 
           className="hidden md:block w-64 sticky top-36 h-fit"
@@ -83,6 +110,7 @@ const FestiveCollection = () => {
           selectedBrands={selectedBrands}
           setSelectedBrands={setSelectedBrands}
           clearAllFilters={clearAllFilters}
+          priceRanges={festivePriceRanges}
         />
 
         {/* Mobile Filter Drawer */}
@@ -104,6 +132,7 @@ const FestiveCollection = () => {
             selectedBrands={selectedBrands}
             setSelectedBrands={setSelectedBrands}
             clearAllFilters={clearAllFilters}
+            priceRanges={festivePriceRanges}
           />
           <div className="absolute bottom-0 left-0 w-full p-6 bg-surface border-t border-outline-variant/20">
             <button 
@@ -140,12 +169,12 @@ const FestiveCollection = () => {
 
         <section className="flex-1 px-4 md:px-0">
           <div className="hidden md:flex justify-between items-center mb-12 border-b border-outline-variant/10 pb-6">
-            <p className="font-jakarta-sans text-[10px] tracking-[0.3em] uppercase text-outline font-bold">Showing {filteredProducts.length} Artisan Designs</p>
+            <p className="font-jakarta-sans text-[10px] tracking-[0.3em] uppercase text-outline font-bold">Showing {indexOfFirstProduct + 1}-{Math.min(indexOfLastProduct, filteredProducts.length)} of {filteredProducts.length} Artisan Designs</p>
             <div className="flex items-center gap-6 relative">
               <span className="text-[10px] uppercase tracking-[0.2em] text-outline font-bold">Sort By:</span>
               <div className="relative">
                 <button 
-                  onClick={() => setIsSortOpen(!isSortOpen)}
+                   onClick={() => setIsSortOpen(!isSortOpen)}
                   className="flex items-center gap-2 text-[10px] uppercase tracking-[0.2em] font-bold text-on-surface hover:text-primary transition-colors py-1"
                 >
                   {selectedSort}
@@ -176,10 +205,25 @@ const FestiveCollection = () => {
           </div>
           
           <div className="grid grid-cols-2 lg:grid-cols-3 gap-x-4 gap-y-10 md:gap-x-10 md:gap-y-20">
-            {filteredProducts.map((product) => (
+            {currentProducts.map((product) => (
               <ProductCard key={product.id} product={product} />
             ))}
           </div>
+
+          {/* Pagination Controls */}
+          {totalPages > 1 && (
+            <div className="mt-24 flex justify-center items-center gap-4">
+              {[...Array(totalPages)].map((_, i) => (
+                <button
+                  key={i + 1}
+                  onClick={() => paginate(i + 1)}
+                  className={`w-10 h-10 flex items-center justify-center font-jakarta-sans text-[10px] transition-all border ${currentPage === i + 1 ? 'bg-primary text-white border-primary' : 'border-outline-variant/30 text-on-surface hover:border-primary'}`}
+                >
+                  {i + 1}
+                </button>
+              ))}
+            </div>
+          )}
         </section>
       </div>
     </main>

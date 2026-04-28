@@ -8,6 +8,7 @@ export const bridalProducts = [
     discount: 15,
     image: '/images/bridal_new_1.png',
     category: 'Bridal Collection',
+    mainCategory: 'Bridal',
     fabric: 'Raw Silk',
     workType: 'Zardosi',
     availability: 'In Stock',
@@ -22,6 +23,7 @@ export const bridalProducts = [
     discount: 18,
     image: '/images/bridal_new_2.png',
     category: 'Festive Collection',
+    mainCategory: 'Bridal',
     fabric: 'Velvet',
     workType: 'Gota Patti',
     availability: 'In Stock',
@@ -614,3 +616,5 @@ export const festiveProducts = [
     category: 'New Arrivals'
   }
 ];
+
+export const allProducts = [...bridalProducts, ...festiveProducts, ...sareeProducts];

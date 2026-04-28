@@ -26,7 +26,7 @@ const Navbar = () => {
   }, [isSearchExpanded]);
 
   return (
-    <nav id="main-nav" className={`sticky top-0 w-full z-50 bg-[#FCF9F6] border-b border-outline-variant/20 transition-all duration-300 ${isScrolled ? 'h-16' : 'h-24'}`}>
+    <nav id="main-nav" className={`sticky top-0 w-full z-50 bg-[#FCF9F6] border-b border-outline-variant/20 transition-all duration-300 ${isScrolled ? 'h-16 md:h-16' : 'h-16 md:h-24'}`}>
       <div className="flex items-center max-w-custom mx-auto h-full px-6 md:px-12 relative">
         
         {/* Left: Logo Container */}
@@ -41,19 +41,19 @@ const Navbar = () => {
         </div>
         
         {/* Center: Navigation Links */}
-        <div className={`hidden lg:flex items-center justify-center space-x-10 font-noto-serif tracking-widest uppercase text-[11px] transition-all duration-500 ${isSearchExpanded ? 'opacity-0 pointer-events-none translate-y-2' : 'opacity-100 translate-y-0'}`}>
+        <div className={`hidden lg:flex items-center justify-center space-x-10 font-noto-serif tracking-widest uppercase text-[11px] transition-all duration-500 ${isSearchExpanded ? 'opacity-0 pointer-events-none scale-95 w-0 overflow-hidden' : 'opacity-100 w-auto'}`}>
           <Link className="text-[#1c1c1a] hover:text-[#9B7E4B] transition-colors duration-300 pb-1 whitespace-nowrap" to="/bridal-collection">Bridal Lehengas</Link>
           <Link className="text-[#1c1c1a] hover:text-[#9B7E4B] transition-colors duration-300 pb-1 whitespace-nowrap" to="/non-bridal-collection">Non-Bridal Lehengas</Link>
           <Link className="text-[#1c1c1a] hover:text-[#9B7E4B] transition-colors duration-300 pb-1 whitespace-nowrap" to="/saree-collection">Heritage Sarees</Link>
         </div>
 
         {/* Right: Action Icons & Inline Search */}
-        <div className="flex-1 flex items-center justify-end gap-4 md:gap-6 text-[#1c1c1a]">
+        <div className={`flex items-center justify-end gap-4 md:gap-6 text-[#1c1c1a] transition-all duration-500 ${isSearchExpanded ? 'flex-[4]' : 'flex-1'}`}>
           {/* Expanding Search Bar */}
-          <div className={`relative flex items-center transition-all duration-700 ease-in-out ${isSearchExpanded ? 'w-full max-w-[1000px]' : 'w-[32px]'}`}>
+          <div className={`relative flex items-center transition-all duration-700 ease-in-out ${isSearchExpanded ? 'w-full md:max-w-[500px]' : 'w-8'}`}>
             <button 
               onClick={() => setIsSearchExpanded(true)}
-              className={`flex items-center justify-center hover:text-primary transition-colors duration-300 z-10 ${isSearchExpanded ? 'absolute left-5 pointer-events-none text-primary' : ''}`}
+              className={`flex items-center justify-center hover:text-primary transition-colors duration-300 z-10 ${isSearchExpanded ? 'absolute left-4 pointer-events-none text-primary' : ''}`}
             >
               <span className="material-symbols-outlined text-[20px]">search</span>
             </button>
@@ -62,7 +62,7 @@ const Navbar = () => {
               ref={searchInputRef}
               type="text"
               placeholder="Search our atelier heritage..."
-              className={`w-full bg-surface-container-high/40 border border-outline-variant/20 py-3 transition-all duration-700 ease-in-out font-jakarta-sans text-xs outline-none rounded-full focus:border-primary/40 focus:ring-4 focus:ring-primary/5 ${isSearchExpanded ? 'pl-14 pr-12 opacity-100 shadow-lg translate-x-0' : 'w-0 opacity-0 pointer-events-none border-none translate-x-4'}`}
+              className={`bg-white/80 backdrop-blur-md border border-outline-variant/20 py-2.5 transition-all duration-700 ease-in-out font-jakarta-sans text-[11px] outline-none rounded-full focus:border-primary/40 focus:ring-4 focus:ring-primary/5 ${isSearchExpanded ? 'w-full pl-12 pr-12 opacity-100 shadow-xl' : 'w-0 opacity-0 pointer-events-none border-none'}`}
               onBlur={() => { if (!searchInputRef.current?.value) setIsSearchExpanded(false); }}
               onKeyDown={(e) => { if (e.key === 'Escape') setIsSearchExpanded(false); }}
             />
@@ -73,7 +73,7 @@ const Navbar = () => {
                   setIsSearchExpanded(false);
                   if (searchInputRef.current) searchInputRef.current.value = '';
                 }}
-                className="absolute right-4 hover:text-primary transition-colors flex items-center justify-center text-outline/50"
+                className="absolute right-4 hover:text-primary transition-colors flex items-center justify-center text-outline/40"
               >
                 <span className="material-symbols-outlined text-[16px]">close</span>
               </button>
@@ -81,9 +81,9 @@ const Navbar = () => {
           </div>
 
           {/* Account, Wishlist & Cart Icons */}
-          <div className="flex items-center gap-4 md:gap-6">
-            <Link to="/wishlist" className="hover:text-[#9B7E4B] transition-colors duration-300 hidden md:flex items-center justify-center relative">
-              <span className="material-symbols-outlined text-[21px]">favorite</span>
+          <div className={`flex items-center gap-4 md:gap-6 transition-all duration-500 ${isSearchExpanded ? 'opacity-0 scale-90 w-0 overflow-hidden pointer-events-none md:opacity-100 md:scale-100 md:w-auto md:pointer-events-auto' : 'opacity-100 w-auto'}`}>
+            <Link to="/wishlist" className="hover:text-[#9B7E4B] transition-colors duration-300 flex items-center justify-center relative">
+              <span className="material-symbols-outlined text-[20px] md:text-[21px]">favorite</span>
             </Link>
             <Link to="/login" className="hover:text-[#9B7E4B] transition-colors duration-300 hidden md:flex items-center justify-center">
               <span className="material-symbols-outlined text-[22px]">person</span>

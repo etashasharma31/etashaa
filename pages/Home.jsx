@@ -40,15 +40,17 @@ const Home = () => {
 
   const promoBanners = [
     {
-      image: '/images/spotlight_1.png',
+      image: '/images/spotlight_2.png',
+      tagline: 'Timeless Elegance',
+      title: 'Lehengas',
+      subtitle: 'Heritage Couture',
       link: '/bridal-collection'
     },
     {
-      image: '/images/spotlight_2.png',
-      link: '/non-bridal-collection'
-    },
-    {
       image: '/images/spotlight_3.png',
+      tagline: 'Ethereal Grace',
+      title: 'Sarees',
+      subtitle: 'Handwoven Legacy',
       link: '/saree-collection'
     }
   ];
@@ -107,9 +109,6 @@ const Home = () => {
         </div>
       </section>
 
-
-
-
       {/* Shop by Category */}
       <section className="py-24 bg-white">
         <div className="max-w-custom reveal">
@@ -135,23 +134,25 @@ const Home = () => {
         </div>
       </section>
 
-      {/* Promotional Banner Slider */}
+      {/* Promotional Banner Slider - Refined Spotlight */}
       <section className="py-12 bg-[#FCF9F6] overflow-hidden">
         <div className="max-w-custom px-4 md:px-0">
           <div className="flex flex-col items-center mb-8 space-y-3">
-            <h3 className="text-[#1c1c1a] text-center tracking-[0.2em] uppercase font-noto-serif text-lg md:text-xl">In the Spotlight</h3>
+            <h3 className="text-[#1c1c1a] text-center tracking-[0.2em] uppercase font-jakarta-sans text-[10px] font-bold text-primary">In the Spotlight</h3>
           </div>
-          <div className="relative aspect-[16/9] md:aspect-[3/1] overflow-hidden bg-black shadow-lg rounded-sm group">
+          <div className="relative aspect-[16/9] md:aspect-[3.5/1] overflow-hidden bg-[#E2E1DF] shadow-2xl rounded-sm group">
             {promoBanners.map((banner, i) => (
               <div 
                 key={i} 
                 onClick={() => navigate(banner.link)}
-                className={`absolute inset-0 transition-all duration-1000 ease-in-out cursor-pointer ${
+                className={`absolute inset-0 transition-all duration-1000 ease-in-out cursor-pointer overflow-hidden ${
                   i === currentPromoSlide ? 'opacity-100 translate-y-0 z-10' : 
                   i < currentPromoSlide ? 'opacity-0 -translate-y-full z-0' : 'opacity-0 translate-y-full z-0'
                 }`}
               >
-                <img src={banner.image} alt={banner.title} className="w-full h-full object-cover transition-transform duration-10000 hover:scale-105" />
+                <img src={banner.image} alt={banner.title} className="w-full h-full object-cover transition-transform duration-10000 hover:scale-110" />
+                
+                {/* Removed dynamic text overlay to fix double-texting as requested */}
               </div>
             ))}
           </div>

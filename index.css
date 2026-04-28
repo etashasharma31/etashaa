@@ -62,11 +62,16 @@
     -webkit-font-smoothing: antialiased;
   }
 
+  .no-scroll {
+    overflow: hidden;
+    height: 100vh;
+  }
+
   h1, .text-h1 { @apply font-headline text-3xl md:text-5xl lg:text-6xl leading-[1.2] tracking-tight; }
   h2, .text-h2 { @apply font-headline text-2xl md:text-4xl lg:text-5xl leading-tight tracking-tight; }
   h3, .text-h3 { @apply font-headline text-xl md:text-3xl leading-snug; }
   
-  .max-w-custom { @apply max-w-[1200px] mx-auto px-4 md:px-12; }
+  .max-w-custom { @apply max-w-[1400px] mx-auto px-4 md:px-12; }
 
   .bg-surface { background-color: #FCF9F6; }
   .editorial-shadow { box-shadow: 0 20px 80px -20px rgba(0,0,0,0.08); }
@@ -172,13 +177,15 @@
 
   /* Filter Drawer */
   .filter-drawer {
-    @apply fixed inset-y-0 left-0 w-80 bg-surface z-[60] transform -translate-x-full transition-transform duration-500 ease-out shadow-2xl p-8;
+    @apply fixed inset-y-0 left-0 w-80 bg-surface z-[70] transform -translate-x-full transition-transform duration-500 ease-out shadow-2xl p-8 overflow-y-auto;
+    height: 100dvh;
+    padding-bottom: 120px; /* Space for the bottom button */
   }
   .filter-drawer.open {
     @apply translate-x-0;
   }
   .filter-overlay {
-    @apply fixed inset-0 bg-black/40 backdrop-blur-sm z-[55] opacity-0 pointer-events-none transition-opacity duration-500;
+    @apply fixed inset-0 bg-black/60 backdrop-blur-md z-[65] opacity-0 pointer-events-none transition-opacity duration-500;
   }
   .filter-overlay.open {
     @apply opacity-100 pointer-events-auto;

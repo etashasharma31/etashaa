@@ -94,25 +94,25 @@ const ProductDetail = () => {
               <span className="mx-2">/</span>
               <span className="text-on-surface">Lehenga Sets</span>
             </nav>
-            <h1 className="font-headline text-4xl md:text-5xl leading-tight text-on-surface">{product.name}</h1>
+            <h1 className="font-headline text-2xl md:text-5xl leading-tight text-on-surface">{product.name}</h1>
             <div className="flex items-center gap-3">
-              <span className="text-[#c8a96a] text-sm">★★★★★</span>
+              <span className="text-[#c8a96a] text-xs">★★★★★</span>
               <span className="font-body text-xs text-on-surface-variant">(127 reviews)</span>
               <span className="text-[10px] uppercase tracking-widest text-primary border-l border-outline-variant pl-3">Verified Purchases</span>
             </div>
             <div className="flex items-center space-x-4">
-              <span className="text-3xl font-headline text-primary">{formatPrice(product.price)}</span>
-              <span className="text-outline/50 line-through text-lg font-body">{formatPrice(product.oldPrice)}</span>
+              <span className="text-2xl md:text-3xl font-headline text-primary">{formatPrice(product.price)}</span>
+              <span className="text-outline/50 line-through text-base md:text-lg font-body">{formatPrice(product.oldPrice)}</span>
               <span className="bg-secondary text-on-primary px-3 py-1 text-[10px] font-label tracking-widest uppercase">{product.discount}% OFF</span>
             </div>
             <div className="flex items-center space-x-2 text-secondary">
               <span className="material-symbols-outlined text-lg">local_fire_department</span>
-              <span className="text-xs font-label tracking-wide font-bold uppercase">Hurry Up! Only 3 left in stock</span>
+              <span className="text-[11px] font-label tracking-wide font-bold uppercase">Hurry Up! Only 3 left in stock</span>
             </div>
             <div className="w-full bg-surface-container-highest h-1 rounded-full overflow-hidden">
                 <div className="bg-secondary h-full w-[20%] transition-all duration-1000"></div>
             </div>
-            <div className="flex items-center gap-2 text-outline/70 text-[11px] py-1 border-b border-outline-variant/10 pb-4">
+            <div className="flex items-center gap-2 text-outline/70 text-[10px] md:text-[11px] py-1 border-b border-outline-variant/10 pb-4">
                 <span className="material-symbols-outlined text-sm">visibility</span>
                 <span>54 people are watching this product right now</span>
             </div>
@@ -126,7 +126,7 @@ const ProductDetail = () => {
                 { icon: 'local_shipping', text: 'Orders Dispatched within 24 hours' }
             ].map(item => (
                 <div key={item.text} className="flex items-center gap-3 text-[10px] uppercase tracking-widest text-on-surface-variant font-medium">
-                    <span className="material-symbols-outlined text-primary text-lg">{item.icon}</span>
+                    <span className="material-symbols-outlined text-primary text-base md:text-lg">{item.icon}</span>
                     {item.text}
                 </div>
             ))}
@@ -140,17 +140,17 @@ const ProductDetail = () => {
                 <button onClick={() => setIsModalOpen(true)} className="text-[10px] tracking-widest uppercase underline hover:text-primary transition-colors">Size Guide</button>
               </div>
               <div className="flex items-center border border-outline-variant/30 w-fit">
-                <button className="px-5 py-3 hover:bg-surface-container transition-colors">—</button>
-                <span className="px-8 py-3 text-sm font-bold border-x border-outline-variant/30">1</span>
-                <button className="px-5 py-3 hover:bg-surface-container transition-colors">+</button>
+                <button className="px-4 py-2.5 md:px-5 md:py-3 hover:bg-surface-container transition-colors">—</button>
+                <span className="px-6 py-2.5 md:px-8 md:py-3 text-xs md:text-sm font-bold border-x border-outline-variant/30">1</span>
+                <button className="px-4 py-2.5 md:px-5 md:py-3 hover:bg-surface-container transition-colors">+</button>
               </div>
               
-              <div className="mt-6 flex flex-wrap gap-3">
+              <div className="mt-6 flex flex-wrap gap-2 md:gap-3">
                 {['S', 'M', 'L', 'XL', 'Custom Size'].map((size) => (
                   <button 
                     key={size}
                     onClick={() => setSelectedSize(size)}
-                    className={`px-5 py-3 border text-[10px] uppercase tracking-widest font-bold transition-all ${selectedSize === size ? 'border-primary bg-primary text-on-primary' : 'border-outline-variant/30 hover:border-primary hover:bg-primary-container/10'}`}
+                    className={`px-4 py-2.5 md:px-5 md:py-3 border text-[10px] uppercase tracking-widest font-bold transition-all ${selectedSize === size ? 'border-primary bg-primary text-on-primary' : 'border-outline-variant/30 hover:border-primary hover:bg-primary-container/10'}`}
                   >
                     {size}
                   </button>
@@ -163,11 +163,11 @@ const ProductDetail = () => {
               <button 
                 id="buy-btn" 
                 onClick={() => addToCart(product)} 
-                className="btn-premium-outline group w-full !py-5"
+                className="btn-premium-outline group w-full !py-4 md:!py-5"
               >
                 <span>Add to Cart</span>
               </button>
-              <button className="btn-premium group w-full !py-5 !bg-[#c8a96a] !border-[#c8a96a]">
+              <button className="btn-premium group w-full !py-4 md:!py-5 !bg-[#c8a96a] !border-[#c8a96a]">
                 <span>Buy It Now</span>
               </button>
             </div>
