@@ -324,17 +324,17 @@ export const categories = [
 export const occasions = [
   {
     name: 'Haldi',
-    image: '/images/occ_haldi.png',
+    image: '/images/haldi.webp',
     description: 'Radiant & Graceful'
   },
   {
     name: 'Wedding',
-    image: '/images/occ_wedding.png',
+    image: '/images/wedding.jpg',
     description: 'Timeless Majesty'
   },
   {
     name: 'Mehendi',
-    image: '/images/occ_mehendi.png',
+    image: '/images/mehendi.jpg',
     description: 'Vibrant & Playful'
   }
 ];
