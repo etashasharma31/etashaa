@@ -40,24 +40,15 @@ const Home = () => {
 
   const promoBanners = [
     {
-      image: '/promo_banner_heritage_couple_1777369087271.png',
-      subtitle: 'The Bridal Chapter',
-      title: 'MADE FOR EACH OTHER',
-      cta: 'Explore Now',
+      image: '/images/spotlight_1.png',
       link: '/bridal-collection'
     },
     {
-      image: '/promo_banner_festive_silk_1777369104686.png',
-      subtitle: 'Artisanal Excellence',
-      title: 'THE CRAFT STORY',
-      cta: 'Discover More',
+      image: '/images/spotlight_2.png',
       link: '/non-bridal-collection'
     },
     {
-      image: '/promo_banner_modern_saree_1777369124110.png',
-      subtitle: 'Contemporary Chic',
-      title: 'MODERN HERITAGE',
-      cta: 'Shop Now',
+      image: '/images/spotlight_3.png',
       link: '/saree-collection'
     }
   ];
@@ -116,27 +107,6 @@ const Home = () => {
         </div>
       </section>
 
-      {/* Trust Section */}
-      <section className="bg-[#1c1c1a] py-12">
-        <div className="max-w-custom grid grid-cols-2 md:grid-cols-4 gap-12">
-          <div className="flex flex-col items-center text-center space-y-4">
-            <span className="material-symbols-outlined text-[#c8a96a] text-4xl font-light">payments</span>
-            <span className="font-jakarta-sans text-[10px] tracking-[0.2em] uppercase font-bold text-white/90">COD Available</span>
-          </div>
-          <div className="flex flex-col items-center text-center space-y-4">
-            <span className="material-symbols-outlined text-[#c8a96a] text-4xl font-light">local_shipping</span>
-            <span className="font-jakarta-sans text-[10px] tracking-[0.2em] uppercase font-bold text-white/90">Free Shipping ₹5k+</span>
-          </div>
-          <div className="flex flex-col items-center text-center space-y-4">
-            <span className="material-symbols-outlined text-[#c8a96a] text-4xl font-light">straighten</span>
-            <span className="font-jakarta-sans text-[10px] tracking-[0.2em] uppercase font-bold text-white/90">Custom Fit</span>
-          </div>
-          <div className="flex flex-col items-center text-center space-y-4">
-            <span className="material-symbols-outlined text-[#c8a96a] text-4xl font-light">assignment_return</span>
-            <span className="font-jakarta-sans text-[10px] tracking-[0.2em] uppercase font-bold text-white/90">Easy Returns</span>
-          </div>
-        </div>
-      </section>
 
 
 
@@ -171,7 +141,7 @@ const Home = () => {
           <div className="flex flex-col items-center mb-8 space-y-3">
             <h3 className="text-[#1c1c1a] text-center tracking-[0.2em] uppercase font-noto-serif text-lg md:text-xl">In the Spotlight</h3>
           </div>
-          <div className="relative aspect-[21/9] md:aspect-[4/1] overflow-hidden bg-black shadow-lg rounded-sm group">
+          <div className="relative aspect-[16/9] md:aspect-[3/1] overflow-hidden bg-black shadow-lg rounded-sm group">
             {promoBanners.map((banner, i) => (
               <div 
                 key={i} 
