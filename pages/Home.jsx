@@ -47,7 +47,7 @@ const Home = () => {
   return (
     <>
       {/* Hero Section */}
-      <section className="relative h-[70vh] md:h-screen w-full overflow-hidden bg-[#E2E1DF]">
+      <section className="relative h-[85vh] md:h-screen w-full overflow-hidden bg-[#E2E1DF]">
         {slides.map((slide, index) => (
           <div 
             key={index}
