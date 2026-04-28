@@ -50,10 +50,10 @@ const Navbar = () => {
         {/* Right: Action Icons & Inline Search */}
         <div className="flex-1 flex items-center justify-end gap-4 md:gap-6 text-[#1c1c1a]">
           {/* Expanding Search Bar */}
-          <div className={`relative flex items-center transition-all duration-700 ease-in-out ${isSearchExpanded ? 'w-full max-w-[700px]' : 'w-[40px]'}`}>
+          <div className={`relative flex items-center transition-all duration-700 ease-in-out ${isSearchExpanded ? 'w-full max-w-[1000px]' : 'w-[32px]'}`}>
             <button 
               onClick={() => setIsSearchExpanded(true)}
-              className={`flex items-center justify-center hover:text-[#9B7E4B] transition-colors duration-300 z-10 ${isSearchExpanded ? 'absolute left-4 pointer-events-none text-primary' : ''}`}
+              className={`flex items-center justify-center hover:text-primary transition-colors duration-300 z-10 ${isSearchExpanded ? 'absolute left-5 pointer-events-none text-primary' : ''}`}
             >
               <span className="material-symbols-outlined text-[20px]">search</span>
             </button>
@@ -61,8 +61,8 @@ const Navbar = () => {
             <input
               ref={searchInputRef}
               type="text"
-              placeholder="Search our atelier..."
-              className={`w-full bg-surface-container-high/50 border border-outline-variant/30 py-2.5 transition-all duration-700 ease-in-out font-jakarta-sans text-xs outline-none rounded-full focus:border-primary/50 focus:ring-4 focus:ring-primary/5 ${isSearchExpanded ? 'pl-12 pr-12 opacity-100' : 'w-0 opacity-0 pointer-events-none border-none'}`}
+              placeholder="Search our atelier heritage..."
+              className={`w-full bg-surface-container-high/40 border border-outline-variant/20 py-3 transition-all duration-700 ease-in-out font-jakarta-sans text-xs outline-none rounded-full focus:border-primary/40 focus:ring-4 focus:ring-primary/5 ${isSearchExpanded ? 'pl-14 pr-12 opacity-100 shadow-lg translate-x-0' : 'w-0 opacity-0 pointer-events-none border-none translate-x-4'}`}
               onBlur={() => { if (!searchInputRef.current?.value) setIsSearchExpanded(false); }}
               onKeyDown={(e) => { if (e.key === 'Escape') setIsSearchExpanded(false); }}
             />
@@ -80,8 +80,11 @@ const Navbar = () => {
             )}
           </div>
 
-          {/* Account & Cart Icons */}
+          {/* Account, Wishlist & Cart Icons */}
           <div className="flex items-center gap-4 md:gap-6">
+            <Link to="/wishlist" className="hover:text-[#9B7E4B] transition-colors duration-300 hidden md:flex items-center justify-center relative">
+              <span className="material-symbols-outlined text-[21px]">favorite</span>
+            </Link>
             <Link to="/login" className="hover:text-[#9B7E4B] transition-colors duration-300 hidden md:flex items-center justify-center">
               <span className="material-symbols-outlined text-[22px]">person</span>
             </Link>
@@ -105,12 +108,45 @@ const Navbar = () => {
         </div>
       </div>
       
-      {/* Mobile Menu */}
-      <div id="mobile-menu" className={`${isMenuOpen ? 'open' : 'closed'} absolute top-full left-0 w-full bg-[#fcf9f6]/97 backdrop-blur-xl border-t border-outline-variant/30 py-8 px-8 space-y-6 md:hidden shadow-lg`}>
-        <Link className="block font-noto-serif text-lg uppercase tracking-widest text-[#735b24] border-b border-outline-variant/20 pb-4" to="/bridal-collection" onClick={() => setIsMenuOpen(false)}>Bridal Lehengas</Link>
-        <Link className="block font-noto-serif text-lg uppercase tracking-widest text-[#1c1c1a] border-b border-outline-variant/20 pb-4" to="/non-bridal-collection" onClick={() => setIsMenuOpen(false)}>Non-Bridal Lehengas</Link>
-        <Link className="block font-noto-serif text-lg uppercase tracking-widest text-[#1c1c1a] border-b border-outline-variant/20 pb-4" to="/saree-collection" onClick={() => setIsMenuOpen(false)}>Heritage Sarees</Link>
-        <Link className="block font-noto-serif text-lg uppercase tracking-widest text-[#1c1c1a]" to="/" onClick={() => setIsMenuOpen(false)}>Home</Link>
+      {/* Mobile Menu Overlay */}
+      <div 
+        className={`fixed inset-0 bg-black/60 backdrop-blur-sm z-[55] transition-opacity duration-500 lg:hidden ${isMenuOpen ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}
+        onClick={() => setIsMenuOpen(false)}
+      ></div>
+
+      {/* Mobile Menu Drawer */}
+      <div className={`fixed top-0 left-0 h-full w-[85%] max-w-sm bg-[#FCF9F6] z-[60] transition-transform duration-500 ease-out lg:hidden shadow-2xl flex flex-col ${isMenuOpen ? 'translate-x-0' : '-translate-x-full'}`}>
+        <div className="p-8 border-b border-outline-variant/20 flex justify-between items-center">
+          <img src="/images/logo_etashaa.png" alt="Etashaa Logo" className="h-10 object-contain" />
+          <button onClick={() => setIsMenuOpen(false)} className="text-[#1c1c1a]">
+            <span className="material-symbols-outlined">close</span>
+          </button>
+        </div>
+        
+        <div className="flex-1 overflow-y-auto p-8 space-y-8">
+          <div className="space-y-6">
+            <p className="font-jakarta-sans text-[10px] uppercase tracking-[0.3em] text-primary font-bold">Collections</p>
+            <Link className="block font-noto-serif text-2xl tracking-tight text-[#1c1c1a]" to="/bridal-collection" onClick={() => setIsMenuOpen(false)}>Bridal Lehengas</Link>
+            <Link className="block font-noto-serif text-2xl tracking-tight text-[#1c1c1a]" to="/non-bridal-collection" onClick={() => setIsMenuOpen(false)}>Non-Bridal Lehengas</Link>
+            <Link className="block font-noto-serif text-2xl tracking-tight text-[#1c1c1a]" to="/saree-collection" onClick={() => setIsMenuOpen(false)}>Heritage Sarees</Link>
+          </div>
+          
+          <div className="pt-8 border-t border-outline-variant/20 space-y-6">
+            <Link className="flex items-center gap-4 font-jakarta-sans text-xs uppercase tracking-widest text-[#1c1c1a]" to="/wishlist" onClick={() => setIsMenuOpen(false)}>
+              <span className="material-symbols-outlined text-[20px]">favorite</span> Wishlist
+            </Link>
+            <Link className="flex items-center gap-4 font-jakarta-sans text-xs uppercase tracking-widest text-[#1c1c1a]" to="/login" onClick={() => setIsMenuOpen(false)}>
+              <span className="material-symbols-outlined text-[20px]">person</span> Account
+            </Link>
+            <Link className="flex items-center gap-4 font-jakarta-sans text-xs uppercase tracking-widest text-[#1c1c1a]" to="/order-tracking" onClick={() => setIsMenuOpen(false)}>
+              <span className="material-symbols-outlined text-[20px]">local_shipping</span> Track Order
+            </Link>
+          </div>
+        </div>
+
+        <div className="p-8 bg-[#f6f3f0]">
+          <p className="font-jakarta-sans text-[9px] uppercase tracking-[0.2em] text-outline/60 text-center">© 2024 ETASHAA HERITAGE</p>
+        </div>
       </div>
     </nav>
   );

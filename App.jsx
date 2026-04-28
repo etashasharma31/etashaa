@@ -17,40 +17,46 @@ import OrderDetail from './pages/OrderDetail';
 import OrderTracking from './pages/OrderTracking';
 import Policies from './pages/Policies';
 import { CartProvider } from './context/CartContext';
+import { WishlistProvider } from './context/WishlistContext';
+import Wishlist from './pages/Wishlist';
+import SizeGuide from './pages/SizeGuide';
 
 function App() {
   return (
-    <CartProvider>
-      <Router>
-        <Layout>
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/bridal-collection" element={<BridalCollection />} />
-            <Route path="/the-edit" element={<TheEdit />} />
-            <Route path="/non-bridal-collection" element={<FestiveCollection />} />
-            <Route path="/saree-collection" element={<SareeCollection />} />
-            <Route path="/cart" element={<Cart />} />
-            <Route path="/product/:id" element={<ProductDetail />} />
-            <Route path="/login" element={<Login />} />
-            <Route path="/signup" element={<Signup />} />
-            <Route path="/profile" element={<Profile />} />
-            <Route path="/checkout" element={<Checkout />} />
-            <Route path="/my-orders" element={<MyOrders />} />
-            <Route path="/order-detail/:id" element={<OrderDetail />} />
-            <Route path="/order-tracking" element={<OrderTracking />} />
-            <Route path="/terms" element={<Policies />} />
-            <Route path="/privacy" element={<Policies />} />
-            <Route path="/accessibility" element={<Policies />} />
-            <Route path="/shipping-policy" element={<Policies />} />
-            <Route path="/returns-exchanges" element={<Policies />} />
-            <Route path="/size-guide" element={<Policies />} />
-            <Route path="/faqs" element={<Policies />} />
-            <Route path="/our-story" element={<Policies />} />
-            <Route path="/contact" element={<Policies />} />
-          </Routes>
-        </Layout>
-      </Router>
-    </CartProvider>
+    <WishlistProvider>
+      <CartProvider>
+        <Router>
+          <Layout>
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/bridal-collection" element={<BridalCollection />} />
+              <Route path="/the-edit" element={<TheEdit />} />
+              <Route path="/non-bridal-collection" element={<FestiveCollection />} />
+              <Route path="/saree-collection" element={<SareeCollection />} />
+              <Route path="/cart" element={<Cart />} />
+              <Route path="/wishlist" element={<Wishlist />} />
+              <Route path="/product/:id" element={<ProductDetail />} />
+              <Route path="/login" element={<Login />} />
+              <Route path="/signup" element={<Signup />} />
+              <Route path="/profile" element={<Profile />} />
+              <Route path="/checkout" element={<Checkout />} />
+              <Route path="/my-orders" element={<MyOrders />} />
+              <Route path="/order-detail/:id" element={<OrderDetail />} />
+              <Route path="/order-tracking" element={<OrderTracking />} />
+              <Route path="/terms" element={<Policies />} />
+              <Route path="/privacy" element={<Policies />} />
+              <Route path="/accessibility" element={<Policies />} />
+              <Route path="/shipping-policy" element={<Policies />} />
+              <Route path="/returns-exchanges" element={<Policies />} />
+              <Route path="/size-guide" element={<SizeGuide />} />
+              <Route path="/faqs" element={<Policies />} />
+              <Route path="/our-story" element={<Policies />} />
+              <Route path="/contact" element={<Policies />} />
+            </Routes>
+          </Layout>
+        </Router>
+      </CartProvider>
+    </WishlistProvider>
   );
 }
 

@@ -47,7 +47,7 @@ const Home = () => {
   return (
     <>
       {/* Hero Section */}
-      <section className="relative h-screen w-full overflow-hidden bg-[#E2E1DF]">
+      <section className="relative h-[80vh] md:h-screen w-full overflow-hidden bg-[#E2E1DF]">
         {slides.map((slide, index) => (
           <div 
             key={index}
@@ -64,19 +64,20 @@ const Home = () => {
         ))}
 
         {/* Slider Controls */}
-        <div className="absolute bottom-12 right-12 z-30 flex items-center gap-4">
+        <div className="absolute bottom-12 right-6 md:right-12 z-30 flex items-center gap-4">
           {slides.map((_, i) => (
             <button 
               key={i}
               onClick={() => setCurrentSlide(i)}
-              className={`h-1 transition-all duration-500 ${i === currentSlide ? 'w-12 bg-primary' : 'w-4 bg-outline/20'}`}
+              className={`h-1 transition-all duration-500 ${i === currentSlide ? 'w-12 bg-white shadow-lg' : 'w-4 bg-white/30'}`}
             />
           ))}
         </div>
 
         {/* Scroll Indicator */}
-        <div className="absolute bottom-12 left-1/2 -translate-x-1/2 z-30 flex flex-col items-center gap-3 opacity-40">
-          <div className="w-px h-12 bg-on-surface animate-bounce"></div>
+        <div className="absolute bottom-12 left-1/2 -translate-x-1/2 z-30 flex flex-col items-center gap-3 opacity-60 hidden md:flex">
+          <span className="font-jakarta-sans text-[8px] uppercase tracking-[0.3em] text-white font-bold">Discover</span>
+          <div className="w-px h-12 bg-white animate-bounce"></div>
         </div>
       </section>
 

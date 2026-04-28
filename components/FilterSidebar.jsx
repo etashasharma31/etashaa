@@ -9,7 +9,8 @@ const FilterSidebar = ({
   setSelectedAvailability,
   selectedBrands,
   setSelectedBrands,
-  clearAllFilters 
+  clearAllFilters,
+  className = ""
 }) => {
   const toggleFilter = (list, setList, item) => {
     if (list.includes(item)) {
@@ -51,31 +52,34 @@ const FilterSidebar = ({
   ];
 
   return (
-    <aside className="w-full md:w-60 self-start sticky top-24">
-      <div className="space-y-8">
-        <h3 className="font-noto-serif text-lg mb-6 border-b border-outline-variant/20 pb-2 flex items-center justify-between">
-          Refine Search 
-          <span 
-            className="text-[10px] uppercase tracking-widest text-primary cursor-pointer hover:text-secondary transition-colors"
+    <aside className={`filter-sidebar ${className}`}>
+      <div className="space-y-10">
+        <div className="flex items-center justify-between border-b border-outline-variant/20 pb-4">
+          <h3 className="font-noto-serif text-lg">Refine</h3>
+          <button 
+            className="text-[10px] uppercase tracking-widest text-primary font-bold hover:text-secondary transition-colors"
             onClick={clearAllFilters}
           >
             Clear All
-          </span>
-        </h3>
+          </button>
+        </div>
         
         {filterSections.map((section) => (
-          <div key={section.title} className="mb-6">
-            <p className="font-jakarta-sans text-[10px] uppercase tracking-widest text-outline mb-4">{section.title}</p>
-            <div className="space-y-2">
+          <div key={section.title} className="reveal">
+            <p className="font-jakarta-sans text-[10px] uppercase tracking-[0.4em] text-outline mb-5 font-bold">{section.title}</p>
+            <div className="space-y-4">
               {section.items.map((item) => (
-                <label key={item} className="flex items-center gap-3 cursor-pointer group">
-                  <input 
-                    className="w-4 h-4 border-outline text-primary focus:ring-0 rounded-none bg-transparent" 
-                    type="checkbox"
-                    checked={section.selected?.includes(item)}
-                    onChange={() => toggleFilter(section.selected, section.setter, item)}
-                  />
-                  <span className={`text-sm font-light transition-colors ${section.selected?.includes(item) ? 'text-primary' : 'text-on-surface/80 group-hover:text-primary'}`}>{item}</span>
+                <label key={item} className="flex items-center gap-4 cursor-pointer group">
+                  <div className="relative flex items-center">
+                    <input 
+                      className="peer appearance-none w-5 h-5 border border-outline-variant/50 text-primary focus:ring-0 rounded-none bg-transparent transition-all checked:bg-primary checked:border-primary" 
+                      type="checkbox"
+                      checked={section.selected?.includes(item)}
+                      onChange={() => toggleFilter(section.selected, section.setter, item)}
+                    />
+                    <span className="material-symbols-outlined absolute inset-0 text-white text-[16px] flex items-center justify-center opacity-0 peer-checked:opacity-100 pointer-events-none">check</span>
+                  </div>
+                  <span className={`text-xs uppercase tracking-widest transition-colors ${section.selected?.includes(item) ? 'text-primary font-bold' : 'text-on-surface/60 group-hover:text-primary'}`}>{item}</span>
                 </label>
               ))}
             </div>

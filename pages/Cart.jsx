@@ -19,136 +19,192 @@ const Cart = () => {
   const total = subtotal + tax;
 
   return (
-    <main className="pt-32 pb-24 px-6 md:px-12 max-w-[1440px] mx-auto min-h-screen">
-      <div className="mb-12">
-        <h1 className="font-headline text-4xl md:text-5xl text-on-surface mb-2">Shopping Bag</h1>
-        <p id="cart-summary-text" className="font-label uppercase tracking-widest text-outline text-xs">
-          {cart.length} Item{cart.length !== 1 ? 's' : ''} in your curated selection
+    <main className="pt-32 pb-24 px-4 md:px-12 max-w-custom min-h-screen">
+      <div className="flex flex-col md:flex-row justify-between items-end mb-16 gap-6">
+        <div>
+          <span className="font-jakarta-sans text-[10px] uppercase tracking-[0.4em] text-primary font-bold mb-3 block">Your Selection</span>
+          <h1 className="text-4xl md:text-6xl font-noto-serif italic">Shopping Bag</h1>
+        </div>
+        <p className="font-jakarta-sans text-[10px] uppercase tracking-widest text-outline font-bold border-b border-outline-variant/30 pb-2">
+          {cart.length} Masterpiece{cart.length !== 1 ? 's' : ''} Reserved
         </p>
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 items-start">
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-20 items-start">
         {/* Left Side: Cart Items */}
-        <div id="cart-items-container" className="lg:col-span-7 space-y-12">
+        <div className="lg:col-span-8">
           {cart.length === 0 ? (
-            <div id="empty-cart" className="py-20 text-center border border-dashed border-outline/20">
-              <p className="font-headline text-2xl text-outline mb-6">Your bag is empty</p>
+            <div className="py-32 text-center border-y border-outline-variant/20 bg-surface-container-lowest/30">
+              <span className="material-symbols-outlined text-6xl text-outline/20 mb-6 font-light">shopping_bag</span>
+              <h2 className="text-3xl font-noto-serif italic mb-4">Your bag awaits its first treasure</h2>
+              <p className="text-on-surface-variant max-w-md mx-auto mb-10 font-jakarta-sans text-sm font-light leading-relaxed">
+                Explore our heritage collections and find the silhouette that speaks to your soul.
+              </p>
               <button 
-                onClick={() => navigate('/')} 
-                className="px-8 py-3 bg-primary text-on-primary text-xs uppercase tracking-widest hover:bg-on-primary-fixed-variant transition-colors"
+                onClick={() => navigate('/bridal-collection')} 
+                className="btn-premium"
               >
-                Discover Collection
+                <span>Discover Collections</span>
               </button>
             </div>
           ) : (
-            cart.map((item) => (
-              <div key={item.id} className="flex flex-col md:flex-row gap-8 pb-12 border-b border-outline/10 last:border-0 bg-surface">
-                <div className="w-full md:w-48 aspect-3/4 bg-surface-container overflow-hidden group cursor-pointer" onClick={() => navigate(`/product/${item.id}`)}>
-                  <img src={item.image} alt={item.name} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" />
-                </div>
-                <div className="flex-1 flex flex-col justify-between">
-                  <div className="space-y-2">
-                    <div className="flex justify-between items-start">
-                      <h3 className="font-headline text-xl text-on-surface cursor-pointer hover:text-primary transition-colors" onClick={() => navigate(`/product/${item.id}`)}>
-                        {item.name}
-                      </h3>
-                      <p className="font-body font-semibold text-lg">{formatPrice(item.price)}</p>
+            <div className="space-y-16">
+              {cart.map((item) => (
+                <div key={item.id} className="group relative flex flex-col md:flex-row gap-10 reveal">
+                  <div 
+                    className="w-full md:w-56 aspect-[3/4] overflow-hidden bg-surface-container cursor-pointer relative"
+                    onClick={() => navigate(`/product/${item.id}`)}
+                  >
+                    <img src={item.image} alt={item.name} className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110" />
+                    <div className="absolute inset-0 bg-black/5 group-hover:bg-transparent transition-colors"></div>
+                  </div>
+                  
+                  <div className="flex-1 flex flex-col py-2">
+                    <div className="flex justify-between items-start mb-6">
+                      <div>
+                        <span className="font-jakarta-sans text-[9px] uppercase tracking-widest text-primary font-bold mb-2 block">{item.category || 'Atelier Collection'}</span>
+                        <h3 
+                          className="text-2xl font-noto-serif hover:text-primary transition-colors cursor-pointer"
+                          onClick={() => navigate(`/product/${item.id}`)}
+                        >
+                          {item.name}
+                        </h3>
+                      </div>
+                      <p className="text-xl font-medium font-jakarta-sans">{formatPrice(item.price)}</p>
                     </div>
-                    <div className="flex items-center gap-4 mt-2">
-                      <p className="font-label text-xs uppercase tracking-widest text-outline">Qty:</p>
-                      <div className="flex items-center border border-outline/20">
-                        <button onClick={() => updateQuantity(item.id, -1)} className="px-3 py-1 hover:bg-surface-container transition-colors">-</button>
-                        <span className="px-4 py-1 text-sm font-medium">{item.quantity}</span>
-                        <button onClick={() => updateQuantity(item.id, 1)} className="px-3 py-1 hover:bg-surface-container transition-colors">+</button>
+
+                    <div className="grid grid-cols-2 gap-8 mb-10">
+                      <div>
+                        <p className="text-[10px] uppercase tracking-widest text-outline font-bold mb-3">Quantity</p>
+                        <div className="flex items-center w-fit border border-outline-variant/30 px-2 py-1">
+                          <button 
+                            onClick={() => updateQuantity(item.id, -1)} 
+                            className="w-8 h-8 flex items-center justify-center hover:text-primary transition-colors disabled:opacity-30"
+                            disabled={item.quantity <= 1}
+                          >
+                            <span className="material-symbols-outlined text-sm">remove</span>
+                          </button>
+                          <span className="w-10 text-center text-sm font-bold font-jakarta-sans">{item.quantity}</span>
+                          <button 
+                            onClick={() => updateQuantity(item.id, 1)} 
+                            className="w-8 h-8 flex items-center justify-center hover:text-primary transition-colors"
+                          >
+                            <span className="material-symbols-outlined text-sm">add</span>
+                          </button>
+                        </div>
+                      </div>
+                      <div>
+                        <p className="text-[10px] uppercase tracking-widest text-outline font-bold mb-3">Customization</p>
+                        <p className="text-xs text-on-surface-variant font-light italic">Standard Sizing</p>
                       </div>
                     </div>
-                    <div className="pt-4 space-y-1">
-                      <p className="text-sm text-on-surface-variant">Collection: <span className="text-on-surface font-medium">{item.category || 'Atelier'}</span></p>
+
+                    <div className="mt-auto flex items-center gap-8">
+                      <button 
+                        onClick={() => removeFromCart(item.id)}
+                        className="link-premium text-secondary border-secondary/20"
+                      >
+                        Remove Piece
+                      </button>
+                      <button className="link-premium text-outline/60 border-outline/10">
+                        Move to Wishlist
+                      </button>
                     </div>
                   </div>
-                  <div className="flex items-center gap-6 mt-8">
-                    <button 
-                      onClick={() => removeFromCart(item.id)} 
-                      className="text-xs uppercase tracking-widest font-label border-b border-outline/30 pb-1 hover:border-secondary transition-colors text-secondary"
-                    >
-                      Remove
-                    </button>
-                  </div>
                 </div>
-              </div>
-            ))
+              ))}
+            </div>
           )}
-          
-          {/* Extras */}
-          <div className="pt-8 border-t border-outline-variant/10">
-            <button className="flex items-center gap-3 group">
-              <span className="material-symbols-outlined text-primary">featured_seasonal_and_gifts</span>
-              <span className="font-label text-xs uppercase tracking-widest group-hover:text-primary transition-colors">Add a personalized gift note</span>
-            </button>
+
+          {/* Complimentary Services */}
+          <div className="mt-20 grid grid-cols-1 md:grid-cols-2 gap-8 pt-12 border-t border-outline-variant/20">
+            <div className="flex gap-5 p-6 bg-surface-container-lowest/50 border border-outline-variant/10 group hover:border-primary/20 transition-colors">
+              <span className="material-symbols-outlined text-primary text-3xl font-light">auto_fix_high</span>
+              <div>
+                <h4 className="font-noto-serif text-sm mb-2">Complimentary Tailoring</h4>
+                <p className="text-[10px] text-on-surface-variant leading-relaxed">Our master tailors ensure every silhouette is perfectly draped to your unique measurements.</p>
+              </div>
+            </div>
+            <div className="flex gap-5 p-6 bg-surface-container-lowest/50 border border-outline-variant/10 group hover:border-primary/20 transition-colors">
+              <span className="material-symbols-outlined text-primary text-3xl font-light">card_giftcard</span>
+              <div>
+                <h4 className="font-noto-serif text-sm mb-2">Gift Presentation</h4>
+                <p className="text-[10px] text-on-surface-variant leading-relaxed">Each piece arrives in our signature heritage packaging, suitable for the most precious occasions.</p>
+              </div>
+            </div>
           </div>
         </div>
 
-        {/* Right Side: Order Summary */}
-        <div className="lg:col-span-5">
-          <div className="bg-surface-container p-8 md:p-12 editorial-shadow sticky top-32">
-            <h2 className="font-headline text-2xl mb-8">Summary</h2>
-            <div className="space-y-4 mb-8">
-              <div className="flex justify-between text-sm">
-                <span className="text-on-surface-variant">Subtotal</span>
-                <span id="subtotal">{formatPrice(subtotal)}</span>
-              </div>
-              <div className="flex justify-between text-sm">
-                <span className="text-on-surface-variant">Shipping</span>
-                {subtotal > 5000 ? (
-                  <span className="text-primary uppercase tracking-tighter font-bold">Complimentary</span>
-                ) : (
-                  <span className="font-bold">{subtotal > 0 ? formatPrice(500) : '—'}</span>
-                )}
-              </div>
-              <div className="flex justify-between text-sm">
-                <span className="text-on-surface-variant">Tax (GST 12%)</span>
-                <span id="tax">{formatPrice(tax)}</span>
-              </div>
-              <div className="pt-4 border-t border-outline/10 flex justify-between items-end">
-                <span className="font-headline text-lg">Total</span>
-                <div className="text-right">
-                  <span id="total" className="font-body text-2xl font-bold">{formatPrice(total)}</span>
-                  <p className="text-[10px] text-outline uppercase tracking-widest mt-1">Inclusive of all duties</p>
+        {/* Order Summary Side - Refined & Integrated */}
+        <div className="lg:col-span-4 lg:sticky lg:top-36">
+          <div className="space-y-12">
+            <div className="bg-surface-container-lowest/50 p-8 md:p-10 border border-outline-variant/10 relative">
+              <h2 className="text-sm font-jakarta-sans uppercase tracking-[0.3em] mb-10 text-on-surface font-bold">Bag Summary</h2>
+              
+              <div className="space-y-6">
+                <div className="flex justify-between items-center text-[10px] uppercase tracking-widest text-on-surface-variant font-bold">
+                  <span>Subtotal</span>
+                  <span className="text-on-surface text-xs">{formatPrice(subtotal)}</span>
                 </div>
+                
+                <div className="flex justify-between items-center text-[10px] uppercase tracking-widest text-on-surface-variant font-bold">
+                  <span>Shipping</span>
+                  {subtotal >= 5000 ? (
+                    <span className="text-primary text-[10px]">Complimentary</span>
+                  ) : (
+                    <span className="text-on-surface text-xs">{subtotal > 0 ? formatPrice(500) : '—'}</span>
+                  )}
+                </div>
+                
+                <div className="flex justify-between items-center text-[10px] uppercase tracking-widest text-on-surface-variant font-bold">
+                  <span>Estimated Tax</span>
+                  <span className="text-on-surface text-xs">{formatPrice(tax)}</span>
+                </div>
+
+                <div className="pt-10 border-t border-outline-variant/20">
+                  <div className="flex justify-between items-baseline mb-2">
+                    <span className="font-noto-serif text-lg italic text-on-surface">Total</span>
+                    <span className="text-2xl font-bold font-jakarta-sans text-on-surface">{formatPrice(total)}</span>
+                  </div>
+                  <p className="text-[9px] text-outline uppercase tracking-[0.15em] font-bold">Taxes & Duties Included</p>
+                </div>
+
+                <button 
+                  onClick={() => navigate('/checkout')}
+                  disabled={cart.length === 0}
+                  className="w-full btn-premium !py-5 mt-4 group"
+                >
+                  <span>Checkout Securely</span>
+                  <span className="material-symbols-outlined text-sm opacity-50 group-hover:opacity-100 transition-opacity">lock_open</span>
+                </button>
+              </div>
+
+              {/* Trust Indicators - Integrated */}
+              <div className="mt-12 flex justify-between items-center px-4 opacity-40 grayscale group-hover:grayscale-0 transition-all duration-700">
+                <span className="material-symbols-outlined text-xl" title="Secure Payment">verified_user</span>
+                <span className="material-symbols-outlined text-xl" title="Global Shipping">public</span>
+                <span className="material-symbols-outlined text-xl" title="COD Available">payments</span>
               </div>
             </div>
 
-            {/* Trust Marker Badge */}
-            <div className="bg-surface-container-highest/30 p-4 mb-8 flex items-center gap-4">
-              <div className="bg-primary-container p-2">
-                <span className="material-symbols-outlined text-on-primary-container text-sm">payments</span>
-              </div>
-              <div>
-                <p className="font-label text-[10px] uppercase tracking-widest font-bold text-on-primary-container">COD Available</p>
-                <p className="text-[10px] text-on-surface-variant mt-0.5">Pay on delivery for orders up to ₹50,000</p>
+            {/* Assistance - Less Boxy */}
+            <div className="group cursor-pointer">
+              <div className="flex items-center gap-4 p-5 border border-outline-variant/10 hover:border-primary/20 transition-all bg-white/50">
+                <div className="w-10 h-10 rounded-full bg-primary/5 flex items-center justify-center group-hover:bg-primary/10 transition-colors">
+                  <span className="material-symbols-outlined text-primary text-xl">support_agent</span>
+                </div>
+                <div>
+                  <p className="text-[10px] uppercase tracking-widest font-bold text-on-surface">Concierge Help</p>
+                  <p className="text-[9px] text-on-surface-variant font-medium mt-0.5">Speak with a consultant</p>
+                </div>
+                <span className="material-symbols-outlined text-outline/30 text-sm ml-auto group-hover:translate-x-1 transition-transform">chevron_right</span>
               </div>
             </div>
 
-            {/* Checkout Button */}
-            <button 
-              onClick={() => navigate('/checkout')}
-              className="w-full bg-on-surface text-primary-container py-5 font-label text-xs uppercase tracking-[0.2em] font-bold hover:bg-primary hover:text-white transition-all duration-500 mb-6 group flex justify-center items-center gap-2"
-            >
-              Proceed to Secure Checkout
-              <span className="material-symbols-outlined text-sm group-hover:translate-x-1 transition-transform">arrow_forward</span>
-            </button>
-
-            {/* Help & Trust */}
-            <div className="space-y-6">
-              <button className="w-full border border-outline/20 py-4 font-label text-[10px] uppercase tracking-widest flex items-center justify-center gap-3 hover:bg-surface-container-lowest transition-colors">
-                <svg className="w-4 h-4 fill-[#25D366]" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
-                WhatsApp for Help
-              </button>
-              <div className="flex justify-center items-center gap-8 opacity-40 grayscale text-on-surface">
-                <span className="material-symbols-outlined" title="Secure Payment">verified_user</span>
-                <span className="material-symbols-outlined" title="Global Shipping">public</span>
-                <span className="material-symbols-outlined" title="Authenticity Guaranteed">workspace_premium</span>
-              </div>
+            <div className="mt-8 p-6 bg-surface-container-low/50 border border-dashed border-outline-variant/30 text-center">
+              <p className="font-noto-serif text-xs italic text-on-surface-variant">
+                "Every stitch is a promise of heritage, every drape a celebration of your story."
+              </p>
             </div>
           </div>
         </div>
