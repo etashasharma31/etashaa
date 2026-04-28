@@ -35,7 +35,7 @@ const Cart = () => {
               <p className="font-headline text-2xl text-outline mb-6">Your bag is empty</p>
               <button 
                 onClick={() => navigate('/')} 
-                className="px-8 py-3 bg-primary text-on-primary text-xs uppercase tracking-widest hover:bg-[#5a430e] transition-colors"
+                className="px-8 py-3 bg-primary text-on-primary text-xs uppercase tracking-widest hover:bg-on-primary-fixed-variant transition-colors"
               >
                 Discover Collection
               </button>
@@ -43,7 +43,7 @@ const Cart = () => {
           ) : (
             cart.map((item) => (
               <div key={item.id} className="flex flex-col md:flex-row gap-8 pb-12 border-b border-outline/10 last:border-0 bg-surface">
-                <div className="w-full md:w-48 aspect-[3/4] bg-surface-container overflow-hidden group cursor-pointer" onClick={() => navigate(`/product/${item.id}`)}>
+                <div className="w-full md:w-48 aspect-3/4 bg-surface-container overflow-hidden group cursor-pointer" onClick={() => navigate(`/product/${item.id}`)}>
                   <img src={item.image} alt={item.name} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" />
                 </div>
                 <div className="flex-1 flex flex-col justify-between">
@@ -130,7 +130,10 @@ const Cart = () => {
             </div>
 
             {/* Checkout Button */}
-            <button className="w-full bg-on-surface text-primary-container py-5 font-label text-xs uppercase tracking-[0.2em] font-bold hover:bg-primary hover:text-white transition-all duration-500 mb-6 group flex justify-center items-center gap-2">
+            <button 
+              onClick={() => navigate('/checkout')}
+              className="w-full bg-on-surface text-primary-container py-5 font-label text-xs uppercase tracking-[0.2em] font-bold hover:bg-primary hover:text-white transition-all duration-500 mb-6 group flex justify-center items-center gap-2"
+            >
               Proceed to Secure Checkout
               <span className="material-symbols-outlined text-sm group-hover:translate-x-1 transition-transform">arrow_forward</span>
             </button>

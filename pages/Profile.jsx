@@ -27,12 +27,20 @@ const Profile = () => {
             </div>
 
             <nav className="flex flex-col space-y-1">
-              {['My Dashboard', 'Order History', 'Wishlist', 'Custom Measurements', 'Shipping Addresses', 'Account Settings'].map((item, idx) => (
+              {[
+                { label: 'My Dashboard', link: '/profile' },
+                { label: 'Order History', link: '/my-orders' },
+                { label: 'Wishlist', link: '/profile' },
+                { label: 'Custom Measurements', link: '/profile' },
+                { label: 'Shipping Addresses', link: '/profile' },
+                { label: 'Account Settings', link: '/profile' }
+              ].map((item, idx) => (
                 <button 
-                  key={item} 
+                  key={item.label} 
+                  onClick={() => navigate(item.link)}
                   className={`text-left px-6 py-4 text-[11px] uppercase tracking-widest font-jakarta-sans transition-all ${idx === 0 ? 'bg-white text-primary border-l-2 border-primary font-bold' : 'text-on-surface/60 hover:text-primary hover:bg-white/50'}`}
                 >
-                  {item}
+                  {item.label}
                 </button>
               ))}
               <button 
@@ -64,13 +72,18 @@ const Profile = () => {
             <div className="bg-white p-10 editorial-shadow">
               <div className="flex justify-between items-end mb-10 border-b border-outline/10 pb-6">
                 <h3 className="font-noto-serif text-2xl">Recent Orders</h3>
-                <button className="text-[10px] uppercase tracking-widest text-primary font-bold border-b border-primary/30 pb-1">View All Orders</button>
+                <button 
+                  onClick={() => navigate('/my-orders')}
+                  className="text-[10px] uppercase tracking-widest text-primary font-bold border-b border-primary/30 pb-1"
+                >
+                  View All Orders
+                </button>
               </div>
 
               <div className="space-y-8">
                 {orders.map(order => (
                   <div key={order.id} className="flex flex-col md:flex-row items-center gap-8 group">
-                    <div className="w-24 h-32 overflow-hidden bg-surface-container">
+                    <div className="w-24 h-32 overflow-hidden bg-surface-container cursor-pointer" onClick={() => navigate(`/order-detail/${order.id.replace('#', '')}`)}>
                       <img src={order.image} alt={order.id} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" />
                     </div>
                     <div className="flex-1 grid grid-cols-2 md:grid-cols-4 gap-6 text-center md:text-left items-center">
@@ -93,7 +106,10 @@ const Profile = () => {
                         <p className="font-jakarta-sans text-sm font-bold text-primary">{order.amount}</p>
                       </div>
                     </div>
-                    <button className="w-full md:w-auto px-8 py-3 border border-outline/20 text-[10px] uppercase tracking-widest hover:bg-[#1c1c1a] hover:text-white transition-all duration-300">
+                    <button 
+                      onClick={() => navigate('/order-tracking')}
+                      className="w-full md:w-auto px-8 py-3 border border-outline/20 text-[10px] uppercase tracking-widest hover:bg-[#1c1c1a] hover:text-white transition-all duration-300"
+                    >
                       Track Order
                     </button>
                   </div>
@@ -107,7 +123,7 @@ const Profile = () => {
                 <span className="text-primary text-[10px] uppercase tracking-[0.4em] mb-4 block font-bold">Personal Atelier</span>
                 <h3 className="text-3xl font-noto-serif mb-6 leading-tight">Need a custom fitting or design modification?</h3>
                 <p className="text-white/60 text-sm mb-8 leading-relaxed font-jakarta-sans">Your personal concierge is available for virtual consultations. Let us perfect your silhouette from the comfort of your home.</p>
-                <button className="bg-primary hover:bg-[#5a430e] text-white px-10 py-4 text-[10px] uppercase tracking-widest font-bold transition-all duration-500 shadow-xl">Start Conversation</button>
+                <button className="bg-primary hover:bg-on-primary-fixed-variant text-white px-10 py-4 text-[10px] uppercase tracking-widest font-bold transition-all duration-500 shadow-xl">Start Conversation</button>
               </div>
               <div className="absolute right-[-10%] top-[-20%] opacity-20 scale-150 pointer-events-none group-hover:rotate-12 transition-transform duration-[3s]">
                 <span className="material-symbols-outlined text-[300px] text-white">straighten</span>

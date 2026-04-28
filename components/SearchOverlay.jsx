@@ -35,7 +35,7 @@ const SearchOverlay = ({ isOpen, onClose }) => {
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 z-[100] animate-fadeIn">
+    <div className="fixed inset-0 z-100 animate-fadeIn">
       {/* Backdrop */}
       <div 
         className="absolute inset-0 bg-black/60 backdrop-blur-md transition-opacity duration-500"
@@ -56,7 +56,7 @@ const SearchOverlay = ({ isOpen, onClose }) => {
             <input
               ref={inputRef}
               type="text"
-              placeholder="Search Silhouettes..."
+              placeholder="Search products..."
               value={query}
               onChange={(e) => setQuery(e.target.value)}
               className="w-full bg-transparent border-b border-outline-variant/20 focus:border-primary py-3 text-xl md:text-2xl font-noto-serif outline-none transition-colors placeholder:text-outline/30 text-on-surface"
@@ -88,8 +88,10 @@ const SearchOverlay = ({ isOpen, onClose }) => {
                   ))}
                 </div>
               ) : (
-                <div className="text-center py-12">
-                  <p className="font-jakarta-sans text-xs text-outline tracking-widest uppercase italic">No silhouettes found for "{query}"</p>
+                <div className="text-center py-16 bg-surface-container-low/30 rounded-xl border border-dashed border-outline-variant/40 animate-fadeIn">
+                  <span className="material-symbols-outlined text-4xl text-outline/20 mb-4">search_off</span>
+                  <p className="font-noto-serif text-lg text-on-surface mb-2">No results found</p>
+                  <p className="font-jakarta-sans text-xs text-outline tracking-widest uppercase italic">We couldn't find any products matching "{query}"</p>
                 </div>
               )
             ) : (

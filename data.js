@@ -10,6 +10,8 @@ export const bridalProducts = [
     category: 'Bridal Collection',
     fabric: 'Raw Silk',
     workType: 'Zardosi',
+    availability: 'In Stock',
+    brand: 'Etashaa Heritage',
     page: 1
   },
   {
@@ -19,9 +21,11 @@ export const bridalProducts = [
     oldPrice: 240000,
     discount: 18,
     image: '/images/bridal_new_2.png',
-    category: 'Bridal Collection',
+    category: 'Festive Collection',
     fabric: 'Velvet',
     workType: 'Gota Patti',
+    availability: 'In Stock',
+    brand: 'Etashaa Heritage',
     page: 1
   },
   {

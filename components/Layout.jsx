@@ -54,7 +54,7 @@ const Layout = ({ children }) => {
       <div id="cursor-glow"></div>
       <AnnouncementBar />
       <Navbar />
-      <main>{children}</main>
+      <main className="max-w-custom">{children}</main>
       <Footer />
       <NewsletterPopup />
       
@@ -62,7 +62,7 @@ const Layout = ({ children }) => {
       <button 
         id="scroll-top" 
         onClick={scrollToTop}
-        className="hidden fixed bottom-8 left-8 w-12 h-12 bg-[#1c1c1a] text-[#c8a96a] flex items-center justify-center z-40 hover:bg-[#735b24] transition-all duration-300 shadow-lg" 
+        className="hidden fixed bottom-8 left-8 w-12 h-12 bg-[#1c1c1a] text-primary-container items-center justify-center z-40 hover:bg-[#735b24] transition-all duration-300 shadow-lg" 
         aria-label="Scroll to top"
       >
         <span className="material-symbols-outlined text-xl">arrow_upward</span>

@@ -9,7 +9,12 @@ import SareeCollection from './pages/SareeCollection';
 import Cart from './pages/Cart';
 import ProductDetail from './pages/ProductDetail';
 import Login from './pages/Login';
+import Signup from './pages/Signup';
 import Profile from './pages/Profile';
+import Checkout from './pages/Checkout';
+import MyOrders from './pages/MyOrders';
+import OrderDetail from './pages/OrderDetail';
+import OrderTracking from './pages/OrderTracking';
 import Policies from './pages/Policies';
 import { CartProvider } from './context/CartContext';
 
@@ -27,7 +32,12 @@ function App() {
             <Route path="/cart" element={<Cart />} />
             <Route path="/product/:id" element={<ProductDetail />} />
             <Route path="/login" element={<Login />} />
+            <Route path="/signup" element={<Signup />} />
             <Route path="/profile" element={<Profile />} />
+            <Route path="/checkout" element={<Checkout />} />
+            <Route path="/my-orders" element={<MyOrders />} />
+            <Route path="/order-detail/:id" element={<OrderDetail />} />
+            <Route path="/order-tracking" element={<OrderTracking />} />
             <Route path="/terms" element={<Policies />} />
             <Route path="/privacy" element={<Policies />} />
             <Route path="/accessibility" element={<Policies />} />

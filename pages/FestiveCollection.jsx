@@ -1,101 +1,88 @@
-import React from 'react';
-import { useNavigate } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
 import ProductCard from '../components/ProductCard';
+import PageHero from '../components/PageHero';
+import FilterSidebar from '../components/FilterSidebar';
 import { festiveProducts } from '../data';
 
 const FestiveCollection = () => {
-  const [currentPage, setCurrentPage] = React.useState(1);
-  const productsPerPage = 6;
-  
-  const totalPages = Math.ceil(festiveProducts.length / productsPerPage);
-  const startIndex = (currentPage - 1) * productsPerPage;
-  const filteredProducts = festiveProducts.slice(startIndex, startIndex + productsPerPage);
+  const [selectedPriceRanges, setSelectedPriceRanges] = useState([]);
+  const [selectedCategories, setSelectedCategories] = useState([]);
+  const [selectedAvailability, setSelectedAvailability] = useState([]);
+  const [selectedBrands, setSelectedBrands] = useState([]);
+  const [isSortOpen, setIsSortOpen] = useState(false);
+  const [selectedSort, setSelectedSort] = useState('Newest Arrivals');
+
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }, [selectedPriceRanges, selectedCategories, selectedAvailability, selectedBrands]);
+
+  const clearAllFilters = () => {
+    setSelectedPriceRanges([]);
+    setSelectedCategories([]);
+    setSelectedAvailability([]);
+    setSelectedBrands([]);
+  };
+
+  const filteredProducts = festiveProducts.filter(product => {
+    if (selectedPriceRanges.length > 0) {
+      const priceMatch = selectedPriceRanges.some(range => {
+        if (range === 'Under ₹ 1,50,000') return product.price < 150000;
+        if (range === '₹ 1,50,000 - ₹ 2,00,000') return product.price >= 150000 && product.price <= 200000;
+        if (range === '₹ 2,00,000+') return product.price > 200000;
+        return false;
+      });
+      if (!priceMatch) return false;
+    }
+    if (selectedCategories.length > 0 && !selectedCategories.includes(product.category)) return false;
+    if (selectedAvailability.length > 0 && !selectedAvailability.includes(product.availability)) return false;
+    if (selectedBrands.length > 0 && !selectedBrands.includes(product.brand)) return false;
+    return true;
+  });
 
   return (
-    <main className="pt-24 bg-surface">
+    <main className="min-h-screen">
+      <PageHero 
+        title="Non-Bridal Collection"
+        tagline="Festive Brilliance"
+        subtitle="Vibrant silhouettes for your celebrations"
+        image="/images/banners_06_bridesmaid.jpg"
+      />
 
-      {/* Filters Section */}
-      <section className="bg-surface-container-low py-12 px-12">
-        <div className="max-w-custom flex flex-col md:flex-row justify-between items-end gap-8">
-          <div>
-            <h2 className="text-3xl mb-2 font-noto-serif">Refine Elegance</h2>
-            <div className="flex flex-wrap gap-3 mt-4">
-              {['Floral Prints', 'Gotta Patti', 'Jewel Tones', 'Mirror Work'].map(filter => (
-                <span key={filter} className="bg-surface-container-highest text-on-surface-variant px-6 py-2 rounded-full text-xs uppercase tracking-widest cursor-pointer hover:bg-primary-container hover:text-white transition-colors">{filter}</span>
-              ))}
+      <div className="max-w-custom py-12 flex flex-col md:flex-row gap-12">
+        <FilterSidebar 
+          selectedPriceRanges={selectedPriceRanges}
+          setSelectedPriceRanges={setSelectedPriceRanges}
+          selectedCategories={selectedCategories}
+          setSelectedCategories={setSelectedCategories}
+          selectedAvailability={selectedAvailability}
+          setSelectedAvailability={setSelectedAvailability}
+          selectedBrands={selectedBrands}
+          setSelectedBrands={setSelectedBrands}
+          clearAllFilters={clearAllFilters}
+        />
+
+        <section className="flex-1">
+          <div className="flex justify-between items-center mb-8 border-b border-outline-variant/10 pb-4">
+            <p className="font-jakarta-sans text-xs tracking-widest text-outline">SHOWING {filteredProducts.length} DESIGNS</p>
+            <div className="flex items-center gap-4 relative">
+              <span className="text-xs uppercase tracking-widest text-outline">Sort By:</span>
+              <button 
+                onClick={() => setIsSortOpen(!isSortOpen)}
+                className="flex items-center gap-2 text-xs uppercase tracking-widest font-medium text-on-surface hover:text-primary transition-colors py-1"
+              >
+                {selectedSort}
+                <span className={`material-symbols-outlined text-sm transition-transform duration-300 ${isSortOpen ? 'rotate-180' : ''}`}>expand_more</span>
+              </button>
             </div>
           </div>
-          <div className="flex items-center gap-4 text-xs uppercase tracking-widest text-outline">
-            <span>Sort By:</span>
-            <button className="flex items-center gap-2 text-on-surface font-semibold">
-              New Arrivals <span className="material-symbols-outlined text-sm">expand_more</span>
-            </button>
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-16">
+            {filteredProducts.map((product) => (
+              <ProductCard key={product.id} product={product} />
+            ))}
           </div>
-        </div>
-      </section>
-
-      {/* Product Grid */}
-      <section className="py-24 px-12 bg-surface">
-        <div className="max-w-custom grid grid-cols-1 md:grid-cols-3 gap-x-12 gap-y-20">
-          {filteredProducts.map((product) => (
-            <div key={product.id}>
-              <ProductCard product={product} />
-            </div>
-          ))}
-        </div>
-      </section>
-
-      {/* Pagination */}
-      <div className="py-24 flex justify-center bg-surface">
-        <nav className="flex items-center gap-4">
-          <button 
-            onClick={() => currentPage > 1 && setCurrentPage(currentPage - 1)}
-            className={`w-12 h-12 flex items-center justify-center transition-colors ${currentPage === 1 ? 'text-outline/30 cursor-not-allowed' : 'text-outline hover:text-primary'}`}
-            disabled={currentPage === 1}
-          >
-            <span className="material-symbols-outlined">chevron_left</span>
-          </button>
-          
-          {[...Array(totalPages)].map((_, i) => (
-            <button 
-              key={i}
-              onClick={() => setCurrentPage(i + 1)}
-              className={`w-12 h-12 flex items-center justify-center transition-colors ${currentPage === i + 1 ? 'text-on-surface font-semibold border-b-2 border-primary' : 'text-outline hover:text-on-surface'}`}
-            >
-              {i + 1}
-            </button>
-          ))}
-
-          {totalPages > 3 && <span className="text-outline mx-2">...</span>}
-          
-          <button 
-            onClick={() => currentPage < totalPages && setCurrentPage(currentPage + 1)}
-            className={`w-12 h-12 flex items-center justify-center transition-colors ${currentPage === totalPages ? 'text-outline/30 cursor-not-allowed' : 'text-outline hover:text-primary'}`}
-            disabled={currentPage === totalPages}
-          >
-            <span className="material-symbols-outlined">chevron_right</span>
-          </button>
-        </nav>
+        </section>
       </div>
-
-      {/* Newsletter / Contact Split */}
-      <section className="bg-surface-container py-24 px-12">
-        <div className="max-w-custom grid grid-cols-1 md:grid-cols-2 gap-20 items-center">
-          <div>
-            <h2 className="text-4xl mb-6 font-noto-serif">Bespoke Fitting</h2>
-            <p className="font-body text-on-surface-variant mb-8 leading-relaxed">Our festive collections offer complimentary virtual consultations for personalized sizing and fabric selection. Experience the atelier from your home.</p>
-            <button className="border-b-2 border-primary text-primary px-2 py-4 text-xs uppercase tracking-widest hover:text-secondary hover:border-secondary transition-all">Book An Appointment</button>
-          </div>
-          <div className="bg-surface p-12 shadow-sm">
-            <h3 className="text-2xl mb-4 font-noto-serif italic">The Digital Atelier</h3>
-            <p className="font-body text-sm text-outline mb-8 uppercase tracking-widest">Receive early access to seasonal drops and exclusive festive curation.</p>
-            <div className="relative">
-              <input className="w-full bg-transparent border-none border-b border-outline/30 py-4 focus:ring-0 focus:border-primary text-xs tracking-widest outline-none placeholder:text-outline/40" placeholder="YOUR EMAIL" type="email"/>
-              <button className="absolute right-0 bottom-4 text-primary uppercase text-[10px] tracking-widest font-semibold">Join</button>
-            </div>
-          </div>
-        </div>
-      </section>
     </main>
   );
 };
