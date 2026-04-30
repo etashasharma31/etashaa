@@ -54,10 +54,7 @@ const Navbar = () => {
             Heritage Sarees
             <span className="absolute bottom-0 left-0 w-0 h-px bg-primary transition-all duration-300 group-hover:w-full"></span>
           </Link>
-          <Link className="whitespace-nowrap relative group inline-flex items-center gap-2 px-4 py-2 border border-primary/40 text-[#9B7E4B] hover:bg-primary hover:text-white hover:border-primary transition-all duration-300 text-[9px]" to="/book-appointment">
-            <span className="material-symbols-outlined text-[14px]">calendar_month</span>
-            Book Appointment
-          </Link>
+
         </div>
 
         {/* Right: Action Icons & Inline Search */}
@@ -156,9 +153,7 @@ const Navbar = () => {
             <Link className="flex items-center gap-6 font-jakarta-sans text-xs uppercase tracking-[0.2em] text-on-surface hover:text-primary transition-all group" to="/order-tracking" onClick={() => setIsMenuOpen(false)}>
               <span className="material-symbols-outlined text-[22px] group-hover:scale-110 transition-transform">local_shipping</span> Track Order
             </Link>
-            <Link className="flex items-center gap-6 font-jakarta-sans text-xs uppercase tracking-[0.2em] text-primary hover:text-primary transition-all group font-bold" to="/book-appointment" onClick={() => setIsMenuOpen(false)}>
-              <span className="material-symbols-outlined text-[22px] group-hover:scale-110 transition-transform">calendar_month</span> Book Appointment
-            </Link>
+
           </div>
         </div>
 
