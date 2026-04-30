@@ -27,11 +27,11 @@ const NewsletterPopup = () => {
     <div className="fixed inset-0 z-[1000] flex items-center justify-center p-6 animate-fadeIn">
       <div className="absolute inset-0 bg-black/60 backdrop-blur-sm" onClick={handleClose}></div>
       
-      <div className="relative max-w-sm w-full bg-[#1c1c1a] overflow-hidden reveal shadow-[0_0_100px_rgba(0,0,0,0.5)]">
+      <div className="relative max-w-sm w-full bg-on-surface overflow-hidden reveal shadow-[0_0_100px_rgba(0,0,0,0.5)]">
         {/* Background Image Container */}
         <div className="absolute inset-0 opacity-40">
           <img src="/images/bridal_new_4.jpg" alt="Etashaa Bridal" className="w-full h-full object-cover" />
-          <div className="absolute inset-0 bg-gradient-to-t from-[#1c1c1a] via-transparent to-transparent"></div>
+          <div className="absolute inset-0 bg-linear-to-t from-on-surface via-transparent to-transparent"></div>
         </div>
 
         {/* Content */}
@@ -52,10 +52,10 @@ const NewsletterPopup = () => {
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 required
-                className="w-full bg-white text-[#1c1c1a] px-5 py-3 text-[9px] tracking-widest outline-none font-bold"
+                className="w-full bg-white text-on-surface px-5 py-3 text-[9px] tracking-widest outline-none font-bold"
               />
             </div>
-            <button type="submit" className="w-full bg-[#c8a96a] hover:bg-[#b8995a] text-white py-3 font-jakarta-sans uppercase tracking-[0.2em] text-[9px] font-bold transition-all duration-500 shadow-xl">
+            <button type="submit" className="w-full bg-primary-container hover:bg-primary text-white py-3 font-jakarta-sans uppercase tracking-[0.2em] text-[9px] font-bold transition-all duration-500 shadow-xl">
               Get My Private Discount
             </button>
             <button type="button" onClick={handleClose} className="text-white/40 text-[8px] uppercase tracking-widest hover:text-white transition-colors pt-2">No, thank you</button>

@@ -7,6 +7,18 @@ const Checkout = () => {
   const navigate = useNavigate();
   const [step, setStep] = useState(1); // 1: Information, 2: Shipping & Payment, 3: Success
   const [isProcessing, setIsProcessing] = useState(false);
+  const [formData, setFormData] = useState({
+    firstName: '',
+    lastName: '',
+    email: '',
+    phone: '',
+    address: '',
+    city: '',
+    state: '',
+    pincode: ''
+  });
+  const [errors, setErrors] = useState({});
+  const [touched, setTouched] = useState({});
   
   const subtotal = cart.reduce((total, item) => total + item.price * item.quantity, 0);
   const shipping = subtotal > 5000 ? 0 : 500;
@@ -17,6 +29,83 @@ const Checkout = () => {
     return new Intl.NumberFormat('en-IN', {
       style: 'currency', currency: 'INR', maximumFractionDigits: 0
     }).format(price);
+  };
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData(prev => ({ ...prev, [name]: value }));
+    // Clear error when user starts typing
+    if (errors[name]) {
+      setErrors(prev => ({ ...prev, [name]: '' }));
+    }
+  };
+
+  const handleBlur = (name) => {
+    setTouched(prev => ({ ...prev, [name]: true }));
+    validateField(name, formData[name]);
+  };
+
+  const validateField = (name, value) => {
+    let error = '';
+    if (!value || value.trim() === '') {
+      error = 'Required';
+    } else if (name === 'email' && !/\S+@\S+\.\S+/.test(value)) {
+      error = 'Invalid email';
+    } else if (name === 'phone' && !/^\d{10}$/.test(value.replace(/[\s-]/g, ''))) {
+      error = 'Invalid phone';
+    } else if (name === 'pincode' && !/^\d{6}$/.test(value)) {
+      error = 'Invalid PIN';
+    }
+    
+    setErrors(prev => ({ ...prev, [name]: error }));
+    return error === '';
+  };
+
+  const validateForm = () => {
+    const newErrors = {};
+    let isValid = true;
+
+    Object.keys(formData).forEach(key => {
+      if (!formData[key] || formData[key].trim() === '') {
+        newErrors[key] = 'Required';
+        isValid = false;
+      } else {
+        // Specific validations
+        if (key === 'email' && !/\S+@\S+\.\S+/.test(formData[key])) {
+          newErrors[key] = 'Invalid email';
+          isValid = false;
+        }
+        if (key === 'phone' && !/^\d{10}$/.test(formData[key].replace(/[\s-]/g, ''))) {
+          newErrors[key] = 'Invalid phone';
+          isValid = false;
+        }
+        if (key === 'pincode' && !/^\d{6}$/.test(formData[key])) {
+          newErrors[key] = 'Invalid PIN';
+          isValid = false;
+        }
+      }
+    });
+
+    setErrors(newErrors);
+    setTouched(Object.keys(formData).reduce((acc, key) => ({ ...acc, [key]: true }), {}));
+    
+    if (!isValid) {
+      // Scroll to first error
+      const firstError = Object.keys(newErrors)[0];
+      const element = document.getElementsByName(firstError)[0];
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      }
+    }
+    
+    return isValid;
+  };
+
+  const handleContinueToPayment = () => {
+    if (validateForm()) {
+      setStep(2);
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
   };
 
   const handlePlaceOrder = (e) => {
@@ -103,16 +192,60 @@ const Checkout = () => {
                   </h2>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                     <div className="relative group">
-                      <input required type="text" className="peer w-full bg-transparent border-b border-outline-variant/30 py-3 focus:border-primary outline-none text-sm transition-colors" placeholder=" " />
-                      <label className="absolute left-0 top-3 text-[10px] uppercase tracking-widest text-outline transition-all peer-focus:-top-4 peer-focus:text-primary peer-placeholder-shown:top-3 peer-not-placeholder-shown:-top-4">First Name</label>
+                      <input 
+                        required 
+                        name="firstName"
+                        type="text" 
+                        value={formData.firstName}
+                        onChange={handleChange}
+                        onBlur={() => handleBlur('firstName')}
+                        className={`peer w-full bg-transparent border-b ${errors.firstName && touched.firstName ? 'border-secondary/60' : 'border-outline-variant/30'} py-3 focus:border-primary outline-none text-sm transition-colors`} 
+                        placeholder=" " 
+                      />
+                      <label className={`absolute left-0 top-3 text-[10px] uppercase tracking-widest ${errors.firstName && touched.firstName ? 'text-secondary' : 'text-outline'} transition-all peer-focus:-top-4 peer-focus:text-primary peer-placeholder-shown:top-3 peer-not-placeholder-shown:-top-4`}>First Name *</label>
+                      {errors.firstName && touched.firstName && <span className="absolute right-0 top-3 text-[8px] text-secondary uppercase font-bold tracking-[0.1em]">{errors.firstName}</span>}
                     </div>
                     <div className="relative group">
-                      <input required type="text" className="peer w-full bg-transparent border-b border-outline-variant/30 py-3 focus:border-primary outline-none text-sm transition-colors" placeholder=" " />
-                      <label className="absolute left-0 top-3 text-[10px] uppercase tracking-widest text-outline transition-all peer-focus:-top-4 peer-focus:text-primary peer-placeholder-shown:top-3 peer-not-placeholder-shown:-top-4">Last Name</label>
+                      <input 
+                        required 
+                        name="lastName"
+                        type="text" 
+                        value={formData.lastName}
+                        onChange={handleChange}
+                        onBlur={() => handleBlur('lastName')}
+                        className={`peer w-full bg-transparent border-b ${errors.lastName && touched.lastName ? 'border-secondary/60' : 'border-outline-variant/30'} py-3 focus:border-primary outline-none text-sm transition-colors`} 
+                        placeholder=" " 
+                      />
+                      <label className={`absolute left-0 top-3 text-[10px] uppercase tracking-widest ${errors.lastName && touched.lastName ? 'text-secondary' : 'text-outline'} transition-all peer-focus:-top-4 peer-focus:text-primary peer-placeholder-shown:top-3 peer-not-placeholder-shown:-top-4`}>Last Name *</label>
+                      {errors.lastName && touched.lastName && <span className="absolute right-0 top-3 text-[8px] text-secondary uppercase font-bold tracking-[0.1em]">{errors.lastName}</span>}
                     </div>
-                    <div className="md:col-span-2 relative group">
-                      <input required type="email" className="peer w-full bg-transparent border-b border-outline-variant/30 py-3 focus:border-primary outline-none text-sm transition-colors" placeholder=" " />
-                      <label className="absolute left-0 top-3 text-[10px] uppercase tracking-widest text-outline transition-all peer-focus:-top-4 peer-focus:text-primary peer-placeholder-shown:top-3 peer-not-placeholder-shown:-top-4">Email for Order Updates</label>
+                    <div className="relative group">
+                      <input 
+                        required 
+                        name="email"
+                        type="email" 
+                        value={formData.email}
+                        onChange={handleChange}
+                        onBlur={() => handleBlur('email')}
+                        className={`peer w-full bg-transparent border-b ${errors.email && touched.email ? 'border-secondary/60' : 'border-outline-variant/30'} py-3 focus:border-primary outline-none text-sm transition-colors`} 
+                        placeholder=" " 
+                      />
+                      <label className={`absolute left-0 top-3 text-[10px] uppercase tracking-widest ${errors.email && touched.email ? 'text-secondary' : 'text-outline'} transition-all peer-focus:-top-4 peer-focus:text-primary peer-placeholder-shown:top-3 peer-not-placeholder-shown:-top-4`}>Email Address *</label>
+                      {errors.email && touched.email && <span className="absolute right-0 top-3 text-[8px] text-secondary uppercase font-bold tracking-[0.1em]">{errors.email}</span>}
+                    </div>
+                    <div className="relative group">
+                      <input 
+                        required 
+                        name="phone"
+                        type="tel" 
+                        value={formData.phone}
+                        onChange={handleChange}
+                        onBlur={() => handleBlur('phone')}
+                        className={`peer w-full bg-transparent border-b ${errors.phone && touched.phone ? 'border-secondary/60' : 'border-outline-variant/30'} py-3 focus:border-primary outline-none text-sm transition-colors`} 
+                        placeholder=" " 
+                      />
+                      <label className={`absolute left-0 top-3 text-[10px] uppercase tracking-widest ${errors.phone && touched.phone ? 'text-secondary' : 'text-outline'} transition-all peer-focus:-top-4 peer-focus:text-primary peer-placeholder-shown:top-3 peer-not-placeholder-shown:-top-4`}>Phone Number *</label>
+                      {errors.phone && touched.phone && <span className="absolute right-0 top-3 text-[8px] text-secondary uppercase font-bold tracking-[0.1em]">{errors.phone}</span>}
                     </div>
                   </div>
                 </section>
@@ -124,22 +257,66 @@ const Checkout = () => {
                   </h2>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                     <div className="md:col-span-2 relative group">
-                      <input required type="text" className="peer w-full bg-transparent border-b border-outline-variant/30 py-3 focus:border-primary outline-none text-sm transition-colors" placeholder=" " />
-                      <label className="absolute left-0 top-3 text-[10px] uppercase tracking-widest text-outline transition-all peer-focus:-top-4 peer-focus:text-primary peer-placeholder-shown:top-3 peer-not-placeholder-shown:-top-4">Street Address & Landmark</label>
+                      <input 
+                        required 
+                        name="address"
+                        type="text" 
+                        value={formData.address}
+                        onChange={handleChange}
+                        onBlur={() => handleBlur('address')}
+                        className={`peer w-full bg-transparent border-b ${errors.address && touched.address ? 'border-secondary/60' : 'border-outline-variant/30'} py-3 focus:border-primary outline-none text-sm transition-colors`} 
+                        placeholder=" " 
+                      />
+                      <label className={`absolute left-0 top-3 text-[10px] uppercase tracking-widest ${errors.address && touched.address ? 'text-secondary' : 'text-outline'} transition-all peer-focus:-top-4 peer-focus:text-primary peer-placeholder-shown:top-3 peer-not-placeholder-shown:-top-4`}>Street Address & Landmark *</label>
+                      {errors.address && touched.address && <span className="absolute right-0 top-3 text-[8px] text-secondary uppercase font-bold tracking-[0.1em]">{errors.address}</span>}
                     </div>
                     <div className="relative group">
-                      <input required type="text" className="peer w-full bg-transparent border-b border-outline-variant/30 py-3 focus:border-primary outline-none text-sm transition-colors" placeholder=" " />
-                      <label className="absolute left-0 top-3 text-[10px] uppercase tracking-widest text-outline transition-all peer-focus:-top-4 peer-focus:text-primary peer-placeholder-shown:top-3 peer-not-placeholder-shown:-top-4">City / Region</label>
+                      <input 
+                        required 
+                        name="city"
+                        type="text" 
+                        value={formData.city}
+                        onChange={handleChange}
+                        onBlur={() => handleBlur('city')}
+                        className={`peer w-full bg-transparent border-b ${errors.city && touched.city ? 'border-secondary/60' : 'border-outline-variant/30'} py-3 focus:border-primary outline-none text-sm transition-colors`} 
+                        placeholder=" " 
+                      />
+                      <label className={`absolute left-0 top-3 text-[10px] uppercase tracking-widest ${errors.city && touched.city ? 'text-secondary' : 'text-outline'} transition-all peer-focus:-top-4 peer-focus:text-primary peer-placeholder-shown:top-3 peer-not-placeholder-shown:-top-4`}>City / Region *</label>
+                      {errors.city && touched.city && <span className="absolute right-0 top-3 text-[8px] text-secondary uppercase font-bold tracking-[0.1em]">{errors.city}</span>}
                     </div>
                     <div className="relative group">
-                      <input required type="text" className="peer w-full bg-transparent border-b border-outline-variant/30 py-3 focus:border-primary outline-none text-sm transition-colors" placeholder=" " />
-                      <label className="absolute left-0 top-3 text-[10px] uppercase tracking-widest text-outline transition-all peer-focus:-top-4 peer-focus:text-primary peer-placeholder-shown:top-3 peer-not-placeholder-shown:-top-4">Pincode</label>
+                      <input 
+                        required 
+                        name="state"
+                        type="text" 
+                        value={formData.state}
+                        onChange={handleChange}
+                        onBlur={() => handleBlur('state')}
+                        className={`peer w-full bg-transparent border-b ${errors.state && touched.state ? 'border-secondary/60' : 'border-outline-variant/30'} py-3 focus:border-primary outline-none text-sm transition-colors`} 
+                        placeholder=" " 
+                      />
+                      <label className={`absolute left-0 top-3 text-[10px] uppercase tracking-widest ${errors.state && touched.state ? 'text-secondary' : 'text-outline'} transition-all peer-focus:-top-4 peer-focus:text-primary peer-placeholder-shown:top-3 peer-not-placeholder-shown:-top-4`}>State *</label>
+                      {errors.state && touched.state && <span className="absolute right-0 top-3 text-[8px] text-secondary uppercase font-bold tracking-[0.1em]">{errors.state}</span>}
+                    </div>
+                    <div className="relative group">
+                      <input 
+                        required 
+                        name="pincode"
+                        type="text" 
+                        value={formData.pincode}
+                        onChange={handleChange}
+                        onBlur={() => handleBlur('pincode')}
+                        className={`peer w-full bg-transparent border-b ${errors.pincode && touched.pincode ? 'border-secondary/60' : 'border-outline-variant/30'} py-3 focus:border-primary outline-none text-sm transition-colors`} 
+                        placeholder=" " 
+                      />
+                      <label className={`absolute left-0 top-3 text-[10px] uppercase tracking-widest ${errors.pincode && touched.pincode ? 'text-secondary' : 'text-outline'} transition-all peer-focus:-top-4 peer-focus:text-primary peer-placeholder-shown:top-3 peer-not-placeholder-shown:-top-4`}>Pincode *</label>
+                      {errors.pincode && touched.pincode && <span className="absolute right-0 top-3 text-[8px] text-secondary uppercase font-bold tracking-[0.1em]">{errors.pincode}</span>}
                     </div>
                   </div>
                 </section>
 
                 <div className="pt-8">
-                  <button onClick={() => setStep(2)} className="btn-premium w-full md:w-fit min-w-[240px]">
+                  <button onClick={handleContinueToPayment} className="btn-premium w-full md:w-fit min-w-[240px]">
                     <span>Continue to Payment</span>
                     <span className="material-symbols-outlined arrow">arrow_forward</span>
                   </button>

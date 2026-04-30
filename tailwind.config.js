@@ -1,9 +1,5 @@
 /** @type {import('tailwindcss').Config} */
 export default {
-  content: [
-    "./index.html",
-    "./src/**/*.{js,ts,jsx,tsx}",
-  ],
   darkMode: "class",
   theme: {
     extend: {
@@ -32,7 +28,7 @@ export default {
         "primary-container": "#c8a96a",
         "on-tertiary-fixed": "#1e1b15",
         "on-error": "#ffffff",
-        "surface": "#fcf9f6",
+        "surface": "#fdfaf5",
         "on-primary-fixed": "#261a00",
         "outline-variant": "#d0c5b5",
         "on-tertiary-container": "#444039",
@@ -44,7 +40,7 @@ export default {
         "surface-container-highest": "#e5e2df",
         "surface-container-lowest": "#ffffff",
         "surface-tint": "#735b24",
-        "background": "#fcf9f6",
+        "background": "#fdfaf5",
         "outline": "#7f7668",
         "secondary-fixed": "#ffdada",
         "tertiary": "#635e55",

@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import PageHero from '../components/PageHero';
 
 const OrderTracking = () => {
@@ -6,39 +7,63 @@ const OrderTracking = () => {
   const [trackingData, setTrackingData] = useState(null);
   const [loading, setLoading] = useState(false);
 
+  const [error, setError] = useState(null);
+  const navigate = useNavigate();
+
   const handleTrack = (e) => {
     e.preventDefault();
-    if (!orderId) return;
+    const normalizedId = orderId.trim().toUpperCase().replace('#', '').replace('-', '');
+    
+    if (!normalizedId) return;
     
     setLoading(true);
-    // Simulate API call
+    setError(null);
+    setTrackingData(null);
+
+    // Simulate API call with logic
     setTimeout(() => {
-      setTrackingData({
-        id: orderId,
-        status: 'In Transit',
-        lastLocation: 'New Delhi Sorting Center',
-        estimatedDelivery: 'April 30, 2026',
-        timeline: [
-          { status: 'Order Placed', date: 'April 24, 10:30 AM', completed: true },
-          { status: 'Quality Check', date: 'April 25, 11:00 AM', completed: true },
-          { status: 'Dispatched', date: 'April 26, 09:00 AM', completed: true },
-          { status: 'In Transit', date: 'April 28, 05:30 PM', completed: true, current: true },
-          { status: 'Out for Delivery', date: 'Expected April 30', completed: false },
-          { status: 'Delivered', date: 'Expected April 30', completed: false }
-        ]
-      });
+      const orders = {
+        'ET8181': {
+          id: 'ET-8181',
+          status: 'In Transit',
+          lastLocation: 'New Delhi Sorting Center',
+          estimatedDelivery: 'April 30, 2026',
+          timeline: [
+            { status: 'Order Placed', date: 'April 24, 10:30 AM', completed: true },
+            { status: 'Quality Check', date: 'April 25, 11:00 AM', completed: true },
+            { status: 'Dispatched', date: 'April 26, 09:00 AM', completed: true },
+            { status: 'In Transit', date: 'April 28, 05:30 PM', completed: true, current: true },
+            { status: 'Out for Delivery', date: 'Expected April 30', completed: false },
+            { status: 'Delivered', date: 'Expected April 30', completed: false }
+          ]
+        },
+        'ET7920': {
+          id: 'ET-7920',
+          status: 'Delivered',
+          lastLocation: 'Residency Road, Bangalore',
+          estimatedDelivery: 'March 15, 2026',
+          timeline: [
+            { status: 'Order Placed', date: 'March 12, 02:15 PM', completed: true },
+            { status: 'Quality Check', date: 'March 13, 10:00 AM', completed: true },
+            { status: 'Dispatched', date: 'March 14, 08:30 AM', completed: true },
+            { status: 'In Transit', date: 'March 14, 11:00 PM', completed: true },
+            { status: 'Out for Delivery', date: 'March 15, 09:00 AM', completed: true },
+            { status: 'Delivered', date: 'March 15, 01:20 PM', completed: true, current: true }
+          ]
+        }
+      };
+
+      if (orders[normalizedId]) {
+        setTrackingData(orders[normalizedId]);
+      } else {
+        setError(`We couldn't locate an order with ID "${orderId}". Please verify your credentials or contact our concierge.`);
+      }
       setLoading(false);
-    }, 800);
+    }, 1200);
   };
 
   return (
-    <main className="min-h-screen pb-24 bg-surface">
-      <PageHero 
-        title="Track Your Order"
-        tagline="Atelier Journey"
-        subtitle="Follow your masterpiece from our hands to yours."
-        image="/images/banners_02_ready_to_ship.jpg"
-      />
+    <main className="min-h-screen pb-24 bg-surface pt-32">
 
       <div className="max-w-3xl mx-auto px-6 py-16">
         <div className="bg-white p-8 md:p-12 editorial-shadow reveal">
@@ -63,6 +88,15 @@ const OrderTracking = () => {
               <span>{loading ? 'Searching Atelier...' : 'Track Live Status'}</span>
             </button>
           </form>
+
+          {error && (
+            <div className="mt-12 p-6 bg-red-50 border border-red-100 animate-fadeIn">
+              <div className="flex items-center gap-4 text-red-800">
+                <span className="material-symbols-outlined">error</span>
+                <p className="font-jakarta-sans text-xs font-bold uppercase tracking-widest leading-relaxed">{error}</p>
+              </div>
+            </div>
+          )}
 
           {trackingData && (
             <div className="mt-20 space-y-12 animate-fadeIn">

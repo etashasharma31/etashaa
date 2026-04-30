@@ -21,7 +21,7 @@ const Footer = () => {
           {/* Client Care */}
           <div className="col-span-1 space-y-8">
             <h4 className="font-jakarta-sans text-[9px] md:text-xs tracking-[0.3em] uppercase text-primary font-bold">Client Care</h4>
-            <ul className="space-y-4 font-jakarta-sans text-[9px] md:text-xs tracking-[0.1em] uppercase text-white/50">
+            <ul className="space-y-4 font-jakarta-sans text-[9px] md:text-xs tracking-widest uppercase text-white/50">
               <li className="hover:text-primary transition-all duration-300"><Link to="/shipping-policy">Shipping Policy</Link></li>
               <li className="hover:text-primary transition-all duration-300"><Link to="/returns-exchanges">Returns & Exchanges</Link></li>
               <li className="hover:text-primary transition-all duration-300"><Link to="/size-guide">Size Guide</Link></li>
@@ -33,7 +33,7 @@ const Footer = () => {
           {/* Company */}
           <div className="col-span-1 space-y-8">
             <h4 className="font-jakarta-sans text-[9px] md:text-xs tracking-[0.3em] uppercase text-primary font-bold">Company</h4>
-            <ul className="space-y-4 font-jakarta-sans text-[9px] md:text-xs tracking-[0.1em] uppercase text-white/50">
+            <ul className="space-y-4 font-jakarta-sans text-[9px] md:text-xs tracking-widest uppercase text-white/50">
               <li className="hover:text-primary transition-all duration-300"><Link to="/our-story">Our Story</Link></li>
               <li className="hover:text-primary transition-all duration-300"><Link to="/privacy">Privacy</Link></li>
               <li className="hover:text-primary transition-all duration-300"><Link to="/contact">Contact Us</Link></li>

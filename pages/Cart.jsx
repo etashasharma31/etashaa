@@ -174,8 +174,8 @@ const Cart = () => {
                   disabled={cart.length === 0}
                   className="w-full btn-premium !py-5 mt-4 group"
                 >
-                  <span>Checkout Securely</span>
-                  <span className="material-symbols-outlined text-sm opacity-50 group-hover:opacity-100 transition-opacity">lock_open</span>
+                  <span>Proceed to Checkout</span>
+                  <span className="material-symbols-outlined text-sm opacity-50 group-hover:opacity-100 transition-opacity">lock</span>
                 </button>
               </div>
 
@@ -185,26 +185,6 @@ const Cart = () => {
                 <span className="material-symbols-outlined text-xl" title="Global Shipping">public</span>
                 <span className="material-symbols-outlined text-xl" title="COD Available">payments</span>
               </div>
-            </div>
-
-            {/* Assistance - Less Boxy */}
-            <div className="group cursor-pointer">
-              <div className="flex items-center gap-4 p-5 border border-outline-variant/10 hover:border-primary/20 transition-all bg-white/50">
-                <div className="w-10 h-10 rounded-full bg-primary/5 flex items-center justify-center group-hover:bg-primary/10 transition-colors">
-                  <span className="material-symbols-outlined text-primary text-xl">support_agent</span>
-                </div>
-                <div>
-                  <p className="text-[10px] uppercase tracking-widest font-bold text-on-surface">Concierge Help</p>
-                  <p className="text-[9px] text-on-surface-variant font-medium mt-0.5">Speak with a consultant</p>
-                </div>
-                <span className="material-symbols-outlined text-outline/30 text-sm ml-auto group-hover:translate-x-1 transition-transform">chevron_right</span>
-              </div>
-            </div>
-
-            <div className="mt-8 p-6 bg-surface-container-low/50 border border-dashed border-outline-variant/30 text-center">
-              <p className="font-noto-serif text-xs italic text-on-surface-variant">
-                "Every stitch is a promise of heritage, every drape a celebration of your story."
-              </p>
             </div>
           </div>
         </div>

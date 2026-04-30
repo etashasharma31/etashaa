@@ -26,126 +26,137 @@ const Navbar = () => {
   }, [isSearchExpanded]);
 
   return (
-    <nav id="main-nav" className={`sticky top-0 w-full z-50 bg-[#FCF9F6] border-b border-outline-variant/20 transition-all duration-300 ${isScrolled ? 'h-16 md:h-16' : 'h-16 md:h-24'}`}>
+    <nav id="main-nav" className={`sticky top-0 w-full z-50 bg-[#FCF9F6]/80 backdrop-blur-xl border-b border-outline-variant/10 transition-all duration-500 ${isScrolled ? 'h-16 md:h-16 shadow-sm' : 'h-16 md:h-24'}`}>
       <div className="flex items-center max-w-custom mx-auto h-full px-6 md:px-12 relative">
-        
+
         {/* Left: Logo Container */}
         <div className="flex-1 flex justify-start">
-          <Link to="/" className={`shrink-0 transition-opacity duration-300 ${isSearchExpanded ? 'opacity-0 pointer-events-none md:opacity-100' : 'opacity-100'}`}>
-            <img 
-              src="/images/logo_etashaa.png" 
-              alt="Etashaa Logo" 
-              className={`transition-all duration-300 object-contain ${isScrolled ? 'h-10 md:h-12' : 'h-14 md:h-20'}`} 
+          <Link to="/" className={`shrink-0 transition-all duration-500 ${isSearchExpanded ? 'opacity-0 scale-95 pointer-events-none md:opacity-100 md:scale-100' : 'opacity-100 scale-100'}`}>
+            <img
+              src="/images/logo_etashaa.png"
+              alt="Etashaa Logo"
+              className={`transition-all duration-500 object-contain ${isScrolled ? 'h-10 md:h-12' : 'h-14 md:h-20'}`}
             />
           </Link>
         </div>
-        
+
         {/* Center: Navigation Links */}
-        <div className={`hidden lg:flex items-center justify-center space-x-10 font-noto-serif tracking-widest uppercase text-[11px] transition-all duration-500 ${isSearchExpanded ? 'opacity-0 pointer-events-none scale-95 w-0 overflow-hidden' : 'opacity-100 w-auto'}`}>
-          <Link className="text-[#1c1c1a] hover:text-[#9B7E4B] transition-colors duration-300 pb-1 whitespace-nowrap" to="/bridal-collection">Bridal Lehengas</Link>
-          <Link className="text-[#1c1c1a] hover:text-[#9B7E4B] transition-colors duration-300 pb-1 whitespace-nowrap" to="/non-bridal-collection">Non-Bridal Lehengas</Link>
-          <Link className="text-[#1c1c1a] hover:text-[#9B7E4B] transition-colors duration-300 pb-1 whitespace-nowrap" to="/saree-collection">Heritage Sarees</Link>
+        <div className={`hidden lg:flex items-center justify-center space-x-10 font-jakarta-sans tracking-[0.2em] uppercase text-[10px] font-bold transition-all duration-500 ${isSearchExpanded ? 'opacity-0 pointer-events-none -translate-y-2 w-0 overflow-hidden' : 'opacity-100 translate-y-0 w-auto'}`}>
+          <Link className="text-[#1c1c1a] hover:text-[#9B7E4B] transition-colors duration-300 pb-1 whitespace-nowrap relative group" to="/bridal-collection">
+            Bridal Lehengas
+            <span className="absolute bottom-0 left-0 w-0 h-px bg-primary transition-all duration-300 group-hover:w-full"></span>
+          </Link>
+          <Link className="text-[#1c1c1a] hover:text-[#9B7E4B] transition-colors duration-300 pb-1 whitespace-nowrap relative group" to="/non-bridal-collection">
+            Non-Bridal Lehengas
+            <span className="absolute bottom-0 left-0 w-0 h-px bg-primary transition-all duration-300 group-hover:w-full"></span>
+          </Link>
+          <Link className="text-[#1c1c1a] hover:text-[#9B7E4B] transition-colors duration-300 pb-1 whitespace-nowrap relative group" to="/saree-collection">
+            Heritage Sarees
+            <span className="absolute bottom-0 left-0 w-0 h-px bg-primary transition-all duration-300 group-hover:w-full"></span>
+          </Link>
         </div>
 
         {/* Right: Action Icons & Inline Search */}
-        <div className={`flex items-center justify-end gap-4 md:gap-6 text-[#1c1c1a] transition-all duration-500 ${isSearchExpanded ? 'flex-[4]' : 'flex-1'}`}>
+        <div className={`flex items-center justify-end gap-4 md:gap-8 text-[#1c1c1a] transition-all duration-500 ${isSearchExpanded ? 'flex-6' : 'flex-1'}`}>
           {/* Expanding Search Bar */}
-          <div className={`relative flex items-center transition-all duration-700 ease-in-out ${isSearchExpanded ? 'w-full md:max-w-[500px]' : 'w-8'}`}>
-            <button 
+          <div className={`relative flex items-center transition-all duration-1000 ease-[cubic-bezier(0.19,1,0.22,1)] ${isSearchExpanded ? 'w-full md:max-w-[700px]' : 'w-12'}`}>
+            <button
               onClick={() => setIsSearchExpanded(true)}
-              className={`flex items-center justify-center hover:text-primary transition-colors duration-300 z-10 ${isSearchExpanded ? 'absolute left-4 pointer-events-none text-primary' : ''}`}
+              className={`flex items-center justify-center hover:text-primary transition-all duration-500 z-10 ${isSearchExpanded ? 'absolute left-6 pointer-events-none text-primary scale-110' : 'w-12 h-12'}`}
             >
-              <span className="material-symbols-outlined text-[20px]">search</span>
+              <span className="material-symbols-outlined text-[24px] font-light">search</span>
             </button>
-            
+
             <input
               ref={searchInputRef}
               type="text"
-              placeholder="Search our atelier heritage..."
-              className={`bg-white/80 backdrop-blur-md border border-outline-variant/20 py-2.5 transition-all duration-700 ease-in-out font-jakarta-sans text-[11px] outline-none rounded-full focus:border-primary/40 focus:ring-4 focus:ring-primary/5 ${isSearchExpanded ? 'w-full pl-12 pr-12 opacity-100 shadow-xl' : 'w-0 opacity-0 pointer-events-none border-none'}`}
+              placeholder="Seek a masterpiece..."
+              className={`bg-surface-bright border border-outline-variant/20 py-4 transition-all duration-1000 ease-[cubic-bezier(0.19,1,0.22,1)] font-noto-serif text-sm italic outline-none rounded-full focus:border-primary/40 focus:bg-white ${isSearchExpanded ? 'w-full pl-16 pr-16 opacity-100 shadow-none' : 'w-0 opacity-0 pointer-events-none border-none'}`}
               onBlur={() => { if (!searchInputRef.current?.value) setIsSearchExpanded(false); }}
               onKeyDown={(e) => { if (e.key === 'Escape') setIsSearchExpanded(false); }}
             />
 
             {isSearchExpanded && (
-              <button 
+              <button
                 onClick={() => {
                   setIsSearchExpanded(false);
                   if (searchInputRef.current) searchInputRef.current.value = '';
                 }}
-                className="absolute right-4 hover:text-primary transition-colors flex items-center justify-center text-outline/40"
+                className="absolute right-6 hover:text-primary transition-all duration-500 flex items-center justify-center text-outline/30 hover:rotate-180"
               >
-                <span className="material-symbols-outlined text-[16px]">close</span>
+                <span className="material-symbols-outlined text-[20px] font-light">close</span>
               </button>
             )}
           </div>
 
           {/* Account, Wishlist & Cart Icons */}
-          <div className={`flex items-center gap-4 md:gap-6 transition-all duration-500 ${isSearchExpanded ? 'opacity-0 scale-90 w-0 overflow-hidden pointer-events-none md:opacity-100 md:scale-100 md:w-auto md:pointer-events-auto' : 'opacity-100 w-auto'}`}>
-            <Link to="/wishlist" className="hover:text-[#9B7E4B] transition-colors duration-300 flex items-center justify-center relative">
-              <span className="material-symbols-outlined text-[20px] md:text-[21px]">favorite</span>
+          <div className={`flex items-center gap-4 md:gap-8 transition-all duration-500 ${isSearchExpanded ? 'opacity-0 scale-90 w-0 overflow-hidden pointer-events-none md:opacity-100 md:scale-100 md:w-auto md:pointer-events-auto' : 'opacity-100 w-auto'}`}>
+            <Link to="/wishlist" className="hover:text-primary transition-all duration-300 flex items-center justify-center relative group">
+              <span className="material-symbols-outlined text-[22px] group-hover:scale-110 transition-transform">favorite</span>
             </Link>
-            <Link to="/login" className="hover:text-[#9B7E4B] transition-colors duration-300 hidden md:flex items-center justify-center">
-              <span className="material-symbols-outlined text-[22px]">person</span>
+            <Link to="/login" className="hover:text-primary transition-all duration-300 hidden md:flex items-center justify-center group">
+              <span className="material-symbols-outlined text-[24px] group-hover:scale-110 transition-transform">person</span>
             </Link>
-            <Link to="/cart" className="relative flex items-center justify-center hover:text-[#9B7E4B] transition-colors duration-300">
-              <span className="material-symbols-outlined text-[22px]">shopping_bag</span>
+            <Link to="/cart" className="relative flex items-center justify-center hover:text-primary transition-all duration-300 group">
+              <span className="material-symbols-outlined text-[24px] group-hover:scale-110 transition-transform">shopping_bag</span>
               {cartCount > 0 && (
-                <span className="cart-count absolute -top-1 -right-1 w-4 h-4 bg-[#842029] text-white text-[9px] flex items-center justify-center rounded-full font-bold">
+                <span className="cart-count absolute -top-1 -right-1 w-4 h-4 bg-secondary text-white text-[9px] flex items-center justify-center rounded-full font-bold shadow-sm">
                   {cartCount}
                 </span>
               )}
             </Link>
-            <button 
-              id="hamburger" 
-              className="lg:hidden flex items-center justify-center hover:text-[#9B7E4B] transition-colors duration-300" 
+            <button
+              id="hamburger"
+              className="lg:hidden flex items-center justify-center hover:text-primary transition-all duration-300"
               aria-label="Open menu"
               onClick={() => setIsMenuOpen(!isMenuOpen)}
             >
-              <span className="material-symbols-outlined text-[26px]">{isMenuOpen ? 'close' : 'menu'}</span>
+              <span className="material-symbols-outlined text-[28px]">{isMenuOpen ? 'close' : 'menu'}</span>
             </button>
           </div>
         </div>
       </div>
-      
+
       {/* Mobile Menu Overlay */}
-      <div 
-        className={`fixed inset-0 bg-black/60 backdrop-blur-sm z-[55] transition-opacity duration-500 lg:hidden ${isMenuOpen ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}
+      <div
+        className={`fixed inset-0 bg-black/40 backdrop-blur-md z-55 transition-all duration-700 lg:hidden ${isMenuOpen ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}
         onClick={() => setIsMenuOpen(false)}
       ></div>
 
       {/* Mobile Menu Drawer */}
-      <div className={`fixed top-0 left-0 h-full w-[85%] max-w-sm bg-[#FCF9F6] z-[60] transition-transform duration-500 ease-out lg:hidden shadow-2xl flex flex-col ${isMenuOpen ? 'translate-x-0' : '-translate-x-full'}`}>
-        <div className="p-8 border-b border-outline-variant/20 flex justify-between items-center">
+      <div className={`fixed top-0 left-0 h-full w-[85%] max-w-sm bg-surface z-60 transition-all duration-700 ease-[cubic-bezier(0.23,1,0.32,1)] lg:hidden shadow-[0_0_100px_rgba(0,0,0,0.2)] flex flex-col ${isMenuOpen ? 'translate-x-0' : '-translate-x-full'}`}>
+        <div className="p-8 border-b border-outline-variant/10 flex justify-between items-center bg-white/50 backdrop-blur-md">
           <img src="/images/logo_etashaa.png" alt="Etashaa Logo" className="h-10 object-contain" />
-          <button onClick={() => setIsMenuOpen(false)} className="text-[#1c1c1a]">
+          <button onClick={() => setIsMenuOpen(false)} className="text-on-surface hover:rotate-90 transition-transform duration-300">
             <span className="material-symbols-outlined">close</span>
           </button>
         </div>
-        
-        <div className="flex-1 overflow-y-auto p-8 space-y-8">
-          <div className="space-y-6">
-            <p className="font-jakarta-sans text-[10px] uppercase tracking-[0.3em] text-primary font-bold">Collections</p>
-            <Link className="block font-noto-serif text-2xl tracking-tight text-[#1c1c1a]" to="/bridal-collection" onClick={() => setIsMenuOpen(false)}>Bridal Lehengas</Link>
-            <Link className="block font-noto-serif text-2xl tracking-tight text-[#1c1c1a]" to="/non-bridal-collection" onClick={() => setIsMenuOpen(false)}>Non-Bridal Lehengas</Link>
-            <Link className="block font-noto-serif text-2xl tracking-tight text-[#1c1c1a]" to="/saree-collection" onClick={() => setIsMenuOpen(false)}>Heritage Sarees</Link>
+
+        <div className="flex-1 overflow-y-auto p-10 space-y-12 bg-linear-to-b from-white to-surface">
+          <div className="space-y-8">
+            <p className="font-jakarta-sans text-[10px] uppercase tracking-[0.4em] text-primary font-bold">Collections</p>
+            <div className="space-y-6">
+              <Link className="block font-noto-serif text-3xl tracking-tight text-on-surface hover:text-primary transition-colors" to="/bridal-collection" onClick={() => setIsMenuOpen(false)}>Bridal Lehengas</Link>
+              <Link className="block font-noto-serif text-3xl tracking-tight text-on-surface hover:text-primary transition-colors" to="/non-bridal-collection" onClick={() => setIsMenuOpen(false)}>Non-Bridal Lehengas</Link>
+              <Link className="block font-noto-serif text-3xl tracking-tight text-on-surface hover:text-primary transition-colors" to="/saree-collection" onClick={() => setIsMenuOpen(false)}>Heritage Sarees</Link>
+            </div>
           </div>
-          
-          <div className="pt-8 border-t border-outline-variant/20 space-y-6">
-            <Link className="flex items-center gap-4 font-jakarta-sans text-xs uppercase tracking-widest text-[#1c1c1a]" to="/wishlist" onClick={() => setIsMenuOpen(false)}>
-              <span className="material-symbols-outlined text-[20px]">favorite</span> Wishlist
+
+          <div className="pt-10 border-t border-outline-variant/10 space-y-8">
+            <Link className="flex items-center gap-6 font-jakarta-sans text-xs uppercase tracking-[0.2em] text-on-surface hover:text-primary transition-all group" to="/wishlist" onClick={() => setIsMenuOpen(false)}>
+              <span className="material-symbols-outlined text-[22px] group-hover:scale-110 transition-transform">favorite</span> Wishlist
             </Link>
-            <Link className="flex items-center gap-4 font-jakarta-sans text-xs uppercase tracking-widest text-[#1c1c1a]" to="/login" onClick={() => setIsMenuOpen(false)}>
-              <span className="material-symbols-outlined text-[20px]">person</span> Account
+            <Link className="flex items-center gap-6 font-jakarta-sans text-xs uppercase tracking-[0.2em] text-on-surface hover:text-primary transition-all group" to="/login" onClick={() => setIsMenuOpen(false)}>
+              <span className="material-symbols-outlined text-[22px] group-hover:scale-110 transition-transform">person</span> Account
             </Link>
-            <Link className="flex items-center gap-4 font-jakarta-sans text-xs uppercase tracking-widest text-[#1c1c1a]" to="/order-tracking" onClick={() => setIsMenuOpen(false)}>
-              <span className="material-symbols-outlined text-[20px]">local_shipping</span> Track Order
+            <Link className="flex items-center gap-6 font-jakarta-sans text-xs uppercase tracking-[0.2em] text-on-surface hover:text-primary transition-all group" to="/order-tracking" onClick={() => setIsMenuOpen(false)}>
+              <span className="material-symbols-outlined text-[22px] group-hover:scale-110 transition-transform">local_shipping</span> Track Order
             </Link>
           </div>
         </div>
 
-        <div className="p-8 bg-[#f6f3f0]">
-          <p className="font-jakarta-sans text-[9px] uppercase tracking-[0.2em] text-outline/60 text-center">© 2024 ETASHAA HERITAGE</p>
+        <div className="p-10 bg-surface-container-low/50 backdrop-blur-md border-t border-outline-variant/10">
+          <p className="font-jakarta-sans text-[9px] uppercase tracking-[0.3em] text-outline/40 text-center font-bold">© 2024 ETASHAA HERITAGE</p>
         </div>
       </div>
     </nav>
