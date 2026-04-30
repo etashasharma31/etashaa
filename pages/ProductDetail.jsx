@@ -342,7 +342,200 @@ const ProductDetail = () => {
           </div>
         </div>
       )}
+
+      {/* Customer Reviews Section */}
+      <CustomerReviews productId={id} productName={product?.name} />
     </main>
+  );
+};
+
+// Star Rating Component
+const StarRating = ({ rating, size = 'sm' }) => {
+  const sizeClass = size === 'sm' ? 'text-[14px]' : 'text-[18px]';
+  return (
+    <div className="flex items-center gap-0.5">
+      {[1, 2, 3, 4, 5].map(star => (
+        <span key={star} className={`material-symbols-outlined ${sizeClass} ${star <= rating ? 'text-[#c8a96a]' : 'text-outline/20'}`}
+          style={{ fontVariationSettings: star <= rating ? "'FILL' 1" : "'FILL' 0" }}>
+          star
+        </span>
+      ))}
+    </div>
+  );
+};
+
+// Reviews Database (curated per product type)
+const reviewsDB = [
+  { id: 1, name: 'Priya Sharma', avatar: 'P', rating: 5, date: 'March 2025', title: 'A dream come true', body: 'I wore this for my wedding and received compliments all night. The craftsmanship is beyond words — every thread, every bead is placed with such intention. Etashaa truly creates heirlooms.', size: 'M', verified: true },
+  { id: 2, name: 'Ananya R.', avatar: 'A', rating: 5, date: 'February 2025', title: 'Absolutely breathtaking', body: 'The quality is exceptional. The fabric feels incredibly luxurious and the embroidery is so detailed. Delivery was on time and the packaging was beautiful — felt like receiving a gift.', size: 'S', verified: true },
+  { id: 3, name: 'Meera Kapoor', avatar: 'M', rating: 4, date: 'January 2025', title: 'Worth every penny', body: 'Stunning piece, exactly as shown. I had to make a minor alteration to the blouse but the team was incredibly helpful. The lehenga itself is perfection and I felt like royalty.', size: 'L', verified: true },
+  { id: 4, name: 'Sonia V.', avatar: 'S', rating: 5, date: 'December 2024', title: 'My most treasured outfit', body: "I've attended three Etashaa weddings now and always admired the designs. Finally got my own and it's even more beautiful in person. The drape is perfect and falls exactly right.", size: 'M', verified: true },
+  { id: 5, name: 'Kavya Reddy', avatar: 'K', rating: 5, date: 'November 2024', title: 'Exceptional quality', body: 'From the consultation to the final delivery, the experience was flawless. The team was so attentive and the lehenga was everything I envisioned. My photos are magazine-worthy!', size: 'XL', verified: true },
+];
+
+const CustomerReviews = ({ productId, productName }) => {
+  const [showForm, setShowForm] = useState(false);
+  const [newReview, setNewReview] = useState({ name: '', rating: 5, title: '', body: '', size: '' });
+  const [submitted, setSubmitted] = useState(false);
+  const [hoverRating, setHoverRating] = useState(0);
+
+  const avgRating = (reviewsDB.reduce((acc, r) => acc + r.rating, 0) / reviewsDB.length).toFixed(1);
+  const dist = [5, 4, 3, 2, 1].map(s => ({ star: s, count: reviewsDB.filter(r => r.rating === s).length }));
+
+  const handleSubmitReview = (e) => {
+    e.preventDefault();
+    setSubmitted(true);
+    setShowForm(false);
+  };
+
+  return (
+    <section className="mt-20 pt-16 border-t border-outline-variant/10 px-4 md:px-12 max-w-custom mx-auto pb-16">
+      {/* Header */}
+      <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-14">
+        <div>
+          <span className="font-jakarta-sans text-[10px] uppercase tracking-[0.4em] text-primary font-bold mb-3 block">Verified Reviews</span>
+          <h2 className="font-noto-serif text-3xl italic text-on-surface">What Brides Say</h2>
+        </div>
+        <button
+          onClick={() => setShowForm(!showForm)}
+          className="btn-premium-outline flex items-center gap-2 self-start md:self-auto"
+        >
+          <span className="material-symbols-outlined text-[16px]">edit</span>
+          <span>Write a Review</span>
+        </button>
+      </div>
+
+      {/* Rating Overview */}
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-10 mb-14 p-8 bg-surface-container-lowest/50 border border-outline-variant/10">
+        <div className="flex flex-col items-center justify-center text-center">
+          <span className="font-noto-serif text-7xl text-on-surface mb-2">{avgRating}</span>
+          <StarRating rating={Math.round(Number(avgRating))} size="lg" />
+          <span className="font-jakarta-sans text-[10px] uppercase tracking-widest text-outline mt-2">{reviewsDB.length} verified reviews</span>
+        </div>
+        <div className="md:col-span-2 flex flex-col justify-center gap-3">
+          {dist.map(({ star, count }) => (
+            <div key={star} className="flex items-center gap-4">
+              <span className="font-jakarta-sans text-[10px] text-outline w-4 font-bold">{star}</span>
+              <span className="material-symbols-outlined text-[#c8a96a] text-[14px]" style={{ fontVariationSettings: "'FILL' 1" }}>star</span>
+              <div className="flex-1 h-1.5 bg-outline-variant/20 rounded-full overflow-hidden">
+                <div
+                  className="h-full bg-[#c8a96a] rounded-full transition-all duration-700"
+                  style={{ width: `${(count / reviewsDB.length) * 100}%` }}
+                />
+              </div>
+              <span className="font-jakarta-sans text-[10px] text-outline w-4">{count}</span>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* Write Review Form */}
+      {showForm && (
+        <div className="mb-14 p-8 border border-primary/20 bg-primary/5">
+          <h3 className="font-noto-serif text-xl italic mb-8 text-on-surface">Share Your Experience</h3>
+          {submitted ? (
+            <div className="text-center py-8">
+              <span className="material-symbols-outlined text-5xl text-primary mb-4 block">favorite</span>
+              <p className="font-noto-serif text-xl italic text-on-surface">Thank you for your review!</p>
+              <p className="font-jakarta-sans text-sm text-on-surface-variant mt-2">Your review is under moderation and will appear shortly.</p>
+            </div>
+          ) : (
+            <form onSubmit={handleSubmitReview} className="space-y-6">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div>
+                  <label className="font-jakarta-sans text-[10px] uppercase tracking-widest text-outline font-bold block mb-3">Your Name *</label>
+                  <input required type="text" value={newReview.name} onChange={e => setNewReview(p => ({ ...p, name: e.target.value }))}
+                    className="w-full border border-outline-variant/30 bg-transparent px-5 py-4 font-jakarta-sans text-sm focus:outline-none focus:border-primary transition-colors" placeholder="Your name" />
+                </div>
+                <div>
+                  <label className="font-jakarta-sans text-[10px] uppercase tracking-widest text-outline font-bold block mb-3">Size Purchased</label>
+                  <select value={newReview.size} onChange={e => setNewReview(p => ({ ...p, size: e.target.value }))}
+                    className="w-full border border-outline-variant/30 bg-transparent px-5 py-4 font-jakarta-sans text-sm focus:outline-none focus:border-primary transition-colors">
+                    <option value="">Select size</option>
+                    {['S', 'M', 'L', 'XL', 'Custom Size'].map(s => <option key={s} value={s}>{s}</option>)}
+                  </select>
+                </div>
+              </div>
+              <div>
+                <label className="font-jakarta-sans text-[10px] uppercase tracking-widest text-outline font-bold block mb-3">Your Rating *</label>
+                <div className="flex items-center gap-1">
+                  {[1, 2, 3, 4, 5].map(star => (
+                    <button key={star} type="button"
+                      onMouseEnter={() => setHoverRating(star)} onMouseLeave={() => setHoverRating(0)}
+                      onClick={() => setNewReview(p => ({ ...p, rating: star }))}>
+                      <span className="material-symbols-outlined text-[28px] transition-colors"
+                        style={{
+                          color: star <= (hoverRating || newReview.rating) ? '#c8a96a' : '#d1d5db',
+                          fontVariationSettings: star <= (hoverRating || newReview.rating) ? "'FILL' 1" : "'FILL' 0"
+                        }}>star</span>
+                    </button>
+                  ))}
+                  <span className="font-jakarta-sans text-sm text-outline ml-2">
+                    {['', 'Poor', 'Fair', 'Good', 'Great', 'Excellent'][hoverRating || newReview.rating]}
+                  </span>
+                </div>
+              </div>
+              <div>
+                <label className="font-jakarta-sans text-[10px] uppercase tracking-widest text-outline font-bold block mb-3">Review Title *</label>
+                <input required type="text" value={newReview.title} onChange={e => setNewReview(p => ({ ...p, title: e.target.value }))}
+                  className="w-full border border-outline-variant/30 bg-transparent px-5 py-4 font-jakarta-sans text-sm focus:outline-none focus:border-primary transition-colors" placeholder="Summarize your experience" />
+              </div>
+              <div>
+                <label className="font-jakarta-sans text-[10px] uppercase tracking-widest text-outline font-bold block mb-3">Your Review *</label>
+                <textarea required rows={4} value={newReview.body} onChange={e => setNewReview(p => ({ ...p, body: e.target.value }))}
+                  className="w-full border border-outline-variant/30 bg-transparent px-5 py-4 font-jakarta-sans text-sm focus:outline-none focus:border-primary transition-colors resize-none" placeholder="Tell other brides about your experience..." />
+              </div>
+              <div className="flex gap-4">
+                <button type="submit" className="btn-premium"><span>Submit Review</span></button>
+                <button type="button" onClick={() => setShowForm(false)} className="btn-premium-outline"><span>Cancel</span></button>
+              </div>
+            </form>
+          )}
+        </div>
+      )}
+
+      {/* Review Cards */}
+      <div className="space-y-8">
+        {reviewsDB.map((review, i) => (
+          <div key={review.id} className={`p-8 border border-outline-variant/10 hover:border-primary/20 transition-all duration-300 ${i % 2 === 0 ? 'bg-surface' : 'bg-surface-container-lowest/30'}`}>
+            <div className="flex items-start justify-between gap-4 mb-4 flex-wrap">
+              <div className="flex items-center gap-4">
+                <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center font-noto-serif text-xl text-primary font-bold">
+                  {review.avatar}
+                </div>
+                <div>
+                  <div className="flex items-center gap-3">
+                    <span className="font-jakarta-sans text-sm font-bold text-on-surface">{review.name}</span>
+                    {review.verified && (
+                      <span className="flex items-center gap-1 font-jakarta-sans text-[9px] uppercase tracking-widest text-green-700 font-bold">
+                        <span className="material-symbols-outlined text-[12px]" style={{ fontVariationSettings: "'FILL' 1" }}>verified</span>Verified
+                      </span>
+                    )}
+                  </div>
+                  <span className="font-jakarta-sans text-[10px] text-outline">{review.date} · Size: {review.size}</span>
+                </div>
+              </div>
+              <StarRating rating={review.rating} />
+            </div>
+            <h4 className="font-noto-serif text-base italic text-on-surface mb-2">{review.title}</h4>
+            <p className="font-jakarta-sans text-sm text-on-surface-variant leading-relaxed">{review.body}</p>
+          </div>
+        ))}
+      </div>
+
+      {/* Book Appointment CTA */}
+      <div className="mt-20 p-10 md:p-14 bg-[#1c1c1a] text-center">
+        <span className="font-jakarta-sans text-[10px] uppercase tracking-[0.4em] text-primary font-bold mb-4 block">Private Atelier</span>
+        <h3 className="font-noto-serif text-3xl md:text-4xl italic text-white mb-4">Love This Piece?</h3>
+        <p className="font-jakarta-sans text-sm text-white/60 max-w-md mx-auto mb-8 leading-relaxed">
+          Book a private consultation with our designers to customize this design for your special day.
+        </p>
+        <a href="/book-appointment" className="inline-flex items-center gap-3 border border-primary/60 text-white px-10 py-4 font-jakarta-sans text-[10px] uppercase tracking-[0.3em] font-bold hover:bg-primary hover:border-primary transition-all duration-300 group">
+          <span className="material-symbols-outlined text-primary text-[16px] group-hover:text-white transition-colors">calendar_month</span>
+          Book Your Appointment
+        </a>
+      </div>
+    </section>
   );
 };
 
