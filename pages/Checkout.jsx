@@ -19,7 +19,7 @@ const Checkout = () => {
   });
   const [errors, setErrors] = useState({});
   const [touched, setTouched] = useState({});
-  
+
   const subtotal = cart.reduce((total, item) => total + item.price * item.quantity, 0);
   const shipping = subtotal > 5000 ? 0 : 500;
   const tax = subtotal * 0.12;
@@ -56,7 +56,7 @@ const Checkout = () => {
     } else if (name === 'pincode' && !/^\d{6}$/.test(value)) {
       error = 'Invalid PIN';
     }
-    
+
     setErrors(prev => ({ ...prev, [name]: error }));
     return error === '';
   };
@@ -88,7 +88,7 @@ const Checkout = () => {
 
     setErrors(newErrors);
     setTouched(Object.keys(formData).reduce((acc, key) => ({ ...acc, [key]: true }), {}));
-    
+
     if (!isValid) {
       // Scroll to first error
       const firstError = Object.keys(newErrors)[0];
@@ -97,7 +97,7 @@ const Checkout = () => {
         element.scrollIntoView({ behavior: 'smooth', block: 'center' });
       }
     }
-    
+
     return isValid;
   };
 
@@ -130,21 +130,21 @@ const Checkout = () => {
             </div>
             <div className="absolute -inset-4 border border-primary/10 rounded-full animate-ping opacity-20"></div>
           </div>
-          
+
           <span className="font-jakarta-sans text-[10px] uppercase tracking-[0.5em] text-primary font-bold mb-4 block">Gratitude</span>
           <h1 className="text-4xl md:text-5xl font-noto-serif italic mb-6">Your Order is Placed</h1>
           <p className="font-jakarta-sans text-on-surface-variant text-sm md:text-base leading-relaxed mb-12 max-w-md mx-auto font-light">
             Thank you for choosing Etashaa. Your order <span className="font-bold text-on-surface">#ET-8181</span> is now being curated by our master artisans in the atelier.
           </p>
-          
+
           <div className="space-y-4 max-w-xs mx-auto">
-            <button 
+            <button
               onClick={() => navigate('/order-tracking')}
               className="w-full btn-premium"
             >
               <span>Track Masterpiece</span>
             </button>
-            <button 
+            <button
               onClick={() => navigate('/')}
               className="w-full btn-premium-outline"
             >
@@ -159,11 +159,11 @@ const Checkout = () => {
   return (
     <main className="min-h-screen pt-32 pb-24 bg-surface px-4 md:px-12">
       <div className="max-w-custom grid grid-cols-1 lg:grid-cols-12 gap-20 items-start">
-        
+
         {/* Left Side: Checkout Flow */}
         <div className="lg:col-span-7">
           <div className="flex flex-col gap-12">
-            
+
             {/* Header */}
             <div>
               <span className="font-jakarta-sans text-[10px] uppercase tracking-[0.4em] text-primary font-bold mb-3 block">Secure Gateway</span>
@@ -176,7 +176,7 @@ const Checkout = () => {
                 <div className={`w-6 h-6 rounded-full flex items-center justify-center text-[10px] font-bold ${step >= 1 ? 'bg-on-surface text-white' : 'bg-outline-variant/30 text-outline'}`}>1</div>
                 <span className={`text-[10px] uppercase tracking-widest font-bold ${step >= 1 ? 'text-on-surface' : 'text-outline'}`}>Information</span>
               </div>
-              <div className="w-8 h-[1px] bg-outline-variant/30"></div>
+              <div className="w-8 h-px bg-outline-variant/30"></div>
               <div className="flex items-center gap-3">
                 <div className={`w-6 h-6 rounded-full flex items-center justify-center text-[10px] font-bold ${step >= 2 ? 'bg-on-surface text-white' : 'bg-outline-variant/30 text-outline'}`}>2</div>
                 <span className={`text-[10px] uppercase tracking-widest font-bold ${step >= 2 ? 'text-on-surface' : 'text-outline'}`}>Payment</span>
@@ -192,60 +192,60 @@ const Checkout = () => {
                   </h2>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                     <div className="relative group">
-                      <input 
-                        required 
+                      <input
+                        required
                         name="firstName"
-                        type="text" 
+                        type="text"
                         value={formData.firstName}
                         onChange={handleChange}
                         onBlur={() => handleBlur('firstName')}
-                        className={`peer w-full bg-transparent border-b ${errors.firstName && touched.firstName ? 'border-secondary/60' : 'border-outline-variant/30'} py-3 focus:border-primary outline-none text-sm transition-colors`} 
-                        placeholder=" " 
+                        className={`peer w-full bg-transparent border-b ${errors.firstName && touched.firstName ? 'border-secondary/60' : 'border-outline-variant/30'} py-3 focus:border-primary outline-none text-sm transition-colors`}
+                        placeholder=" "
                       />
                       <label className={`absolute left-0 top-3 text-[10px] uppercase tracking-widest ${errors.firstName && touched.firstName ? 'text-secondary' : 'text-outline'} transition-all peer-focus:-top-4 peer-focus:text-primary peer-placeholder-shown:top-3 peer-not-placeholder-shown:-top-4`}>First Name *</label>
-                      {errors.firstName && touched.firstName && <span className="absolute right-0 top-3 text-[8px] text-secondary uppercase font-bold tracking-[0.1em]">{errors.firstName}</span>}
+                      {errors.firstName && touched.firstName && <span className="absolute right-0 top-3 text-[8px] text-secondary uppercase font-bold tracking-widest">{errors.firstName}</span>}
                     </div>
                     <div className="relative group">
-                      <input 
-                        required 
+                      <input
+                        required
                         name="lastName"
-                        type="text" 
+                        type="text"
                         value={formData.lastName}
                         onChange={handleChange}
                         onBlur={() => handleBlur('lastName')}
-                        className={`peer w-full bg-transparent border-b ${errors.lastName && touched.lastName ? 'border-secondary/60' : 'border-outline-variant/30'} py-3 focus:border-primary outline-none text-sm transition-colors`} 
-                        placeholder=" " 
+                        className={`peer w-full bg-transparent border-b ${errors.lastName && touched.lastName ? 'border-secondary/60' : 'border-outline-variant/30'} py-3 focus:border-primary outline-none text-sm transition-colors`}
+                        placeholder=" "
                       />
                       <label className={`absolute left-0 top-3 text-[10px] uppercase tracking-widest ${errors.lastName && touched.lastName ? 'text-secondary' : 'text-outline'} transition-all peer-focus:-top-4 peer-focus:text-primary peer-placeholder-shown:top-3 peer-not-placeholder-shown:-top-4`}>Last Name *</label>
-                      {errors.lastName && touched.lastName && <span className="absolute right-0 top-3 text-[8px] text-secondary uppercase font-bold tracking-[0.1em]">{errors.lastName}</span>}
+                      {errors.lastName && touched.lastName && <span className="absolute right-0 top-3 text-[8px] text-secondary uppercase font-bold tracking-widest">{errors.lastName}</span>}
                     </div>
                     <div className="relative group">
-                      <input 
-                        required 
+                      <input
+                        required
                         name="email"
-                        type="email" 
+                        type="email"
                         value={formData.email}
                         onChange={handleChange}
                         onBlur={() => handleBlur('email')}
-                        className={`peer w-full bg-transparent border-b ${errors.email && touched.email ? 'border-secondary/60' : 'border-outline-variant/30'} py-3 focus:border-primary outline-none text-sm transition-colors`} 
-                        placeholder=" " 
+                        className={`peer w-full bg-transparent border-b ${errors.email && touched.email ? 'border-secondary/60' : 'border-outline-variant/30'} py-3 focus:border-primary outline-none text-sm transition-colors`}
+                        placeholder=" "
                       />
                       <label className={`absolute left-0 top-3 text-[10px] uppercase tracking-widest ${errors.email && touched.email ? 'text-secondary' : 'text-outline'} transition-all peer-focus:-top-4 peer-focus:text-primary peer-placeholder-shown:top-3 peer-not-placeholder-shown:-top-4`}>Email Address *</label>
-                      {errors.email && touched.email && <span className="absolute right-0 top-3 text-[8px] text-secondary uppercase font-bold tracking-[0.1em]">{errors.email}</span>}
+                      {errors.email && touched.email && <span className="absolute right-0 top-3 text-[8px] text-secondary uppercase font-bold tracking-widest">{errors.email}</span>}
                     </div>
                     <div className="relative group">
-                      <input 
-                        required 
+                      <input
+                        required
                         name="phone"
-                        type="tel" 
+                        type="tel"
                         value={formData.phone}
                         onChange={handleChange}
                         onBlur={() => handleBlur('phone')}
-                        className={`peer w-full bg-transparent border-b ${errors.phone && touched.phone ? 'border-secondary/60' : 'border-outline-variant/30'} py-3 focus:border-primary outline-none text-sm transition-colors`} 
-                        placeholder=" " 
+                        className={`peer w-full bg-transparent border-b ${errors.phone && touched.phone ? 'border-secondary/60' : 'border-outline-variant/30'} py-3 focus:border-primary outline-none text-sm transition-colors`}
+                        placeholder=" "
                       />
                       <label className={`absolute left-0 top-3 text-[10px] uppercase tracking-widest ${errors.phone && touched.phone ? 'text-secondary' : 'text-outline'} transition-all peer-focus:-top-4 peer-focus:text-primary peer-placeholder-shown:top-3 peer-not-placeholder-shown:-top-4`}>Phone Number *</label>
-                      {errors.phone && touched.phone && <span className="absolute right-0 top-3 text-[8px] text-secondary uppercase font-bold tracking-[0.1em]">{errors.phone}</span>}
+                      {errors.phone && touched.phone && <span className="absolute right-0 top-3 text-[8px] text-secondary uppercase font-bold tracking-widest">{errors.phone}</span>}
                     </div>
                   </div>
                 </section>
@@ -257,60 +257,60 @@ const Checkout = () => {
                   </h2>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                     <div className="md:col-span-2 relative group">
-                      <input 
-                        required 
+                      <input
+                        required
                         name="address"
-                        type="text" 
+                        type="text"
                         value={formData.address}
                         onChange={handleChange}
                         onBlur={() => handleBlur('address')}
-                        className={`peer w-full bg-transparent border-b ${errors.address && touched.address ? 'border-secondary/60' : 'border-outline-variant/30'} py-3 focus:border-primary outline-none text-sm transition-colors`} 
-                        placeholder=" " 
+                        className={`peer w-full bg-transparent border-b ${errors.address && touched.address ? 'border-secondary/60' : 'border-outline-variant/30'} py-3 focus:border-primary outline-none text-sm transition-colors`}
+                        placeholder=" "
                       />
                       <label className={`absolute left-0 top-3 text-[10px] uppercase tracking-widest ${errors.address && touched.address ? 'text-secondary' : 'text-outline'} transition-all peer-focus:-top-4 peer-focus:text-primary peer-placeholder-shown:top-3 peer-not-placeholder-shown:-top-4`}>Street Address & Landmark *</label>
-                      {errors.address && touched.address && <span className="absolute right-0 top-3 text-[8px] text-secondary uppercase font-bold tracking-[0.1em]">{errors.address}</span>}
+                      {errors.address && touched.address && <span className="absolute right-0 top-3 text-[8px] text-secondary uppercase font-bold tracking-widest">{errors.address}</span>}
                     </div>
                     <div className="relative group">
-                      <input 
-                        required 
+                      <input
+                        required
                         name="city"
-                        type="text" 
+                        type="text"
                         value={formData.city}
                         onChange={handleChange}
                         onBlur={() => handleBlur('city')}
-                        className={`peer w-full bg-transparent border-b ${errors.city && touched.city ? 'border-secondary/60' : 'border-outline-variant/30'} py-3 focus:border-primary outline-none text-sm transition-colors`} 
-                        placeholder=" " 
+                        className={`peer w-full bg-transparent border-b ${errors.city && touched.city ? 'border-secondary/60' : 'border-outline-variant/30'} py-3 focus:border-primary outline-none text-sm transition-colors`}
+                        placeholder=" "
                       />
                       <label className={`absolute left-0 top-3 text-[10px] uppercase tracking-widest ${errors.city && touched.city ? 'text-secondary' : 'text-outline'} transition-all peer-focus:-top-4 peer-focus:text-primary peer-placeholder-shown:top-3 peer-not-placeholder-shown:-top-4`}>City / Region *</label>
-                      {errors.city && touched.city && <span className="absolute right-0 top-3 text-[8px] text-secondary uppercase font-bold tracking-[0.1em]">{errors.city}</span>}
+                      {errors.city && touched.city && <span className="absolute right-0 top-3 text-[8px] text-secondary uppercase font-bold tracking-widest">{errors.city}</span>}
                     </div>
                     <div className="relative group">
-                      <input 
-                        required 
+                      <input
+                        required
                         name="state"
-                        type="text" 
+                        type="text"
                         value={formData.state}
                         onChange={handleChange}
                         onBlur={() => handleBlur('state')}
-                        className={`peer w-full bg-transparent border-b ${errors.state && touched.state ? 'border-secondary/60' : 'border-outline-variant/30'} py-3 focus:border-primary outline-none text-sm transition-colors`} 
-                        placeholder=" " 
+                        className={`peer w-full bg-transparent border-b ${errors.state && touched.state ? 'border-secondary/60' : 'border-outline-variant/30'} py-3 focus:border-primary outline-none text-sm transition-colors`}
+                        placeholder=" "
                       />
                       <label className={`absolute left-0 top-3 text-[10px] uppercase tracking-widest ${errors.state && touched.state ? 'text-secondary' : 'text-outline'} transition-all peer-focus:-top-4 peer-focus:text-primary peer-placeholder-shown:top-3 peer-not-placeholder-shown:-top-4`}>State *</label>
-                      {errors.state && touched.state && <span className="absolute right-0 top-3 text-[8px] text-secondary uppercase font-bold tracking-[0.1em]">{errors.state}</span>}
+                      {errors.state && touched.state && <span className="absolute right-0 top-3 text-[8px] text-secondary uppercase font-bold tracking-widest">{errors.state}</span>}
                     </div>
                     <div className="relative group">
-                      <input 
-                        required 
+                      <input
+                        required
                         name="pincode"
-                        type="text" 
+                        type="text"
                         value={formData.pincode}
                         onChange={handleChange}
                         onBlur={() => handleBlur('pincode')}
-                        className={`peer w-full bg-transparent border-b ${errors.pincode && touched.pincode ? 'border-secondary/60' : 'border-outline-variant/30'} py-3 focus:border-primary outline-none text-sm transition-colors`} 
-                        placeholder=" " 
+                        className={`peer w-full bg-transparent border-b ${errors.pincode && touched.pincode ? 'border-secondary/60' : 'border-outline-variant/30'} py-3 focus:border-primary outline-none text-sm transition-colors`}
+                        placeholder=" "
                       />
                       <label className={`absolute left-0 top-3 text-[10px] uppercase tracking-widest ${errors.pincode && touched.pincode ? 'text-secondary' : 'text-outline'} transition-all peer-focus:-top-4 peer-focus:text-primary peer-placeholder-shown:top-3 peer-not-placeholder-shown:-top-4`}>Pincode *</label>
-                      {errors.pincode && touched.pincode && <span className="absolute right-0 top-3 text-[8px] text-secondary uppercase font-bold tracking-[0.1em]">{errors.pincode}</span>}
+                      {errors.pincode && touched.pincode && <span className="absolute right-0 top-3 text-[8px] text-secondary uppercase font-bold tracking-widest">{errors.pincode}</span>}
                     </div>
                   </div>
                 </section>
@@ -348,7 +348,7 @@ const Checkout = () => {
                 </section>
 
                 <div className="pt-8 flex flex-col md:flex-row gap-6 items-center">
-                  <button 
+                  <button
                     onClick={handlePlaceOrder}
                     disabled={isProcessing}
                     className="btn-premium w-full md:w-fit min-w-[280px]"
@@ -373,11 +373,11 @@ const Checkout = () => {
         <div className="lg:col-span-5 lg:sticky lg:top-36">
           <div className="bg-surface-container-lowest/50 p-8 md:p-10 border border-outline-variant/10 relative">
             <h3 className="text-sm font-jakarta-sans uppercase tracking-[0.3em] mb-10 text-on-surface font-bold">Order Selection</h3>
-            
+
             <div className="space-y-8 mb-10 max-h-[400px] overflow-y-auto pr-4 custom-scrollbar">
               {cart.map((item) => (
                 <div key={item.id} className="flex gap-6 group">
-                  <div className="w-20 h-24 bg-surface-container overflow-hidden flex-shrink-0 relative">
+                  <div className="w-20 h-24 bg-surface-container overflow-hidden shrink-0 relative">
                     <img src={item.image} alt={item.name} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-1000" />
                     <div className="absolute top-0 right-0 bg-primary text-white w-5 h-5 flex items-center justify-center text-[9px] font-bold font-jakarta-sans">{item.quantity}</div>
                   </div>
@@ -389,7 +389,7 @@ const Checkout = () => {
                 </div>
               ))}
             </div>
-            
+
             <div className="space-y-4 pt-10 border-t border-outline-variant/20">
               <div className="flex justify-between items-center text-[10px] uppercase tracking-widest text-on-surface-variant font-bold">
                 <span>Subtotal</span>
@@ -403,7 +403,7 @@ const Checkout = () => {
                 <span>GST (12%)</span>
                 <span className="text-on-surface text-xs">{formatPrice(tax)}</span>
               </div>
-              
+
               <div className="flex justify-between items-baseline pt-10 border-t border-outline-variant/20">
                 <span className="font-noto-serif text-xl italic text-on-surface">Total</span>
                 <span className="text-2xl font-bold font-jakarta-sans text-on-surface">{formatPrice(total)}</span>
