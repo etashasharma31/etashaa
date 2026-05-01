@@ -48,7 +48,7 @@ const EtashaaMuse = () => {
         <div className="flex flex-col md:flex-row items-end justify-between gap-12">
           <div className="max-w-2xl">
             <p className="font-jakarta-sans text-[10px] uppercase tracking-[0.8em] text-primary/60 font-bold mb-8">Etashaa Heritage • The Muse</p>
-            <h1 className="font-noto-serif text-6xl md:text-8xl tracking-tighter text-on-surface leading-[0.9]">Real Stories,<br/>Real Grace.</h1>
+            <h1 className="font-noto-serif text-6xl md:text-8xl tracking-tighter text-on-surface leading-[0.9]">Real Stories,<br />Real Grace.</h1>
           </div>
           <div className="max-w-md text-right md:text-left">
             <p className="font-jakarta-sans text-sm text-on-surface/50 leading-relaxed italic border-l-2 border-primary/20 pl-6 py-2">
@@ -65,19 +65,19 @@ const EtashaaMuse = () => {
       <section className="max-w-7xl mx-auto px-6 md:px-12">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
           {muses.map((muse, index) => (
-            <div 
-              key={muse.id} 
+            <div
+              key={muse.id}
               className={`${muse.colSpan} relative group overflow-hidden bg-white reveal`}
               style={{ transitionDelay: `${index * 150}ms` }}
             >
               <div className={`relative w-full ${muse.height} overflow-hidden shadow-2xl`}>
-                <img 
-                  src={muse.image} 
-                  alt={muse.name} 
-                  className="w-full h-full object-cover transition-transform duration-[2000ms] ease-out group-hover:scale-110"
+                <img
+                  src={muse.image}
+                  alt={muse.name}
+                  className="w-full h-full object-cover transition-transform duration-2000 ease-out group-hover:scale-110"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-60 group-hover:opacity-90 transition-opacity duration-700"></div>
-                
+                <div className="absolute inset-0 bg-linear-to-t from-black/80 via-black/20 to-transparent opacity-60 group-hover:opacity-90 transition-opacity duration-700"></div>
+
                 {/* Overlay Content */}
                 <div className="absolute bottom-0 left-0 w-full p-12 text-white">
                   <div className="overflow-hidden mb-4">
@@ -100,40 +100,39 @@ const EtashaaMuse = () => {
         </div>
       </section>
 
-      {/* Cinematic Spotlight */}
-      <section className="mt-56 mb-56 bg-[#131311] text-white overflow-hidden py-40 px-6 md:px-12 relative">
-        <div className="absolute inset-0 opacity-10">
-          <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(circle_at_30%_30%,_#9B7E4B_0%,_transparent_50%)]"></div>
+      {/* Cinematic Reels Section */}
+      <section className="mb-40 px-6 md:px-12 max-w-7xl mx-auto mt-40">
+        <div className="text-center mb-20">
+          <p className="font-jakarta-sans text-[10px] uppercase tracking-[1em] text-primary mb-6 font-bold">Grace in Motion</p>
+          <h2 className="font-noto-serif text-4xl md:text-6xl mb-8">The Cinematic Muse</h2>
+          <p className="max-w-xl mx-auto text-on-surface/50 font-jakarta-sans text-sm leading-relaxed">
+            Witness the fluidity of our heritage fabrics and the sparkle of our hand-embroidery in these exclusive campaign films.
+          </p>
         </div>
-        
-        <div className="max-w-7xl mx-auto relative z-10">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-24 items-center">
-            <div>
-              <p className="font-jakarta-sans text-[10px] uppercase tracking-[0.8em] text-primary mb-8 font-bold">The Heritage Film</p>
-              <h2 className="font-noto-serif text-6xl md:text-8xl mb-12 leading-[0.9]">Grace<br/><span className="italic italic-serif pl-12 text-primary/80">in Motion</span></h2>
-              <p className="font-jakarta-sans text-sm text-white/40 leading-relaxed max-w-md mb-12">
-                Step inside the world of Etashaa. Experience the movement of silk, the whisper of zardosi, and the soulful journey of our muses.
-              </p>
-              <div className="flex items-center gap-8 group cursor-pointer">
-                <div className="w-16 h-16 rounded-full border border-white/20 flex items-center justify-center bg-white/5 group-hover:bg-primary transition-all duration-500">
-                  <span className="material-symbols-outlined text-2xl ml-1">play_arrow</span>
-                </div>
-                <span className="text-[11px] uppercase tracking-[0.4em] font-bold group-hover:text-primary transition-colors">Play the Film</span>
+
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          {[
+            { id: 1, src: '/videos/muse_reel_1.mp4', label: 'The Royal Entrance' },
+            { id: 2, src: 'https://v1.pinimg.com/videos/mc/720p/2d/b4/82/2db482bf85e8b3bd1a8885401bed9ec8.mp4', label: 'Artisanal Elegance' },
+            { id: 3, src: '/videos/muse_reel_3.mp4', label: 'Heritage Glow' }
+          ].map((reel) => (
+            <div key={reel.id} className="relative group aspect-[9/16] overflow-hidden bg-black shadow-2xl">
+              <video 
+                autoPlay 
+                muted 
+                loop 
+                playsInline 
+                className="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity duration-700"
+              >
+                <source src={reel.src} type="video/mp4" />
+                Your browser does not support the video tag.
+              </video>
+              <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex flex-col justify-end p-8 translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
+                <span className="text-white font-jakarta-sans text-[10px] uppercase tracking-[0.4em] mb-2">{reel.label}</span>
+                <div className="w-8 h-px bg-primary/60"></div>
               </div>
             </div>
-            
-            <div className="relative group aspect-[4/5] md:aspect-video bg-black/40 rounded-sm overflow-hidden shadow-[0_50px_100px_-20px_rgba(0,0,0,0.5)]">
-              <iframe 
-                className="w-full h-full grayscale-[0.2] group-hover:grayscale-0 transition-all duration-1000"
-                src="https://www.youtube.com/embed/S2qYm6L22L4?autoplay=0&mute=1&controls=0&loop=1&playlist=S2qYm6L22L4"
-                title="Etashaa Bridal Film"
-                frameBorder="0"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                allowFullScreen
-              ></iframe>
-              <div className="absolute inset-0 pointer-events-none border border-white/10 m-6"></div>
-            </div>
-          </div>
+          ))}
         </div>
       </section>
 
@@ -145,10 +144,10 @@ const EtashaaMuse = () => {
             Every bride is an inspiration. Share your special moments with us and let your story be etched into our heritage.
           </p>
           <div className="flex flex-col sm:flex-row justify-center gap-8">
-            <Link to="/contact" className="btn-premium px-16 !py-5">
+            <Link to="/contact" className="btn-premium px-16 py-5!">
               <span>Share Your Story</span>
             </Link>
-            <Link to="/bridal-collection" className="btn-premium-outline px-16 !py-5">
+            <Link to="/bridal-collection" className="btn-premium-outline px-16 py-5!">
               <span>View Collections</span>
             </Link>
           </div>

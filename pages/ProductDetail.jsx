@@ -378,6 +378,7 @@ const CustomerReviews = ({ productId, productName }) => {
   const [newReview, setNewReview] = useState({ name: '', rating: 5, title: '', body: '', size: '' });
   const [submitted, setSubmitted] = useState(false);
   const [hoverRating, setHoverRating] = useState(0);
+  const [showSizeDropdown, setShowSizeDropdown] = useState(false);
 
   const avgRating = (reviewsDB.reduce((acc, r) => acc + r.rating, 0) / reviewsDB.length).toFixed(1);
   const dist = [5, 4, 3, 2, 1].map(s => ({ star: s, count: reviewsDB.filter(r => r.rating === s).length }));
@@ -449,11 +450,33 @@ const CustomerReviews = ({ productId, productName }) => {
                 </div>
                 <div>
                   <label className="font-jakarta-sans text-[10px] uppercase tracking-widest text-outline font-bold block mb-3">Size Purchased</label>
-                  <select value={newReview.size} onChange={e => setNewReview(p => ({ ...p, size: e.target.value }))}
-                    className="w-full border border-outline-variant/30 bg-transparent px-5 py-4 font-jakarta-sans text-sm focus:outline-none focus:border-primary transition-colors">
-                    <option value="">Select size</option>
-                    {['S', 'M', 'L', 'XL', 'Custom Size'].map(s => <option key={s} value={s}>{s}</option>)}
-                  </select>
+                  <div className="relative group/dropdown">
+                    <button 
+                      type="button"
+                      onClick={() => setShowSizeDropdown(!showSizeDropdown)}
+                      className="w-full border border-outline-variant/30 bg-transparent px-5 py-4 font-jakarta-sans text-sm flex justify-between items-center hover:border-primary transition-colors"
+                    >
+                      <span className={newReview.size ? 'text-on-surface' : 'text-outline/50'}>
+                        {newReview.size || 'Select size'}
+                      </span>
+                      <span className={`material-symbols-outlined text-lg transition-transform duration-300 ${showSizeDropdown ? 'rotate-180' : ''}`}>expand_more</span>
+                    </button>
+                    
+                    {showSizeDropdown && (
+                      <div className="absolute top-full left-0 w-full z-20 bg-white border border-outline-variant/30 shadow-2xl mt-1 animate-in fade-in slide-in-from-top-2 duration-300">
+                        {['S', 'M', 'L', 'XL', 'Custom Size'].map(s => (
+                          <button
+                            key={s}
+                            type="button"
+                            onClick={() => { setNewReview(p => ({ ...p, size: s })); setShowSizeDropdown(false); }}
+                            className="w-full text-left px-5 py-3.5 hover:bg-primary/5 hover:text-primary transition-colors font-jakarta-sans text-sm border-b border-outline-variant/5 last:border-0"
+                          >
+                            {s}
+                          </button>
+                        ))}
+                      </div>
+                    )}
+                  </div>
                 </div>
               </div>
               <div>

@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useCart } from '../context/CartContext';
+import { useAuth } from '../context/AuthContext';
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -8,6 +9,8 @@ const Navbar = () => {
   const [isSearchExpanded, setIsSearchExpanded] = useState(false);
   const searchInputRef = useRef(null);
   const { cart } = useCart();
+  const { user, admin, logout } = useAuth();
+  const isAdmin = !!admin;
   const cartCount = cart.reduce((acc, item) => acc + item.quantity, 0);
   const navigate = useNavigate();
 
@@ -33,6 +36,11 @@ const Navbar = () => {
     }
     return () => document.body.classList.remove('no-scroll');
   }, [isMenuOpen]);
+
+  const handleLogout = () => {
+    logout();
+    navigate('/');
+  };
 
   return (
     <>
@@ -66,6 +74,10 @@ const Navbar = () => {
             </Link>
             <Link className="text-[#1c1c1a] hover:text-[#9B7E4B] transition-colors duration-300 pb-1 whitespace-nowrap relative group" to="/etashaa-muse">
               The Muse
+              <span className="absolute bottom-0 left-0 w-0 h-px bg-primary transition-all duration-300 group-hover:w-full"></span>
+            </Link>
+            <Link className="text-[#1c1c1a] hover:text-[#9B7E4B] transition-colors duration-300 pb-1 whitespace-nowrap relative group" to="/heritage-journal">
+              Journal
               <span className="absolute bottom-0 left-0 w-0 h-px bg-primary transition-all duration-300 group-hover:w-full"></span>
             </Link>
           </div>
@@ -108,9 +120,27 @@ const Navbar = () => {
               <Link to="/wishlist" className="hover:text-primary transition-all duration-300 flex items-center justify-center relative group">
                 <span className="material-symbols-outlined text-[22px] group-hover:scale-110 transition-transform">favorite</span>
               </Link>
-              <Link to="/login" className="hover:text-primary transition-all duration-300 hidden md:flex items-center justify-center group">
-                <span className="material-symbols-outlined text-[24px] group-hover:scale-110 transition-transform">person</span>
-              </Link>
+              
+              {user ? (
+                <div className="relative group">
+                  <button className="hover:text-primary transition-all duration-300 flex items-center justify-center">
+                    <span className="material-symbols-outlined text-[24px]">account_circle</span>
+                  </button>
+                  <div className="absolute right-0 top-full mt-2 w-48 bg-white shadow-xl border border-outline-variant/10 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50">
+                    <div className="p-4 border-b border-outline-variant/5">
+                      <p className="text-[10px] font-bold text-on-surface uppercase tracking-widest">{user.name}</p>
+                      <p className="text-[8px] text-outline uppercase tracking-widest mt-1">{user.role}</p>
+                    </div>
+                    <Link to="/profile" className="block w-full text-left px-4 py-2 text-[9px] uppercase tracking-widest font-bold hover:bg-surface-container-lowest transition-colors">Profile</Link>
+                    <button onClick={handleLogout} className="block w-full text-left px-4 py-2 text-[9px] uppercase tracking-widest font-bold hover:bg-secondary hover:text-white transition-colors">Logout</button>
+                  </div>
+                </div>
+              ) : (
+                <Link to="/login" className="hover:text-primary transition-all duration-300 hidden md:flex items-center justify-center group">
+                  <span className="material-symbols-outlined text-[24px] group-hover:scale-110 transition-transform">person</span>
+                </Link>
+              )}
+
               <Link to="/cart" className="relative flex items-center justify-center hover:text-primary transition-all duration-300 group">
                 <span className="material-symbols-outlined text-[24px] group-hover:scale-110 transition-transform">shopping_bag</span>
                 {cartCount > 0 && (
@@ -169,7 +199,8 @@ const Navbar = () => {
                 { label: 'Bridal Lehengas', to: '/bridal-collection', sub: 'The Signature Series' },
                 { label: 'Non-Bridal', to: '/non-bridal-collection', sub: 'Contemporary Grace' },
                 { label: 'Heritage Sarees', to: '/saree-collection', sub: 'Timeless Weaves' },
-                { label: 'The Muse', to: '/etashaa-muse', sub: 'Our Brides' }
+                { label: 'The Muse', to: '/etashaa-muse', sub: 'Our Brides' },
+                { label: 'Journal', to: '/heritage-journal', sub: 'Atelier Stories' }
               ].map((item, index) => (
                 <div 
                   key={item.label}

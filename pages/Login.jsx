@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
+import { useAuth } from '../context/AuthContext';
 
 const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [errors, setErrors] = useState({});
+  const { login } = useAuth();
   const navigate = useNavigate();
 
   const validate = () => {
@@ -21,7 +23,10 @@ const Login = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (validate()) {
-      navigate('/');
+      const success = login(email, password);
+      if (success) {
+        navigate('/');
+      }
     }
   };
 

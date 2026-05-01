@@ -1,8 +1,23 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useAuth } from '../context/AuthContext';
 
 const Profile = () => {
   const navigate = useNavigate();
+  const { user, logout } = useAuth();
+
+  React.useEffect(() => {
+    if (!user) {
+      navigate('/login');
+    }
+  }, [user, navigate]);
+
+  const handleLogout = () => {
+    logout();
+    navigate('/login');
+  };
+
+  if (!user) return null;
 
   const orders = [
     { id: '#ET-9021', date: 'Oct 12, 2025', status: 'Delivered', amount: '₹1,25,000', image: '/images/bridal_new_1.png' },
@@ -21,8 +36,8 @@ const Profile = () => {
                 <span className="text-2xl font-noto-serif text-on-primary-container">E</span>
               </div>
               <div>
-                <h2 className="font-noto-serif text-xl">Etashaa Bride</h2>
-                <p className="text-[10px] uppercase tracking-widest text-outline">Platinum Member</p>
+                <h2 className="font-noto-serif text-xl">{user.name}</h2>
+                <p className="text-[10px] uppercase tracking-widest text-outline">{user.role === 'admin' ? 'Master Access' : 'Platinum Member'}</p>
               </div>
             </div>
 
@@ -44,7 +59,7 @@ const Profile = () => {
                 </button>
               ))}
               <button 
-                onClick={() => navigate('/login')}
+                onClick={handleLogout}
                 className="text-left px-6 py-6 text-[11px] uppercase tracking-widest font-jakarta-sans text-secondary font-bold mt-8 border-t border-outline/10"
               >
                 Sign Out

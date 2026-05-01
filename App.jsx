@@ -18,16 +18,21 @@ import OrderTracking from './pages/OrderTracking';
 import Policies from './pages/Policies';
 import { CartProvider } from './context/CartContext';
 import { WishlistProvider } from './context/WishlistContext';
+import { AuthProvider } from './context/AuthContext';
 import Wishlist from './pages/Wishlist';
 import SizeGuide from './pages/SizeGuide';
 import BookAppointment from './pages/BookAppointment';
 import EtashaaMuse from './pages/EtashaaMuse';
+import HeritageJournal from './pages/HeritageJournal';
+import AdminDashboard from './pages/AdminDashboard';
+import AdminLogin from './pages/AdminLogin';
 
 function App() {
   return (
-    <WishlistProvider>
-      <CartProvider>
-        <Router>
+    <AuthProvider>
+      <WishlistProvider>
+        <CartProvider>
+          <Router>
           <Layout>
             <Routes>
               <Route path="/" element={<Home />} />
@@ -55,12 +60,16 @@ function App() {
               <Route path="/our-story" element={<Policies />} />
               <Route path="/book-appointment" element={<BookAppointment />} />
               <Route path="/etashaa-muse" element={<EtashaaMuse />} />
+              <Route path="/heritage-journal" element={<HeritageJournal />} />
+              <Route path="/admin" element={<AdminDashboard />} />
+              <Route path="/admin-login" element={<AdminLogin />} />
               <Route path="/contact" element={<Policies />} />
             </Routes>
           </Layout>
         </Router>
       </CartProvider>
     </WishlistProvider>
+  </AuthProvider>
   );
 }
 

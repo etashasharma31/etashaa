@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import { categories, occasions } from '../data';
 
 const slides = [
@@ -88,11 +88,11 @@ const Home = () => {
                   style={{ objectPosition: '50% 5%' }}
                 />
               </div>
-              
+
               {/* Text & Button Overlay */}
               <div className="absolute inset-0 z-20 flex flex-col justify-center px-6 md:px-16 lg:px-32">
                 <div className={`transition-all duration-1000 delay-300 transform flex flex-col items-start text-left max-w-2xl ${index === currentSlide ? 'translate-x-0 opacity-100' : '-translate-x-12 opacity-0'}`}>
-                  
+
                   {/* Tagline with Editorial Line */}
                   <div className="flex items-center gap-4 mb-6">
                     <div className="w-12 h-px bg-[#d4af37]"></div>
@@ -114,7 +114,7 @@ const Home = () => {
                   </div>
 
                   {/* Premium Editorial Button */}
-                  <button 
+                  <button
                     onClick={() => navigate(slide.link)}
                     className="group flex items-center justify-between gap-6 px-8 py-4 border border-white/40 bg-white/5 backdrop-blur-md text-white font-jakarta-sans text-[9px] md:text-[11px] uppercase tracking-[0.3em] hover:bg-white hover:text-black transition-all duration-700"
                   >
@@ -150,16 +150,16 @@ const Home = () => {
       <section className="bg-surface -mt-4 -mb-6 md:-mt-8 md:-mb-12 relative z-10 pointer-events-none">
         <div className="max-w-[1200px] mx-auto px-4 md:px-0">
           <div className="relative w-full flex justify-center items-center">
-            <div 
+            <div
               className="w-full max-w-[300px]"
               style={{
                 maskImage: 'radial-gradient(ellipse at center, black 40%, transparent 80%)',
                 WebkitMaskImage: 'radial-gradient(ellipse at center, black 40%, transparent 80%)'
               }}
             >
-              <img 
-                src="/images/dark_vidai_illustration.png" 
-                alt="Dark Vidai Illustration" 
+              <img
+                src="/images/dark_vidai_illustration.png"
+                alt="Dark Vidai Illustration"
                 className="w-full h-auto object-contain mix-blend-darken opacity-100 transition-all duration-700"
               />
             </div>
@@ -198,7 +198,7 @@ const Home = () => {
           <div className="flex flex-col items-center mb-8 space-y-3">
             <h3 className="text-center tracking-[0.2em] uppercase font-jakarta-sans text-[10px] font-bold text-primary">In the Spotlight</h3>
           </div>
-          <div className="relative aspect-video md:aspect-[2.5/1] overflow-hidden bg-surface-variant shadow-2xl rounded-[2rem] group">
+          <div className="relative aspect-video md:aspect-2.5/1 overflow-hidden bg-surface-variant shadow-2xl rounded-4xl group">
             {promoBanners.map((banner, i) => (
               <div
                 key={i}
@@ -221,70 +221,50 @@ const Home = () => {
         </div>
       </section>
 
-      {/* Shop by Occasion */}
-      <section className="bg-surface py-20">
-        <div className="max-w-custom">
-          <div className="flex flex-col items-center justify-center mb-12 space-y-4 text-center">
-            <div>
-              <span className="font-jakarta-sans text-[9px] uppercase tracking-widest text-primary mb-3 block font-bold">Curated Closets</span>
-              <h2 className="text-2xl md:text-3xl mb-4">Shop by Occasion</h2>
-              <div className="w-12 h-px bg-primary-container mx-auto"></div>
-            </div>
-            <p className="text-on-surface/60 max-w-lg text-center text-xs italic mt-4">From vibrant haldi ceremonies to the grandeur of the wedding day, find the perfect silhouette for every ritual.</p>
-          </div>
-          <div className="grid grid-cols-3 gap-3 md:gap-10">
-            {occasions.map((occasion, index) => (
-              <div key={occasion.name} className={`group flex flex-col gap-3 md:gap-5 cursor-pointer ${index === 1 ? 'md:-mt-10' : ''}`}>
-                <div className="aspect-3/4 overflow-hidden bg-surface-container-highest rounded-[2rem] md:rounded-[3rem] shadow-lg transition-shadow duration-700 group-hover:shadow-2xl">
-                  <img className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110" src={occasion.image} alt={occasion.name} />
-                </div>
-                <div className="text-center px-1 transition-transform duration-700 group-hover:-translate-y-1">
-                  <h4 className="text-[10px] md:text-xl font-noto-serif mb-0.5 transition-colors duration-500 group-hover:text-primary">{occasion.name}</h4>
-                  <p className="text-[6px] md:text-[9px] uppercase tracking-widest text-primary font-bold">{occasion.description}</p>
-                </div>
+
+      {/* Cinematic Heritage Section - The Muse Reels */}
+      <section className="mb-40 px-6 md:px-12 max-w-custom mx-auto">
+        <div className="text-center mb-16">
+          <p className="font-jakarta-sans text-[10px] uppercase tracking-[1em] text-primary mb-6 font-bold uppercase">Grace in Motion</p>
+          <h2 className="font-noto-serif text-3xl md:text-5xl mb-6">The Cinematic Muse</h2>
+          <p className="max-w-xl mx-auto text-on-surface/50 font-jakarta-sans text-[11px] leading-relaxed italic">
+            "Witness the fluidity of our heritage fabrics and the sparkle of our hand-embroidery in motion."
+          </p>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          {[
+            { id: 1, src: '/videos/muse_reel_1.mp4', label: 'The Royal Entrance' },
+            { id: 2, src: 'https://v1.pinimg.com/videos/mc/720p/2d/b4/82/2db482bf85e8b3bd1a8885401bed9ec8.mp4', label: 'Artisanal Elegance' },
+            { id: 3, src: '/videos/muse_reel_3.mp4', label: 'Heritage Glow' }
+          ].map((reel) => (
+            <div key={reel.id} className="relative group aspect-[9/16] overflow-hidden bg-surface-container-highest rounded-4xl shadow-2xl">
+              <video 
+                autoPlay 
+                muted 
+                loop 
+                playsInline 
+                className="w-full h-full object-cover opacity-90 group-hover:opacity-100 group-hover:scale-110 transition-all duration-1000"
+              >
+                <source src={reel.src} type="video/mp4" />
+                Your browser does not support the video tag.
+              </video>
+              <div className="absolute inset-0 bg-linear-to-t from-black/80 via-transparent to-transparent flex flex-col justify-end p-10 opacity-100 group-hover:opacity-90 transition-opacity">
+                <span className="text-white font-jakarta-sans text-[9px] uppercase tracking-[0.5em] mb-3 font-bold">{reel.label}</span>
+                <div className="w-10 h-px bg-primary/80 transform origin-left transition-transform duration-700 group-hover:scale-x-150"></div>
               </div>
-            ))}
-          </div>
+            </div>
+          ))}
+        </div>
+        
+        <div className="text-center mt-20">
+          <Link to="/etashaa-muse" className="inline-flex items-center gap-4 text-on-surface font-jakarta-sans text-[10px] uppercase tracking-[0.4em] font-bold border-b border-primary/30 pb-2 hover:text-primary transition-all">
+            Watch All Muse Stories
+            <span className="material-symbols-outlined text-sm">east</span>
+          </Link>
         </div>
       </section>
 
-      {/* The Etashaa Atelier - Behind the Craft */}
-      <section className="bg-surface py-32 border-t border-outline-variant/10 overflow-hidden">
-        <div className="max-w-custom">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center mb-24">
-            <div className="reveal">
-              <span className="font-jakarta-sans text-[10px] uppercase tracking-[0.6em] text-primary mb-6 block font-bold">Atelier Live</span>
-              <h2 className="text-4xl md:text-6xl font-noto-serif mb-8 leading-[1.1]">The Soul of<br/>Our Craft</h2>
-              <p className="text-on-surface/60 font-jakarta-sans text-sm leading-relaxed max-w-md mb-10 italic pl-6 border-l-2 border-primary/20">
-                "Every stitch is a prayer, every weave a story. Step inside the sacred space where our artisans bring heritage to life with hands that have mastered time."
-              </p>
-              <button className="group flex items-center gap-4 font-jakarta-sans text-[11px] uppercase tracking-[0.3em] font-bold text-on-surface hover:text-primary transition-all">
-                Explore the Atelier
-                <span className="material-symbols-outlined text-sm group-hover:translate-x-2 transition-transform">east</span>
-              </button>
-            </div>
-            
-            <div className="grid grid-cols-2 gap-4 reveal">
-              <div className="space-y-4 pt-12">
-                <div className="aspect-[4/5] rounded-[2rem] overflow-hidden group">
-                  <img src="/images/craft_embroidery_1777614908468.png" alt="Embroidery" className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110" />
-                </div>
-                <div className="aspect-square rounded-[2rem] overflow-hidden group">
-                  <img src="/images/craft_threads_1777614925635.png" alt="Threads" className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110" />
-                </div>
-              </div>
-              <div className="space-y-4">
-                <div className="aspect-square rounded-[2rem] overflow-hidden group">
-                  <img src="/images/craft_sketching_1777614942178.png" alt="Sketching" className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110" />
-                </div>
-                <div className="aspect-[4/5] rounded-[2rem] overflow-hidden group">
-                  <img src="/images/craft_loom_1777614959397.png" alt="Loom" className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110" />
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
     </div>
   );
 };
