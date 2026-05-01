@@ -21,6 +21,7 @@ import { WishlistProvider } from './context/WishlistContext';
 import Wishlist from './pages/Wishlist';
 import SizeGuide from './pages/SizeGuide';
 import BookAppointment from './pages/BookAppointment';
+import EtashaaMuse from './pages/EtashaaMuse';
 
 function App() {
   return (
@@ -53,6 +54,7 @@ function App() {
               <Route path="/faqs" element={<Policies />} />
               <Route path="/our-story" element={<Policies />} />
               <Route path="/book-appointment" element={<BookAppointment />} />
+              <Route path="/etashaa-muse" element={<EtashaaMuse />} />
               <Route path="/contact" element={<Policies />} />
             </Routes>
           </Layout>

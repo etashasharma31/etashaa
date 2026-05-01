@@ -247,6 +247,44 @@ const Home = () => {
           </div>
         </div>
       </section>
+
+      {/* The Etashaa Atelier - Behind the Craft */}
+      <section className="bg-surface py-32 border-t border-outline-variant/10 overflow-hidden">
+        <div className="max-w-custom">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center mb-24">
+            <div className="reveal">
+              <span className="font-jakarta-sans text-[10px] uppercase tracking-[0.6em] text-primary mb-6 block font-bold">Atelier Live</span>
+              <h2 className="text-4xl md:text-6xl font-noto-serif mb-8 leading-[1.1]">The Soul of<br/>Our Craft</h2>
+              <p className="text-on-surface/60 font-jakarta-sans text-sm leading-relaxed max-w-md mb-10 italic pl-6 border-l-2 border-primary/20">
+                "Every stitch is a prayer, every weave a story. Step inside the sacred space where our artisans bring heritage to life with hands that have mastered time."
+              </p>
+              <button className="group flex items-center gap-4 font-jakarta-sans text-[11px] uppercase tracking-[0.3em] font-bold text-on-surface hover:text-primary transition-all">
+                Explore the Atelier
+                <span className="material-symbols-outlined text-sm group-hover:translate-x-2 transition-transform">east</span>
+              </button>
+            </div>
+            
+            <div className="grid grid-cols-2 gap-4 reveal">
+              <div className="space-y-4 pt-12">
+                <div className="aspect-[4/5] rounded-[2rem] overflow-hidden group">
+                  <img src="/images/craft_embroidery_1777614908468.png" alt="Embroidery" className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110" />
+                </div>
+                <div className="aspect-square rounded-[2rem] overflow-hidden group">
+                  <img src="/images/craft_threads_1777614925635.png" alt="Threads" className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110" />
+                </div>
+              </div>
+              <div className="space-y-4">
+                <div className="aspect-square rounded-[2rem] overflow-hidden group">
+                  <img src="/images/craft_sketching_1777614942178.png" alt="Sketching" className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110" />
+                </div>
+                <div className="aspect-[4/5] rounded-[2rem] overflow-hidden group">
+                  <img src="/images/craft_loom_1777614959397.png" alt="Loom" className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110" />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
     </div>
   );
 };
