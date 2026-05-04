@@ -10,6 +10,9 @@ const BridalCollection = () => {
   const [selectedAvailability, setSelectedAvailability] = useState([]);
   const [selectedBrands, setSelectedBrands] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
+  const [isFilterOpen, setIsFilterOpen] = useState(false);
+  const [isSortOpen, setIsSortOpen] = useState(false);
+  const [selectedSort, setSelectedSort] = useState('Newest Arrivals');
   const productsPerPage = 8;
 
   // Scroll to top when filters or page change
@@ -57,21 +60,27 @@ const BridalCollection = () => {
     return true;
   });
 
-  const totalPages = Math.ceil(filteredProducts.length / productsPerPage);
+  // Apply Sorting
+  const sortedProducts = [...filteredProducts].sort((a, b) => {
+    if (selectedSort === 'Price: Low to High') return a.price - b.price;
+    if (selectedSort === 'Price: High to Low') return b.price - a.price;
+    if (selectedSort === 'Newest Arrivals') return b.id.localeCompare(a.id); // Assuming ID pattern reflects recency
+    return 0;
+  });
+
+  const totalPages = Math.ceil(sortedProducts.length / productsPerPage);
 
   // Get current products
   const indexOfLastProduct = currentPage * productsPerPage;
   const indexOfFirstProduct = indexOfLastProduct - productsPerPage;
-  const currentProducts = filteredProducts.slice(indexOfFirstProduct, indexOfLastProduct);
+  const currentProducts = sortedProducts.slice(indexOfFirstProduct, indexOfLastProduct);
 
   const paginate = (pageNumber) => {
     setCurrentPage(pageNumber);
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
-  const [isFilterOpen, setIsFilterOpen] = useState(false);
-  const [isSortOpen, setIsSortOpen] = useState(false);
-  const [selectedSort, setSelectedSort] = useState('Newest Arrivals');
+
 
   // Lock scroll when mobile filter is open
   useEffect(() => {
@@ -94,9 +103,9 @@ const BridalCollection = () => {
     <main className="min-h-screen">
       <PageHero 
         title="Bridal"
-        tagline="Timeless Elegance"
-        subtitle="Tradition. Grace. You."
-        footerText="Grace in every thread. Beauty in every drape."
+        tagline="Couture Heritage"
+        subtitle="The Wedding Anthology"
+        footerText="Exquisite zardosi and raw silk masterpieces for the modern matriarch."
       />
 
       {/* Mobile Filter Toggle & Sort - Refined Sticky */}

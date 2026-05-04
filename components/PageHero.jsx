@@ -6,12 +6,12 @@ const PageHero = ({ title, subtitle, tagline, footerText, image }) => {
       {/* Background patterns/texture */}
       <div className="absolute inset-0 opacity-10 pointer-events-none" style={{ backgroundImage: 'radial-gradient(#735b24 0.5px, transparent 0.5px)', backgroundSize: '10px 10px' }}></div>
       
-      <div className="max-w-custom w-full mx-auto flex flex-col md:flex-row items-center justify-between gap-8 relative z-10 py-12">
+      <div className="max-w-4xl w-full mx-auto flex flex-col items-center justify-center gap-12 relative z-10 py-20">
         {/* Left Side: Text Content */}
-        <div className="flex-1 text-center md:text-left space-y-6 flex flex-col items-center md:items-start px-2 md:px-0">
+        <div className="flex-1 text-center space-y-8 flex flex-col items-center px-4">
           
           {/* Top Ornament & Tagline */}
-          <div className="flex flex-col items-center md:items-start gap-3">
+          <div className="flex flex-col items-center gap-3">
             <div className="w-24 h-[1px] bg-primary/30 relative">
               <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-[#F5E6D3] px-2 text-[10px] text-primary">✧</div>
             </div>
@@ -26,7 +26,7 @@ const PageHero = ({ title, subtitle, tagline, footerText, image }) => {
           </h1>
 
           {/* Bottom Tagline & Ornament */}
-          <div className="flex flex-col items-center md:items-start gap-4">
+          <div className="flex flex-col items-center gap-4">
             <p className="font-jakarta-sans text-[11px] md:text-xs uppercase tracking-[0.5em] text-on-surface font-medium italic">
               {subtitle || "Tradition. Grace. You."}
             </p>

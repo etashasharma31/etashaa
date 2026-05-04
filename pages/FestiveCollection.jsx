@@ -56,12 +56,20 @@ const FestiveCollection = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const productsPerPage = 8;
 
-  const totalPages = Math.ceil(filteredProducts.length / productsPerPage);
+  // Apply Sorting
+  const sortedProducts = [...filteredProducts].sort((a, b) => {
+    if (selectedSort === 'Price: Low to High') return a.price - b.price;
+    if (selectedSort === 'Price: High to Low') return b.price - a.price;
+    if (selectedSort === 'Newest Arrivals') return b.id.localeCompare(a.id);
+    return 0;
+  });
+
+  const totalPages = Math.ceil(sortedProducts.length / productsPerPage);
 
   // Get current products
   const indexOfLastProduct = currentPage * productsPerPage;
   const indexOfFirstProduct = indexOfLastProduct - productsPerPage;
-  const currentProducts = filteredProducts.slice(indexOfFirstProduct, indexOfLastProduct);
+  const currentProducts = sortedProducts.slice(indexOfFirstProduct, indexOfLastProduct);
 
   const paginate = (pageNumber) => {
     setCurrentPage(pageNumber);
@@ -72,9 +80,9 @@ const FestiveCollection = () => {
     <main className="min-h-screen">
       <PageHero 
         title="Festive"
-        tagline="Timeless Elegance"
-        subtitle="Tradition. Grace. You."
-        footerText="Grace in every thread. Beauty in every drape."
+        tagline="Celebration Ready"
+        subtitle="Vibrant Occasion Wear"
+        footerText="Light luxury ensembles designed for the rhythm of celebration."
       />
 
       {/* Mobile Filter Toggle & Sort - Refined Sticky */}

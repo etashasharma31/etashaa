@@ -89,16 +89,17 @@ const Home = () => {
                 />
               </div>
 
-              {/* Text & Button Overlay */}
-              <div className="absolute inset-0 z-20 flex flex-col justify-center px-6 md:px-16 lg:px-32">
-                <div className={`transition-all duration-1000 delay-300 transform flex flex-col items-start text-left max-w-2xl ${index === currentSlide ? 'translate-x-0 opacity-100' : '-translate-x-12 opacity-0'}`}>
+              {/* Text & Button Overlay - Centered */}
+              <div className="absolute inset-0 z-20 flex flex-col justify-center items-center px-6 text-center">
+                <div className={`transition-all duration-1000 delay-300 transform flex flex-col items-center max-w-3xl ${index === currentSlide ? 'translate-y-0 opacity-100' : 'translate-y-12 opacity-0'}`}>
 
-                  {/* Tagline with Editorial Line */}
-                  <div className="flex items-center gap-4 mb-6">
+                  {/* Tagline with Editorial Ornament */}
+                  <div className="flex items-center gap-4 mb-8">
                     <div className="w-12 h-px bg-[#d4af37]"></div>
                     <span className="block text-[#d4af37] font-jakarta-sans text-[9px] md:text-[11px] uppercase tracking-[0.4em] font-bold drop-shadow-md">
                       {slide.tag}
                     </span>
+                    <div className="w-12 h-px bg-[#d4af37]"></div>
                   </div>
 
                   {/* Main Title */}
@@ -106,9 +107,9 @@ const Home = () => {
                     {slide.title}
                   </h2>
 
-                  {/* Subtitle with Editorial Left Border */}
-                  <div className="pl-5 border-l border-[#d4af37]/40 mb-10 md:mb-12">
-                    <p className="text-white/80 font-jakarta-sans text-xs md:text-sm max-w-lg leading-relaxed drop-shadow-md font-light italic">
+                  {/* Subtitle - Centered */}
+                  <div className="mb-12">
+                    <p className="text-white/80 font-jakarta-sans text-xs md:text-base max-w-xl leading-relaxed drop-shadow-md font-light italic">
                       {slide.sub}
                     </p>
                   </div>

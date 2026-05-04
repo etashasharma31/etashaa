@@ -83,15 +83,18 @@ const HeritageJournal = () => {
 
   return (
     <div className="bg-[#FCF9F6] min-h-screen pt-32 pb-40">
-      {/* Journal Header - Split Screen Editorial */}
-      <section className="max-w-7xl mx-auto px-6 md:px-12 mb-32 relative">
-        <div className="flex flex-col md:flex-row items-end justify-between gap-12 border-b border-outline-variant/10 pb-20">
-          <div className="max-w-2xl">
-            <p className="font-jakarta-sans text-[10px] uppercase tracking-[0.8em] text-primary/60 font-bold mb-8">Etashaa Gazette</p>
-            <h1 className="font-noto-serif text-5xl md:text-7xl tracking-tighter text-on-surface leading-[0.9]">The Heritage<br/><span className="italic italic-serif pl-12 text-primary/80">Journal</span></h1>
+      {/* Journal Header - Centered Editorial */}
+      <section className="max-w-4xl mx-auto px-6 md:px-12 mb-32 relative pt-20">
+        <div className="flex flex-col items-center text-center gap-8 border-b border-outline-variant/10 pb-20">
+          <div className="space-y-6">
+            <p className="font-jakarta-sans text-[10px] uppercase tracking-[0.8em] text-primary/60 font-bold">Etashaa Gazette</p>
+            <h1 className="font-noto-serif text-5xl md:text-8xl tracking-tighter text-on-surface leading-[0.9]">
+              The Heritage<br/>
+              <span className="italic italic-serif text-primary/80">Journal</span>
+            </h1>
           </div>
-          <div className="max-w-xs text-right md:text-left">
-            <div className="w-12 h-px bg-primary/30 mb-6 hidden md:block"></div>
+          <div className="max-w-md">
+            <div className="w-12 h-px bg-primary/30 mx-auto mb-6"></div>
             <p className="font-jakarta-sans text-[11px] text-on-surface/50 leading-relaxed uppercase tracking-[0.2em] italic">
               "A curated anthology of craftsmanship, culture, and the cinematic beauty of Indian couture."
             </p>

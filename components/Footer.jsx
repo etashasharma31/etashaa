@@ -3,8 +3,8 @@ import { Link } from 'react-router-dom';
 
 const Footer = () => {
   return (
-    <footer className="bg-white pt-10 pb-16 px-4 md:px-8 lg:px-12">
-      <div className="max-w-custom mx-auto bg-white border border-black/5 p-8 md:p-16 lg:p-20 relative shadow-sm">
+    <footer className="bg-surface pt-10 pb-16 px-4 md:px-8 lg:px-12">
+      <div className="max-w-custom mx-auto bg-transparent p-8 md:p-16 lg:p-20 relative">
         {/* Main Footer Grid */}
         <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-y-12 gap-x-8 pb-16 border-b border-black/5 mb-12">
           
@@ -42,14 +42,14 @@ const Footer = () => {
 
           {/* Newsletter */}
           <div className="col-span-2 md:col-span-1 space-y-8">
-            <h4 className="font-jakarta-sans text-[9px] md:text-xs tracking-[0.3em] uppercase text-primary font-bold">Newsletter</h4>
+            <h4 className="font-jakarta-sans text-[11px] md:text-sm tracking-[0.3em] uppercase text-primary font-bold">Newsletter</h4>
             <div className="space-y-6">
-              <p className="font-jakarta-sans text-[9px] md:text-[10px] text-neutral-500 uppercase tracking-[0.2em] leading-relaxed">
+              <p className="font-jakarta-sans text-[11px] md:text-xs text-neutral-500 uppercase tracking-[0.2em] leading-relaxed">
                 Sign up for early access to new collections.
               </p>
               <div className="relative pt-4">
                 <input 
-                  className="bg-transparent border-b border-black/10 w-full pb-4 text-[10px] md:text-xs focus:outline-none focus:border-primary transition-all duration-700 placeholder:text-neutral-400 uppercase tracking-[0.2em] text-neutral-800" 
+                  className="bg-transparent border-b border-black/10 w-full pb-4 text-xs md:text-sm focus:outline-none focus:border-primary transition-all duration-700 placeholder:text-neutral-400 uppercase tracking-[0.2em] text-neutral-800" 
                   placeholder="Your Email" 
                   type="email"
                 />

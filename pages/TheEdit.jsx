@@ -8,8 +8,9 @@ const TheEdit = () => {
     <main className="min-h-screen">
       <PageHero 
         title="The Red & Pastel Edit"
-        tagline="Curated Collection"
-        subtitle="A stunning dichotomy of tradition and modernity. 10 exclusive silhouettes."
+        tagline="Curated Luxury"
+        subtitle="A Stunning Dichotomy"
+        footerText="10 exclusive silhouettes exploring the dialogue between crimson and blush."
         image="/images/hero_bridal_elegance.png"
       />
 
