@@ -183,25 +183,7 @@ const HeritageJournal = () => {
         </div>
       )}
 
-      {/* Newsletter Section */}
-      <section className="mt-40 max-w-3xl mx-auto px-6 text-center">
-        <div className="p-20 bg-primary/5 rounded-[4rem] border border-primary/10">
-          <h3 className="font-noto-serif text-4xl mb-8">Subscribe to the Gazette</h3>
-          <p className="font-jakarta-sans text-xs text-on-surface/50 mb-12 uppercase tracking-widest leading-loose">
-            Receive exclusive stories from the atelier,<br/>early access to collections, and invitations to private trunk shows.
-          </p>
-          <form className="flex flex-col sm:flex-row gap-4 max-w-md mx-auto" onSubmit={(e) => e.preventDefault()}>
-            <input 
-              type="email" 
-              placeholder="YOUR EMAIL ADDRESS" 
-              className="flex-1 bg-white border border-outline-variant/30 px-6 py-4 text-[10px] tracking-widest focus:outline-none focus:border-primary transition-colors"
-            />
-            <button className="btn-premium whitespace-nowrap">
-              <span>Subscribe</span>
-            </button>
-          </form>
-        </div>
-      </section>
+
     </div>
   );
 };
