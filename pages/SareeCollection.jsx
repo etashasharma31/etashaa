@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import ProductCard from '../components/ProductCard';
-import PageHero from '../components/PageHero';
+import EditorialHero from '../components/EditorialHero';
 import FilterSidebar from '../components/FilterSidebar';
 import { sareeProducts } from '../data';
 
@@ -78,11 +78,11 @@ const SareeCollection = () => {
 
   return (
     <main className="min-h-screen">
-      <PageHero 
-        title="Sarees"
+      <EditorialHero 
         tagline="The Art of Drape"
-        subtitle="Handwoven Handpicked"
-        footerText="Timeless silk and organza stories woven in the heart of Varanasi."
+        title="The Saree Story"
+        description="Timeless silk and organza stories woven in the heart of Varanasi."
+        bgText="Saree"
       />
 
       {/* Mobile Filter Toggle & Sort - Refined Sticky */}

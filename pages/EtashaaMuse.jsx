@@ -42,9 +42,9 @@ const EtashaaMuse = () => {
   ];
 
   return (
-    <div className="bg-[#FCF9F6] min-h-screen pt-32 pb-40">
+    <div className="bg-[#FCF9F6] min-h-screen pt-4 pb-40">
       {/* Editorial Header - Centered */}
-      <section className="max-w-4xl mx-auto px-6 md:px-12 mb-32 relative text-center pt-20">
+      <section className="max-w-4xl mx-auto px-6 md:px-12 mb-24 relative text-center">
         <div className="flex flex-col items-center gap-10">
           <div className="space-y-6">
             <p className="font-jakarta-sans text-[10px] uppercase tracking-[0.8em] text-primary/60 font-bold">Etashaa Heritage • The Muse</p>
@@ -57,7 +57,7 @@ const EtashaaMuse = () => {
             </p>
           </div>
         </div>
-        <div className="absolute top-0 right-1/2 translate-x-1/2 opacity-[0.03] pointer-events-none select-none">
+        <div className="absolute top-[-20px] right-1/2 translate-x-1/2 opacity-[0.03] pointer-events-none select-none">
           <span className="font-noto-serif text-[250px] leading-none uppercase">Muse</span>
         </div>
       </section>
@@ -75,6 +75,7 @@ const EtashaaMuse = () => {
                 <img
                   src={muse.image}
                   alt={muse.name}
+                  loading="lazy"
                   className="w-full h-full object-cover transition-transform duration-2000 ease-out group-hover:scale-110"
                 />
                 <div className="absolute inset-0 bg-linear-to-t from-black/80 via-black/20 to-transparent opacity-60 group-hover:opacity-90 transition-opacity duration-700"></div>
@@ -102,8 +103,8 @@ const EtashaaMuse = () => {
       </section>
 
       {/* Cinematic Reels Section */}
-      <section className="mb-40 px-6 md:px-12 max-w-7xl mx-auto mt-40">
-        <div className="text-center mb-20">
+      <section className="mb-32 px-6 md:px-12 max-w-7xl mx-auto mt-24">
+        <div className="text-center mb-16">
           <p className="font-jakarta-sans text-[10px] uppercase tracking-[1em] text-primary mb-6 font-bold">Grace in Motion</p>
           <h2 className="font-noto-serif text-4xl md:text-6xl mb-8">The Cinematic Muse</h2>
           <p className="max-w-xl mx-auto text-on-surface/50 font-jakarta-sans text-sm leading-relaxed">
@@ -123,6 +124,7 @@ const EtashaaMuse = () => {
                 muted 
                 loop 
                 playsInline 
+                preload="none"
                 className="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity duration-700"
               >
                 <source src={reel.src} type="video/mp4" />

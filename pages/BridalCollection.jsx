@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import ProductCard from '../components/ProductCard';
-import PageHero from '../components/PageHero';
+import EditorialHero from '../components/EditorialHero';
 import FilterSidebar from '../components/FilterSidebar';
 import { bridalProducts } from '../data';
 
@@ -101,11 +101,11 @@ const BridalCollection = () => {
 
   return (
     <main className="min-h-screen">
-      <PageHero 
-        title="Bridal"
+      <EditorialHero 
         tagline="Couture Heritage"
-        subtitle="The Wedding Anthology"
-        footerText="Exquisite zardosi and raw silk masterpieces for the modern matriarch."
+        title="The Bridal Anthology"
+        description="Exquisite zardosi and raw silk masterpieces for the modern matriarch."
+        bgText="Bridal"
       />
 
       {/* Mobile Filter Toggle & Sort - Refined Sticky */}

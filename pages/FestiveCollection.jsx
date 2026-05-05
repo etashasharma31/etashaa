@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import ProductCard from '../components/ProductCard';
-import PageHero from '../components/PageHero';
+import EditorialHero from '../components/EditorialHero';
 import FilterSidebar from '../components/FilterSidebar';
 import { festiveProducts } from '../data';
 
@@ -78,11 +78,11 @@ const FestiveCollection = () => {
 
   return (
     <main className="min-h-screen">
-      <PageHero 
-        title="Festive"
+      <EditorialHero 
         tagline="Celebration Ready"
-        subtitle="Vibrant Occasion Wear"
-        footerText="Light luxury ensembles designed for the rhythm of celebration."
+        title="The Festive Collection"
+        description="Light luxury ensembles designed for the rhythm of celebration."
+        bgText="Festive"
       />
 
       {/* Mobile Filter Toggle & Sort - Refined Sticky */}

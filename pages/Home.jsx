@@ -84,6 +84,7 @@ const Home = () => {
                 <img
                   src={slide.image}
                   alt={slide.title}
+                  loading={index === 0 ? "eager" : "lazy"}
                   className={`w-full h-full object-cover transition-transform duration-8000 ease-linear ${index === currentSlide ? 'scale-110 translate-y-0' : 'scale-100'}`}
                   style={{ objectPosition: '50% 5%' }}
                 />
@@ -182,7 +183,7 @@ const Home = () => {
                 className="group relative aspect-3/5 overflow-hidden bg-surface-container-high cursor-pointer rounded-[3rem]"
                 onClick={() => navigate(category.link)}
               >
-                <img alt={category.name} className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110" src={category.image} />
+                <img alt={category.name} loading="lazy" className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110" src={category.image} />
                 <div className="absolute inset-0 bg-linear-to-t from-black/80 via-transparent to-transparent opacity-90"></div>
                 <div className="absolute bottom-4 left-4 md:bottom-10 md:left-10 text-white pr-4">
                   <h4 className="text-[10px] md:text-2xl mb-1 md:mb-2 tracking-tight font-noto-serif uppercase md:normal-case">{category.name}</h4>
@@ -210,6 +211,7 @@ const Home = () => {
                 <img
                   src={banner.image}
                   alt={banner.title}
+                  loading="lazy"
                   className="w-full h-full object-cover transition-transform duration-10000 hover:scale-110"
                   onError={(e) => {
                     console.error("Image failed to load:", banner.image);
@@ -224,8 +226,8 @@ const Home = () => {
 
 
       {/* Cinematic Heritage Section - The Muse Reels */}
-      <section className="mb-40 px-6 md:px-12 max-w-custom mx-auto">
-        <div className="text-center mb-16">
+      <section className="mb-24 px-6 md:px-12 max-w-custom mx-auto mt-24">
+        <div className="text-center mb-12">
           <p className="font-jakarta-sans text-[10px] uppercase tracking-[1em] text-primary mb-6 font-bold uppercase">Grace in Motion</p>
           <h2 className="font-noto-serif text-3xl md:text-5xl mb-6">The Cinematic Muse</h2>
           <p className="max-w-xl mx-auto text-on-surface/50 font-jakarta-sans text-[11px] leading-relaxed italic">
@@ -245,6 +247,7 @@ const Home = () => {
                 muted 
                 loop 
                 playsInline 
+                preload="none"
                 className="w-full h-full object-cover opacity-90 group-hover:opacity-100 group-hover:scale-110 transition-all duration-1000"
               >
                 <source src={reel.src} type="video/mp4" />
