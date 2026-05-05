@@ -7,13 +7,13 @@ const AdminDashboard = () => {
   const { admin, adminLogout, initialLoading } = useAuth();
   const navigate = useNavigate();
   const [activeTab, setActiveTab] = useState('Overview');
-  
+
   // Persistence States
   const [products, setProducts] = useState(() => {
     const saved = localStorage.getItem('etashaa_inventory');
     return saved ? JSON.parse(saved) : allProducts;
   });
-  
+
   const [appointments, setAppointments] = useState(() => {
     const saved = localStorage.getItem('etashaa_appointments');
     return saved ? JSON.parse(saved) : [
@@ -26,67 +26,67 @@ const AdminDashboard = () => {
   const [orders, setOrders] = useState(() => {
     const saved = localStorage.getItem('etashaa_orders');
     return saved ? JSON.parse(saved) : [
-      { 
-        id: '#ORD-9283', 
-        customer: 'Priya Sharma', 
+      {
+        id: '#ORD-9283',
+        customer: 'Priya Sharma',
         email: 'priya.s@gmail.com',
         phone: '+91 98765 43210',
         address: 'A-42, Hemkunt Tower, Nehru Place, New Delhi - 110019',
-        product: 'Royal Zardosi Lehenga', 
-        status: 'In Production', 
-        amount: '₹1,85,000', 
+        product: 'Royal Zardosi Lehenga',
+        status: 'In Production',
+        amount: '₹1,85,000',
         date: '2024-04-28',
         items: [
-          { 
-            name: 'Royal Zardosi Lehenga', 
-            price: '₹1,85,000', 
-            images: ['/images/bridal_new_1.png', '/images/bridal_01.jpg', '/images/bridal_02.jpg'], 
-            qty: 1 
+          {
+            name: 'Royal Zardosi Lehenga',
+            price: '₹1,85,000',
+            images: ['/images/bridal_new_1.png', '/images/bridal_01.jpg', '/images/bridal_02.jpg'],
+            qty: 1
           }
         ]
       },
-      { 
-        id: '#ORD-9284', 
-        customer: 'Ananya Rao', 
+      {
+        id: '#ORD-9284',
+        customer: 'Ananya Rao',
         email: 'ananya.rao@outlook.com',
         phone: '+91 88888 77777',
         address: 'Flat 201, Sterling Apartments, Indiranagar, Bangalore - 560038',
-        product: 'Champagne Tissue Saree', 
-        status: 'Shipped', 
-        amount: '₹45,000', 
+        product: 'Champagne Tissue Saree',
+        status: 'Shipped',
+        amount: '₹45,000',
         date: '2024-04-29',
         items: [
-          { 
-            name: 'Champagne Tissue Saree', 
-            price: '₹45,000', 
-            images: ['/images/saree_new_2.png', '/images/saree_01.jpg'], 
-            qty: 1 
+          {
+            name: 'Champagne Tissue Saree',
+            price: '₹45,000',
+            images: ['/images/saree_new_2.png', '/images/saree_01.jpg'],
+            qty: 1
           }
         ]
       },
-      { 
-        id: '#ORD-9285', 
-        customer: 'Meera Kapoor', 
+      {
+        id: '#ORD-9285',
+        customer: 'Meera Kapoor',
         email: 'meera.k@yahoo.com',
         phone: '+91 99900 11122',
         address: '7th Floor, Maker Chambers, Nariman Point, Mumbai - 400021',
-        product: 'Emerald Silk Anarkali', 
-        status: 'Processing', 
-        amount: '₹78,000', 
+        product: 'Emerald Silk Anarkali',
+        status: 'Processing',
+        amount: '₹78,000',
         date: '2024-04-30',
         items: [
           { name: 'Emerald Silk Anarkali', price: '₹78,000', image: '/images/festive_new_1.png', qty: 1 }
         ]
       },
-      { 
-        id: '#ORD-9286', 
-        customer: 'Sonia Varma', 
+      {
+        id: '#ORD-9286',
+        customer: 'Sonia Varma',
         email: 'sonia.v@gmail.com',
         phone: '+91 77766 55544',
         address: 'Villa 12, Palm Meadows, Whitefield, Bangalore - 560066',
-        product: 'Heritage Gold Saree', 
-        status: 'Delivered', 
-        amount: '₹62,000', 
+        product: 'Heritage Gold Saree',
+        status: 'Delivered',
+        amount: '₹62,000',
         date: '2024-05-01',
         items: [
           { name: 'Heritage Gold Saree', price: '₹62,000', image: '/images/saree_new_1.png', qty: 1 }
@@ -157,12 +157,12 @@ const AdminDashboard = () => {
   // Product CRUD
   const openAddModal = () => {
     setEditingItem(null);
-    setFormData({ 
-      name: '', 
-      category: 'Bridal Collection', 
-      price: '', 
-      images: ['/images/bridal_new_1.png'], 
-      id: `PROD-${Date.now()}` 
+    setFormData({
+      name: '',
+      category: 'Bridal Collection',
+      price: '',
+      images: ['/images/bridal_new_1.png'],
+      id: `PROD-${Date.now()}`
     });
     setIsModalOpen(true);
   };
@@ -206,7 +206,7 @@ const AdminDashboard = () => {
 
   const handleRescheduleSave = (e) => {
     e.preventDefault();
-    setAppointments(appointments.map(a => 
+    setAppointments(appointments.map(a =>
       a.id === reschedulingAppointment.id ? { ...a, date: rescheduleData.date, time: rescheduleData.time } : a
     ));
     setNotifications([{
@@ -300,10 +300,9 @@ const AdminDashboard = () => {
                             <p className="text-[9px] text-outline uppercase">{order.customer}</p>
                           </td>
                           <td className="px-8 py-6">
-                            <span className={`text-[8px] uppercase tracking-widest font-bold px-3 py-1 rounded-full ${
-                              order.status === 'Delivered' ? 'bg-green-100 text-green-700' : 
-                              order.status === 'In Production' ? 'bg-amber-100 text-amber-700' : 'bg-blue-100 text-blue-700'
-                            }`}>
+                            <span className={`text-[8px] uppercase tracking-widest font-bold px-3 py-1 rounded-full ${order.status === 'Delivered' ? 'bg-green-100 text-green-700' :
+                                order.status === 'In Production' ? 'bg-amber-100 text-amber-700' : 'bg-blue-100 text-blue-700'
+                              }`}>
                               {order.status}
                             </span>
                           </td>
@@ -341,8 +340,8 @@ const AdminDashboard = () => {
         );
 
       case 'Products':
-        const filteredProducts = products.filter(p => 
-          p.name.toLowerCase().includes(searchQuery.toLowerCase()) || 
+        const filteredProducts = products.filter(p =>
+          p.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
           p.category.toLowerCase().includes(searchQuery.toLowerCase())
         );
         return (
@@ -350,9 +349,9 @@ const AdminDashboard = () => {
             <div className="flex flex-col md:flex-row gap-4 justify-between items-center bg-white p-6 border border-outline-variant/10">
               <div className="relative w-full md:w-96">
                 <span className="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-outline/50">search</span>
-                <input 
-                  type="text" 
-                  placeholder="Search inventory..." 
+                <input
+                  type="text"
+                  placeholder="Search inventory..."
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
                   className="w-full pl-12 pr-4 py-3 bg-surface border border-outline-variant/20 focus:border-primary outline-none text-sm font-jakarta-sans transition-all"
@@ -378,10 +377,10 @@ const AdminDashboard = () => {
                   {filteredProducts.slice(0, 10).map((product) => (
                     <tr key={product.id} className="hover:bg-surface-container-lowest transition-colors">
                       <td className="px-8 py-4">
-                        <img 
-                          src={product.images?.[0] || product.image} 
-                          alt={product.name} 
-                          className="w-12 h-16 object-cover border border-outline-variant/10 shadow-sm" 
+                        <img
+                          src={product.images?.[0] || product.image}
+                          alt={product.name}
+                          className="w-12 h-16 object-cover border border-outline-variant/10 shadow-sm"
                         />
                       </td>
                       <td className="px-8 py-6">
@@ -417,9 +416,8 @@ const AdminDashboard = () => {
                       {apt.status === 'Pending' && (
                         <button onClick={() => handleAppointmentStatus(apt.id, 'Confirmed')} className="text-[8px] bg-primary text-white px-3 py-1 font-bold uppercase tracking-widest hover:shadow-lg transition-all">Confirm</button>
                       )}
-                      <span className={`text-[9px] uppercase tracking-widest font-bold px-3 py-1 rounded-full ${
-                        apt.status === 'Confirmed' ? 'bg-green-50 text-green-700' : 'bg-amber-50 text-amber-700'
-                      }`}>
+                      <span className={`text-[9px] uppercase tracking-widest font-bold px-3 py-1 rounded-full ${apt.status === 'Confirmed' ? 'bg-green-50 text-green-700' : 'bg-amber-50 text-amber-700'
+                        }`}>
                         {apt.status}
                       </span>
                     </div>
@@ -437,7 +435,7 @@ const AdminDashboard = () => {
                     </div>
                   </div>
                   <div className="mt-8 flex gap-3 opacity-0 group-hover:opacity-100 transition-opacity">
-                    <button 
+                    <button
                       onClick={() => handleRescheduleOpen(apt)}
                       className="flex-1 py-2 bg-surface border border-outline-variant/20 text-on-surface text-[9px] uppercase tracking-widest font-bold hover:bg-primary hover:text-white hover:border-primary transition-all"
                     >
@@ -474,16 +472,15 @@ const AdminDashboard = () => {
                       <td className="px-8 py-6 font-bold text-xs">{order.id}</td>
                       <td className="px-8 py-6 text-sm text-on-surface-variant">{order.customer}</td>
                       <td className="px-8 py-6">
-                        <span className={`text-[9px] uppercase tracking-widest font-bold px-3 py-1 rounded-full ${
-                          order.status === 'Delivered' ? 'bg-green-100 text-green-700' : 
-                          order.status === 'In Production' ? 'bg-amber-100 text-amber-700' : 'bg-blue-100 text-blue-700'
-                        }`}>
+                        <span className={`text-[9px] uppercase tracking-widest font-bold px-3 py-1 rounded-full ${order.status === 'Delivered' ? 'bg-green-100 text-green-700' :
+                            order.status === 'In Production' ? 'bg-amber-100 text-amber-700' : 'bg-blue-100 text-blue-700'
+                          }`}>
                           {order.status}
                         </span>
                       </td>
                       <td className="px-8 py-6 text-sm font-bold text-on-surface">{order.amount}</td>
                       <td className="px-8 py-6">
-                        <select 
+                        <select
                           className="bg-transparent border border-outline-variant/20 text-[9px] uppercase tracking-widest font-bold px-2 py-1 outline-none focus:border-primary"
                           value={order.status}
                           onChange={(e) => handleOrderStatus(order.id, e.target.value)}
@@ -495,7 +492,7 @@ const AdminDashboard = () => {
                         </select>
                       </td>
                       <td className="px-8 py-6">
-                        <button 
+                        <button
                           onClick={() => setViewingOrder(order)}
                           className="material-symbols-outlined text-outline hover:text-primary transition-colors text-xl"
                         >
@@ -565,8 +562,8 @@ const AdminDashboard = () => {
                         {settings.maintenanceMode ? 'Offline (Maintenance)' : 'Live & Active'}
                       </p>
                     </div>
-                    <button 
-                      onClick={() => setSettings({...settings, maintenanceMode: !settings.maintenanceMode})}
+                    <button
+                      onClick={() => setSettings({ ...settings, maintenanceMode: !settings.maintenanceMode })}
                       className={`w-12 h-6 rounded-full transition-colors relative ${settings.maintenanceMode ? 'bg-secondary' : 'bg-green-500'}`}
                     >
                       <div className={`absolute top-1 w-4 h-4 bg-white rounded-full transition-all ${settings.maintenanceMode ? 'left-7' : 'left-1'}`}></div>
@@ -582,12 +579,12 @@ const AdminDashboard = () => {
                     <h4 className="font-noto-serif text-xl italic">Customer View</h4>
                     <span className="text-[8px] bg-primary/10 text-primary px-2 py-0.5 rounded-full font-bold uppercase tracking-widest">Live Preview</span>
                   </div>
-                  <div className="aspect-[3/4] bg-surface relative overflow-hidden border border-outline-variant/10 group">
+                  <div className="aspect-3/4 bg-surface relative overflow-hidden border border-outline-variant/10 group">
                     <img src={settings.maintenanceImage} alt="Preview" className="w-full h-full object-cover" />
                     <div className="absolute inset-0 bg-black/60 flex flex-col items-center justify-center p-6 text-center opacity-0 group-hover:opacity-100 transition-opacity">
                       <span className="material-symbols-outlined text-white text-3xl mb-4">visibility</span>
                       <p className="text-white text-[10px] font-bold uppercase tracking-[0.2em] mb-4">{settings.maintenanceTitle}</p>
-                      <button 
+                      <button
                         onClick={() => window.open('/', '_blank')}
                         className="w-full bg-white text-on-surface text-[9px] uppercase tracking-widest font-bold py-3 hover:bg-primary hover:text-white transition-all shadow-xl"
                       >
@@ -607,23 +604,23 @@ const AdminDashboard = () => {
               <div className="lg:col-span-2 space-y-8">
                 <div className="bg-white border border-outline-variant/10 shadow-sm p-8 space-y-8">
                   <h4 className="font-noto-serif text-xl italic border-b border-outline-variant/5 pb-4">Splash Page Messaging</h4>
-                  
+
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                     <div className="space-y-2">
                       <label className="text-[9px] uppercase tracking-widest text-outline font-bold">Subtitle / Label</label>
-                      <input 
-                        type="text" 
+                      <input
+                        type="text"
                         value={settings.maintenanceSubtitle}
-                        onChange={(e) => setSettings({...settings, maintenanceSubtitle: e.target.value})}
+                        onChange={(e) => setSettings({ ...settings, maintenanceSubtitle: e.target.value })}
                         className="w-full border-b border-outline-variant/30 py-2 outline-none focus:border-primary text-sm font-jakarta-sans"
                       />
                     </div>
                     <div className="space-y-2">
                       <label className="text-[9px] uppercase tracking-widest text-outline font-bold">Main Title</label>
-                      <input 
-                        type="text" 
+                      <input
+                        type="text"
                         value={settings.maintenanceTitle}
-                        onChange={(e) => setSettings({...settings, maintenanceTitle: e.target.value})}
+                        onChange={(e) => setSettings({ ...settings, maintenanceTitle: e.target.value })}
                         className="w-full border-b border-outline-variant/30 py-2 outline-none focus:border-primary text-sm font-jakarta-sans"
                       />
                     </div>
@@ -631,9 +628,9 @@ const AdminDashboard = () => {
 
                   <div className="space-y-2">
                     <label className="text-[9px] uppercase tracking-widest text-outline font-bold">Primary Description</label>
-                    <textarea 
+                    <textarea
                       value={settings.maintenanceDescription}
-                      onChange={(e) => setSettings({...settings, maintenanceDescription: e.target.value})}
+                      onChange={(e) => setSettings({ ...settings, maintenanceDescription: e.target.value })}
                       rows="3"
                       className="w-full border border-outline-variant/20 p-4 outline-none focus:border-primary text-sm font-jakarta-sans bg-surface/30 resize-none"
                     />
@@ -641,10 +638,10 @@ const AdminDashboard = () => {
 
                   <div className="space-y-2">
                     <label className="text-[9px] uppercase tracking-widest text-outline font-bold">Bottom Notice</label>
-                    <input 
-                      type="text" 
+                    <input
+                      type="text"
                       value={settings.maintenanceNotice}
-                      onChange={(e) => setSettings({...settings, maintenanceNotice: e.target.value})}
+                      onChange={(e) => setSettings({ ...settings, maintenanceNotice: e.target.value })}
                       className="w-full border-b border-outline-variant/30 py-2 outline-none focus:border-primary text-sm font-jakarta-sans italic"
                     />
                   </div>
@@ -652,13 +649,13 @@ const AdminDashboard = () => {
 
                 <div className="bg-white border border-outline-variant/10 shadow-sm p-8 space-y-8">
                   <h4 className="font-noto-serif text-xl italic border-b border-outline-variant/5 pb-4">Visuals & Contact</h4>
-                  
+
                   <div className="space-y-2">
                     <label className="text-[9px] uppercase tracking-widest text-outline font-bold">Hero Cover Image URL</label>
-                    <input 
-                      type="text" 
+                    <input
+                      type="text"
                       value={settings.maintenanceImage}
-                      onChange={(e) => setSettings({...settings, maintenanceImage: e.target.value})}
+                      onChange={(e) => setSettings({ ...settings, maintenanceImage: e.target.value })}
                       className="w-full border-b border-outline-variant/30 py-2 outline-none focus:border-primary text-xs font-mono"
                     />
                   </div>
@@ -666,19 +663,19 @@ const AdminDashboard = () => {
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-8 pt-4">
                     <div className="space-y-2">
                       <label className="text-[9px] uppercase tracking-widest text-outline font-bold">Inquiry Email</label>
-                      <input 
-                        type="email" 
+                      <input
+                        type="email"
                         value={settings.contactEmail}
-                        onChange={(e) => setSettings({...settings, contactEmail: e.target.value})}
+                        onChange={(e) => setSettings({ ...settings, contactEmail: e.target.value })}
                         className="w-full border-b border-outline-variant/30 py-2 outline-none focus:border-primary text-sm"
                       />
                     </div>
                     <div className="space-y-2">
                       <label className="text-[9px] uppercase tracking-widest text-outline font-bold">Concierge Phone</label>
-                      <input 
-                        type="text" 
+                      <input
+                        type="text"
                         value={settings.contactPhone}
-                        onChange={(e) => setSettings({...settings, contactPhone: e.target.value})}
+                        onChange={(e) => setSettings({ ...settings, contactPhone: e.target.value })}
                         className="w-full border-b border-outline-variant/30 py-2 outline-none focus:border-primary text-sm"
                       />
                     </div>
@@ -686,7 +683,7 @@ const AdminDashboard = () => {
                 </div>
 
                 <div className="flex justify-end pt-4">
-                  <button 
+                  <button
                     onClick={() => {
                       localStorage.setItem('etashaa_settings', JSON.stringify(settings));
                       alert('Maintenance configuration saved');
@@ -713,8 +710,8 @@ const AdminDashboard = () => {
                       <p className="text-xs font-bold text-on-surface">Accepting Appointments</p>
                       <p className="text-[10px] text-outline">Allow brides to book new sessions</p>
                     </div>
-                    <button 
-                      onClick={() => setSettings({...settings, acceptingAppointments: !settings.acceptingAppointments})}
+                    <button
+                      onClick={() => setSettings({ ...settings, acceptingAppointments: !settings.acceptingAppointments })}
                       className={`w-10 h-5 rounded-full transition-colors relative ${settings.acceptingAppointments ? 'bg-primary' : 'bg-outline-variant/30'}`}
                     >
                       <div className={`absolute top-1 w-3 h-3 bg-white rounded-full transition-all ${settings.acceptingAppointments ? 'left-6' : 'left-1'}`}></div>
@@ -726,8 +723,8 @@ const AdminDashboard = () => {
                       <p className="text-xs font-bold text-on-surface">Price Visibility</p>
                       <p className="text-[10px] text-outline">Show prices to non-logged users</p>
                     </div>
-                    <button 
-                      onClick={() => setSettings({...settings, priceVisibility: !settings.priceVisibility})}
+                    <button
+                      onClick={() => setSettings({ ...settings, priceVisibility: !settings.priceVisibility })}
                       className={`w-10 h-5 rounded-full transition-colors relative ${settings.priceVisibility ? 'bg-primary' : 'bg-outline-variant/30'}`}
                     >
                       <div className={`absolute top-1 w-3 h-3 bg-white rounded-full transition-all ${settings.priceVisibility ? 'left-6' : 'left-1'}`}></div>
@@ -738,7 +735,7 @@ const AdminDashboard = () => {
             </div>
 
             <div className="flex justify-end pt-4">
-              <button 
+              <button
                 onClick={() => {
                   localStorage.setItem('etashaa_settings', JSON.stringify(settings));
                   alert('Settings updated successfully');
@@ -778,11 +775,10 @@ const AdminDashboard = () => {
             <button
               key={tab.id}
               onClick={() => setActiveTab(tab.id)}
-              className={`w-full flex items-center gap-4 px-6 py-4 transition-all duration-300 group ${
-                activeTab === tab.id 
-                ? 'bg-primary text-on-primary shadow-lg scale-[1.02]' 
-                : 'text-on-surface/60 hover:bg-surface-container-lowest hover:text-primary'
-              }`}
+              className={`w-full flex items-center gap-4 px-6 py-4 transition-all duration-300 group ${activeTab === tab.id
+                  ? 'bg-primary text-on-primary shadow-lg scale-[1.02]'
+                  : 'text-on-surface/60 hover:bg-surface-container-lowest hover:text-primary'
+                }`}
             >
               <span className={`material-symbols-outlined text-xl transition-transform ${activeTab === tab.id ? 'scale-110' : 'group-hover:translate-x-1'}`}>
                 {tab.icon}
@@ -822,7 +818,7 @@ const AdminDashboard = () => {
           </div>
           <div className="flex gap-4 relative">
             <div className="relative">
-              <button 
+              <button
                 onClick={() => setIsNotificationOpen(!isNotificationOpen)}
                 className="w-12 h-12 rounded-full border border-outline-variant/30 flex items-center justify-center hover:bg-white hover:shadow-md transition-all relative group"
               >
@@ -837,8 +833,8 @@ const AdminDashboard = () => {
                 <div className="absolute right-0 mt-4 w-80 bg-white shadow-2xl border border-outline-variant/10 z-50 animate-in fade-in slide-in-from-top-4 duration-300">
                   <div className="p-6 border-b border-outline-variant/10 flex justify-between items-center">
                     <h4 className="font-noto-serif text-sm italic">Notifications</h4>
-                    <button 
-                      onClick={() => setNotifications(notifications.map(n => ({...n, unread: false})))}
+                    <button
+                      onClick={() => setNotifications(notifications.map(n => ({ ...n, unread: false })))}
                       className="text-[8px] uppercase tracking-widest font-bold text-primary hover:underline"
                     >
                       Mark all read
@@ -847,9 +843,9 @@ const AdminDashboard = () => {
                   <div className="max-h-[400px] overflow-y-auto">
                     {notifications.length > 0 ? (
                       notifications.map(n => (
-                        <div 
-                          key={n.id} 
-                          onClick={() => setNotifications(notifications.map(notif => notif.id === n.id ? {...notif, unread: false} : notif))}
+                        <div
+                          key={n.id}
+                          onClick={() => setNotifications(notifications.map(notif => notif.id === n.id ? { ...notif, unread: false } : notif))}
                           className={`p-6 border-b border-outline-variant/5 flex gap-4 cursor-pointer transition-colors ${n.unread ? 'bg-primary/5 hover:bg-primary/10' : 'hover:bg-surface'}`}
                         >
                           <div className={`w-8 h-8 rounded-full flex items-center justify-center shrink-0 ${n.unread ? 'bg-primary text-white' : 'bg-surface text-outline'}`}>
@@ -873,7 +869,7 @@ const AdminDashboard = () => {
                 </div>
               )}
             </div>
-            
+
             <button onClick={() => activeTab === 'Products' ? openAddModal() : setActiveTab('Products')} className="btn-premium px-8">
               <span className="material-symbols-outlined mr-2">add</span>
               <span>Quick Action</span>
@@ -886,7 +882,7 @@ const AdminDashboard = () => {
 
       {/* Product Modal */}
       {isModalOpen && (
-        <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-black/60 backdrop-blur-md animate-in fade-in duration-700">
+        <div className="fixed inset-0 z-100 flex items-center justify-center p-4 bg-black/60 backdrop-blur-md animate-in fade-in duration-700">
           <div className="bg-white/95 backdrop-blur-xl w-full max-w-lg shadow-[0_30px_100px_rgba(0,0,0,0.4)] relative animate-in zoom-in-95 duration-700 rounded-sm border border-white/20">
             <div className="p-8 border-b border-outline-variant/10 flex justify-between items-center">
               <h3 className="font-noto-serif text-2xl italic">{editingItem ? 'Edit Piece' : 'Add Heritage Piece'}</h3>
@@ -895,10 +891,10 @@ const AdminDashboard = () => {
             <form onSubmit={handleSaveProduct} className="p-8 space-y-6">
               <div className="space-y-1">
                 <label className="text-[9px] uppercase tracking-widest text-outline font-bold">Product Name</label>
-                <input 
-                  type="text" 
+                <input
+                  type="text"
                   value={formData.name}
-                  onChange={(e) => setFormData({...formData, name: e.target.value})}
+                  onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                   className="w-full border-b border-outline-variant/30 py-2 outline-none focus:border-primary text-sm font-jakarta-sans transition-colors"
                   required
                 />
@@ -906,9 +902,9 @@ const AdminDashboard = () => {
               <div className="grid grid-cols-2 gap-6">
                 <div className="space-y-1">
                   <label className="text-[9px] uppercase tracking-widest text-outline font-bold">Category</label>
-                  <select 
+                  <select
                     value={formData.category}
-                    onChange={(e) => setFormData({...formData, category: e.target.value})}
+                    onChange={(e) => setFormData({ ...formData, category: e.target.value })}
                     className="w-full border-b border-outline-variant/30 py-2 outline-none focus:border-primary text-sm font-jakarta-sans transition-colors"
                   >
                     <option>Bridal Collection</option>
@@ -919,10 +915,10 @@ const AdminDashboard = () => {
                 </div>
                 <div className="space-y-1">
                   <label className="text-[9px] uppercase tracking-widest text-outline font-bold">Price (₹)</label>
-                  <input 
-                    type="number" 
+                  <input
+                    type="number"
                     value={formData.price}
-                    onChange={(e) => setFormData({...formData, price: e.target.value})}
+                    onChange={(e) => setFormData({ ...formData, price: e.target.value })}
                     className="w-full border-b border-outline-variant/30 py-2 outline-none focus:border-primary text-sm font-jakarta-sans transition-colors"
                     required
                   />
@@ -931,9 +927,9 @@ const AdminDashboard = () => {
               <div className="space-y-3">
                 <div className="flex justify-between items-end">
                   <label className="text-[9px] uppercase tracking-widest text-outline font-bold">Image Options (URLs)</label>
-                  <button 
-                    type="button" 
-                    onClick={() => setFormData({...formData, images: [...formData.images, '']})}
+                  <button
+                    type="button"
+                    onClick={() => setFormData({ ...formData, images: [...formData.images, ''] })}
                     className="text-[9px] uppercase tracking-widest font-bold text-primary hover:underline"
                   >
                     + Add Image
@@ -942,24 +938,24 @@ const AdminDashboard = () => {
                 <div className="space-y-3 max-h-32 overflow-y-auto pr-2 custom-scrollbar">
                   {formData.images.map((img, idx) => (
                     <div key={idx} className="flex gap-3 items-center">
-                      <input 
-                        type="text" 
+                      <input
+                        type="text"
                         value={img}
                         onChange={(e) => {
                           const newImages = [...formData.images];
                           newImages[idx] = e.target.value;
-                          setFormData({...formData, images: newImages});
+                          setFormData({ ...formData, images: newImages });
                         }}
                         className="flex-1 border-b border-outline-variant/30 py-2 outline-none focus:border-primary text-[10px] text-outline font-jakarta-sans transition-colors"
                         placeholder="https://images.etashaa.com/..."
                         required
                       />
                       {formData.images.length > 1 && (
-                        <button 
-                          type="button" 
+                        <button
+                          type="button"
                           onClick={() => {
                             const newImages = formData.images.filter((_, i) => i !== idx);
-                            setFormData({...formData, images: newImages});
+                            setFormData({ ...formData, images: newImages });
                           }}
                           className="material-symbols-outlined text-outline hover:text-secondary text-sm"
                         >
@@ -983,7 +979,7 @@ const AdminDashboard = () => {
 
       {/* Reschedule Modal */}
       {reschedulingAppointment && (
-        <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-black/60 backdrop-blur-md animate-in fade-in duration-700">
+        <div className="fixed inset-0 z-100 flex items-center justify-center p-4 bg-black/60 backdrop-blur-md animate-in fade-in duration-700">
           <div className="bg-white/95 backdrop-blur-xl w-full max-w-sm shadow-[0_30px_100px_rgba(0,0,0,0.4)] relative animate-in zoom-in-95 duration-700 rounded-sm border border-white/20">
             <div className="p-8 border-b border-outline-variant/10 flex justify-between items-center">
               <h3 className="font-noto-serif text-2xl italic">Reschedule</h3>
@@ -994,24 +990,24 @@ const AdminDashboard = () => {
                 <p className="text-[10px] uppercase tracking-widest text-outline font-bold mb-2">Patient / Client</p>
                 <p className="font-noto-serif text-xl italic">{reschedulingAppointment.name}</p>
               </div>
-              
+
               <div className="space-y-4">
                 <div className="space-y-1">
                   <label className="text-[9px] uppercase tracking-widest text-outline font-bold">New Date</label>
-                  <input 
-                    type="date" 
+                  <input
+                    type="date"
                     value={rescheduleData.date}
-                    onChange={(e) => setRescheduleData({...rescheduleData, date: e.target.value})}
+                    onChange={(e) => setRescheduleData({ ...rescheduleData, date: e.target.value })}
                     className="w-full border-b border-outline-variant/30 py-2 outline-none focus:border-primary text-sm font-jakarta-sans"
                     required
                   />
                 </div>
                 <div className="space-y-1">
                   <label className="text-[9px] uppercase tracking-widest text-outline font-bold">New Time</label>
-                  <input 
-                    type="text" 
+                  <input
+                    type="text"
                     value={rescheduleData.time}
-                    onChange={(e) => setRescheduleData({...rescheduleData, time: e.target.value})}
+                    onChange={(e) => setRescheduleData({ ...rescheduleData, time: e.target.value })}
                     placeholder="11:00 AM"
                     className="w-full border-b border-outline-variant/30 py-2 outline-none focus:border-primary text-sm font-jakarta-sans"
                     required
@@ -1023,8 +1019,8 @@ const AdminDashboard = () => {
                 <button type="submit" className="w-full py-4 bg-primary text-white text-[10px] uppercase tracking-widest font-bold hover:shadow-lg transition-all">
                   Confirm Reschedule
                 </button>
-                <button 
-                  type="button" 
+                <button
+                  type="button"
                   onClick={() => setReschedulingAppointment(null)}
                   className="w-full mt-4 py-2 text-[9px] uppercase tracking-widest font-bold text-outline hover:text-on-surface transition-colors"
                 >
@@ -1038,8 +1034,8 @@ const AdminDashboard = () => {
 
       {/* Order Detail Modal */}
       {viewingOrder && (
-        <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 md:p-12 bg-black/80 backdrop-blur-xl animate-in fade-in duration-700">
-          <div className="bg-[#fcf9f6]/95 backdrop-blur-2xl w-full max-w-7xl h-full shadow-[0_40px_120px_rgba(0,0,0,0.5)] relative animate-in zoom-in-95 duration-700 overflow-hidden flex flex-col border border-white/20">
+        <div className="fixed inset-0 z-100 flex items-center justify-center p-4 md:p-12 bg-black/80 backdrop-blur-xl animate-in fade-in duration-700">
+          <div className="bg-surface-bright/95 backdrop-blur-2xl w-full max-w-7xl h-full shadow-[0_40px_120px_rgba(0,0,0,0.5)] relative animate-in zoom-in-95 duration-700 overflow-hidden flex flex-col border border-white/20">
             {/* Modal Header */}
             <div className="p-10 border-b border-outline-variant/10 flex justify-between items-center bg-white z-20">
               <div className="space-y-1">
@@ -1050,17 +1046,17 @@ const AdminDashboard = () => {
                   <span>{viewingOrder.date}</span>
                 </div>
               </div>
-              <button 
-                onClick={() => setViewingOrder(null)} 
+              <button
+                onClick={() => setViewingOrder(null)}
                 className="w-12 h-12 rounded-full border border-outline-variant/30 flex items-center justify-center text-outline hover:text-secondary hover:border-secondary transition-all"
               >
                 <span className="material-symbols-outlined">close</span>
               </button>
             </div>
-            
+
             <div className="flex-1 overflow-y-auto bg-surface/30">
               <div className="p-10 grid grid-cols-1 lg:grid-cols-12 gap-16">
-                
+
                 {/* Left Side: Order Content (8 cols) */}
                 <div className="lg:col-span-8 space-y-16">
                   {/* Pieces Section */}
@@ -1069,61 +1065,61 @@ const AdminDashboard = () => {
                       <h4 className="text-[11px] uppercase tracking-[0.4em] text-outline font-bold">Ordered Pieces</h4>
                       <span className="text-[10px] text-primary font-bold uppercase tracking-widest">{viewingOrder.items?.length || 1} Item(s)</span>
                     </div>
-                    
+
                     <div className="space-y-4">
                       {(viewingOrder.items || [{ name: viewingOrder.product, price: viewingOrder.amount, images: [viewingOrder.image || '/images/bridal_new_1.png'], qty: 1 }]).map((item, idx) => (
-                      <div key={idx} className="flex gap-10 items-center bg-white p-6 border border-outline-variant/5 hover:border-primary/20 transition-all group">
-                        <div className="w-32 h-40 bg-surface shrink-0 shadow-sm relative group/img overflow-hidden">
-                          {/* Image Gallery / Main Image */}
-                          <div className="w-full h-full">
-                            <img 
-                              src={(item.images?.[0] || item.image)} 
-                              alt={item.name} 
-                              className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" 
-                            />
-                          </div>
-                          
-                          {/* Secondary Image Overlay (if exists) */}
-                          {item.images?.length > 1 && (
-                            <div className="absolute inset-0 opacity-0 group-hover/img:opacity-100 transition-opacity duration-500">
-                               <img 
-                                src={item.images[1]} 
-                                alt={item.name} 
-                                className="w-full h-full object-cover" 
+                        <div key={idx} className="flex gap-10 items-center bg-white p-6 border border-outline-variant/5 hover:border-primary/20 transition-all group">
+                          <div className="w-32 h-40 bg-surface shrink-0 shadow-sm relative group/img overflow-hidden">
+                            {/* Image Gallery / Main Image */}
+                            <div className="w-full h-full">
+                              <img
+                                src={(item.images?.[0] || item.image)}
+                                alt={item.name}
+                                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
                               />
-                              <div className="absolute bottom-0 left-0 right-0 bg-primary/90 text-white text-[7px] py-1 text-center font-bold uppercase tracking-[0.2em]">
-                                +{item.images.length - 1} More Views
-                              </div>
                             </div>
-                          )}
-                          
-                          <div className="absolute top-2 left-2 bg-on-surface text-white text-[8px] px-2 py-1 font-bold uppercase tracking-widest z-10">Qty: {item.qty}</div>
-                        </div>
-                        <div className="flex-1 space-y-3">
-                          <div className="flex justify-between items-start">
-                            <h5 className="font-noto-serif text-2xl italic leading-tight text-on-surface">{item.name}</h5>
-                            <p className="text-xl font-bold text-primary font-jakarta-sans">{item.price}</p>
-                          </div>
-                          <p className="text-[10px] text-outline uppercase tracking-[0.2em] font-bold">Category: Heritage Couture</p>
-                          
-                          {/* Thumbnail List */}
-                          {item.images?.length > 1 && (
-                            <div className="flex gap-2 pt-2">
-                              {item.images.slice(0, 4).map((img, i) => (
-                                <div key={i} className="w-8 h-10 border border-outline-variant/20 overflow-hidden cursor-pointer hover:border-primary transition-colors">
-                                  <img src={img} alt="" className="w-full h-full object-cover" />
-                                </div>
-                              ))}
-                            </div>
-                          )}
 
-                          <div className="pt-4 flex gap-4">
-                            <span className="text-[9px] uppercase tracking-widest text-primary/60 font-bold border border-primary/20 px-3 py-1">In Production</span>
-                            <span className="text-[9px] uppercase tracking-widest text-outline/60 font-bold border border-outline-variant/20 px-3 py-1 italic">SKU: {viewingOrder.id}-{idx+1}</span>
+                            {/* Secondary Image Overlay (if exists) */}
+                            {item.images?.length > 1 && (
+                              <div className="absolute inset-0 opacity-0 group-hover/img:opacity-100 transition-opacity duration-500">
+                                <img
+                                  src={item.images[1]}
+                                  alt={item.name}
+                                  className="w-full h-full object-cover"
+                                />
+                                <div className="absolute bottom-0 left-0 right-0 bg-primary/90 text-white text-[7px] py-1 text-center font-bold uppercase tracking-[0.2em]">
+                                  +{item.images.length - 1} More Views
+                                </div>
+                              </div>
+                            )}
+
+                            <div className="absolute top-2 left-2 bg-on-surface text-white text-[8px] px-2 py-1 font-bold uppercase tracking-widest z-10">Qty: {item.qty}</div>
+                          </div>
+                          <div className="flex-1 space-y-3">
+                            <div className="flex justify-between items-start">
+                              <h5 className="font-noto-serif text-2xl italic leading-tight text-on-surface">{item.name}</h5>
+                              <p className="text-xl font-bold text-primary font-jakarta-sans">{item.price}</p>
+                            </div>
+                            <p className="text-[10px] text-outline uppercase tracking-[0.2em] font-bold">Category: Heritage Couture</p>
+
+                            {/* Thumbnail List */}
+                            {item.images?.length > 1 && (
+                              <div className="flex gap-2 pt-2">
+                                {item.images.slice(0, 4).map((img, i) => (
+                                  <div key={i} className="w-8 h-10 border border-outline-variant/20 overflow-hidden cursor-pointer hover:border-primary transition-colors">
+                                    <img src={img} alt="" className="w-full h-full object-cover" />
+                                  </div>
+                                ))}
+                              </div>
+                            )}
+
+                            <div className="pt-4 flex gap-4">
+                              <span className="text-[9px] uppercase tracking-widest text-primary/60 font-bold border border-primary/20 px-3 py-1">In Production</span>
+                              <span className="text-[9px] uppercase tracking-widest text-outline/60 font-bold border border-outline-variant/20 px-3 py-1 italic">SKU: {viewingOrder.id}-{idx + 1}</span>
+                            </div>
                           </div>
                         </div>
-                      </div>
-                    ))}
+                      ))}
                     </div>
                   </div>
 
@@ -1149,7 +1145,7 @@ const AdminDashboard = () => {
                         </div>
                       </div>
                     </div>
-                    
+
                     <div className="space-y-6">
                       <h4 className="text-[11px] uppercase tracking-[0.4em] text-outline font-bold border-b border-outline-variant/10 pb-4">Logistics Target</h4>
                       <div className="space-y-4">
@@ -1204,16 +1200,16 @@ const AdminDashboard = () => {
                   {/* Admin Controls */}
                   <div className="bg-surface-container-low p-8 border border-outline-variant/10 space-y-8">
                     <h4 className="text-[11px] uppercase tracking-[0.4em] text-outline font-bold">Atelier Control</h4>
-                    
+
                     <div className="space-y-6">
                       <div className="space-y-3">
                         <label className="text-[9px] uppercase tracking-widest text-outline font-bold">Order Lifecycle Status</label>
                         <div className="relative">
-                          <select 
+                          <select
                             value={viewingOrder.status}
                             onChange={(e) => {
                               handleOrderStatus(viewingOrder.id, e.target.value);
-                              setViewingOrder({...viewingOrder, status: e.target.value});
+                              setViewingOrder({ ...viewingOrder, status: e.target.value });
                             }}
                             className="w-full bg-white border border-outline-variant/20 p-4 text-xs font-bold outline-none focus:border-primary appearance-none cursor-pointer"
                           >
@@ -1227,21 +1223,21 @@ const AdminDashboard = () => {
                       </div>
 
                       <div className="grid grid-cols-1 gap-3">
-                        <button 
+                        <button
                           onClick={() => handleGenerateInvoice(viewingOrder)}
                           className="w-full py-4 bg-on-surface text-white text-[10px] uppercase tracking-widest font-bold hover:bg-primary transition-all flex items-center justify-center gap-3"
                         >
                           <span className="material-symbols-outlined text-sm">description</span>
                           Generate Invoice
                         </button>
-                        <button 
+                        <button
                           onClick={() => handleUpdateTracking(viewingOrder)}
                           className="w-full py-4 border border-outline-variant/30 text-on-surface text-[10px] uppercase tracking-widest font-bold hover:bg-white transition-all flex items-center justify-center gap-3"
                         >
                           <span className="material-symbols-outlined text-sm">local_shipping</span>
                           Update Tracking
                         </button>
-                        <button 
+                        <button
                           onClick={() => handleContactCustomer(viewingOrder)}
                           className="w-full py-4 border border-outline-variant/30 text-secondary text-[10px] uppercase tracking-widest font-bold hover:bg-secondary hover:text-white transition-all flex items-center justify-center gap-3"
                         >

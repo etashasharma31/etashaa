@@ -228,7 +228,7 @@ const Home = () => {
       {/* Cinematic Heritage Section - The Muse Reels */}
       <section className="mb-24 px-6 md:px-12 max-w-custom mx-auto mt-24">
         <div className="text-center mb-12">
-          <p className="font-jakarta-sans text-[10px] uppercase tracking-[1em] text-primary mb-6 font-bold uppercase">Grace in Motion</p>
+          <p className="font-jakarta-sans text-[10px] uppercase tracking-[1em] text-primary mb-6 font-bold">Grace in Motion</p>
           <h2 className="font-noto-serif text-3xl md:text-5xl mb-6">The Cinematic Muse</h2>
           <p className="max-w-xl mx-auto text-on-surface/50 font-jakarta-sans text-[11px] leading-relaxed italic">
             "Witness the fluidity of our heritage fabrics and the sparkle of our hand-embroidery in motion."
@@ -241,12 +241,12 @@ const Home = () => {
             { id: 2, src: 'https://v1.pinimg.com/videos/mc/720p/2d/b4/82/2db482bf85e8b3bd1a8885401bed9ec8.mp4', label: 'Artisanal Elegance' },
             { id: 3, src: '/videos/muse_reel_3.mp4', label: 'Heritage Glow' }
           ].map((reel) => (
-            <div key={reel.id} className="relative group aspect-[9/16] overflow-hidden bg-surface-container-highest rounded-4xl shadow-2xl">
-              <video 
-                autoPlay 
-                muted 
-                loop 
-                playsInline 
+            <div key={reel.id} className="relative group aspect-9/16 overflow-hidden bg-surface-container-highest rounded-4xl shadow-2xl">
+              <video
+                autoPlay
+                muted
+                loop
+                playsInline
                 preload="none"
                 className="w-full h-full object-cover opacity-90 group-hover:opacity-100 group-hover:scale-110 transition-all duration-1000"
               >
@@ -260,7 +260,7 @@ const Home = () => {
             </div>
           ))}
         </div>
-        
+
         <div className="text-center mt-20">
           <Link to="/etashaa-muse" className="inline-flex items-center gap-4 text-on-surface font-jakarta-sans text-[10px] uppercase tracking-[0.4em] font-bold border-b border-primary/30 pb-2 hover:text-primary transition-all">
             Watch All Muse Stories
